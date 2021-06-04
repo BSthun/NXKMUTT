@@ -1,0 +1,54 @@
+/* Noto Sans */
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansDisplay-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansDisplay-Bold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+/* Noto Sans Thai */
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansThaiUI-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansThaiUI-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansThaiUI-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: NotoSans;
+    src: url("./NotoSansThaiUI-Bold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+body,
+* {
+    font-family: NotoSans, NotoSansThai, Arial, Helvetica, sans-serif;
+}

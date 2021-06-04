@@ -1,23 +1,32 @@
-import "./App.css";
+import {
+	BrowserRouter,
+	Redirect,
+	Route,
+	Switch,
+} from 'react-router-dom';
+import Home from './_home/Home';
+import { FloatingContextProvider } from './contexts/FloatingContext';
+import { ThemeContextProvider } from './contexts/ThemeContext';
+import './locales';
+import './styles';
 
-function App() {
+const App = () => {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
+		<ThemeContextProvider>
+			<FloatingContextProvider>
+				<BrowserRouter>
+					<Switch>
+						<Route exact path="/">
+							<Redirect to={{ pathname: '/home' }} />
+						</Route>
+						<Route path="/home">
+							<Home />
+						</Route>
+					</Switch>
+				</BrowserRouter>
+			</FloatingContextProvider>
+		</ThemeContextProvider>
 	);
-}
+};
 
 export default App;
