@@ -33,10 +33,10 @@ export const ThemeContextProvider = ({ children }) => {
 	});
 	
 	const handlers = {
-		toggle: () => {
-			console.log("aaa");
+		toggleDark: () => {
 			setDark((dark) => !dark);
 		},
+		isDark: dark,
 	};
 	
 	return (

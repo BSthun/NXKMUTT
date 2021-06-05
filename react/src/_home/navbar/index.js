@@ -22,7 +22,7 @@ import NavbarButton from './NavbarButton';
 import NavbarToggle from './NavbarToggle';
 
 const Navbar = () => {
-	const { toggle } = useContext(ThemeContext);
+	const { toggleDark } = useContext(ThemeContext);
 	const [scrolled, setScrolled] = useState(false);
 	const [t, i18n] = useTranslation('home');
 	
@@ -58,13 +58,13 @@ const Navbar = () => {
 				</Box>
 				<Box display="flex" alignItems="center">
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
-					<NavbarButton to="/blog" fa={faPenAlt} text={t('publication')} />
-					<NavbarButton to="/blog" fa={faEnvelope} text={t('contact')} />
+					<NavbarButton to="/publication" fa={faPenAlt} text={t('publication')} />
+					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
 					<NavbarToggle
 						fa={faAdjust}
 						tooltip={t('toggledarktheme')}
 						onClick={() => {
-							toggle();
+							toggleDark();
 						}}
 					/>
 					<NavbarToggle
@@ -92,9 +92,10 @@ const useStyles = makeStyles((theme) => ({
 	}),
 	inner: (props) => ({
 		height: '100%',
-		maxWidth: 1200,
+		maxWidth: theme.breakpoints.values.lg,
 		paddingLeft: theme.spacing(2),
 		paddingRight: theme.spacing(2),
+		margin: 'auto',
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
