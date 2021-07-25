@@ -17,6 +17,7 @@ export const ThemeContextProvider = ({ children }) => {
 		palette: {
 			type: dark ? 'dark' : 'light',
 		},
+		spacing: 4,
 		typography: {
 			fontFamily: [
 				'NotoSans',

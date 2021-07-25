@@ -21,10 +21,10 @@ const NavbarButton = ({ to, fa, text }) => {
 const useStyles = makeStyles((theme) => ({
 	link: (props) => ({
 		textDecoration: 'none',
-		marginLeft: 6,
+		marginLeft: theme.spacing(2),
 	}),
 	button: (props) => ({
-		padding: '6px 12px',
+		padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
 		color: theme.palette.text.primary,
 		border: '1px solid transparent',
 		borderRadius: 1000,
@@ -32,9 +32,14 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': {
 			border: `1px solid ${theme.palette.text.primary}`,
 		},
+		[theme.breakpoints.down('sm')]: {
+			width: '100%',
+			margin: `${theme.spacing(2)}px 0`,
+			border: `1px solid ${theme.palette.text.primary}`,
+		},
 	}),
 	fa: (props) => ({
-		marginRight: 6,
+		marginRight: theme.spacing(2),
 	}),
 }));
 

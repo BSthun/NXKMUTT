@@ -10,7 +10,7 @@ import React from 'react';
 const NavbarToggle = ({ fa, tooltip, onClick }) => {
 	const classes = useStyles();
 	return (
-		<Tooltip title={tooltip}>
+		<Tooltip title={tooltip} style={{ flex: 1 }}>
 			<ButtonBase className={classes.button} onClick={onClick}>
 				<FontAwesomeIcon icon={fa} />
 			</ButtonBase>
@@ -20,9 +20,9 @@ const NavbarToggle = ({ fa, tooltip, onClick }) => {
 
 const useStyles = makeStyles((theme) => ({
 	button: (props) => ({
-		marginLeft: '12px',
-		padding: '6px',
-		minWidth: '32px',
+		margin: `${theme.spacing(2)}px 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
+		padding: theme.spacing(2),
+		minWidth: theme.spacing(10),
 		display: 'flex',
 		color: theme.palette.text.primary,
 		border: `1px solid ${theme.palette.text.primary}`,
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 		transition: '0.3s all',
 		'&:hover': {
 			color: theme.palette.background.paper,
-			backgroundColor: theme.palette.text.primary
+			backgroundColor: theme.palette.text.primary,
 		},
 	}),
 }));
