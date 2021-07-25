@@ -61,32 +61,20 @@ const Navbar = () => {
 		}
 	};
 	
-	const openDrawer = () => {
+	const toggleDrawer = () => {
 		setOptions(options => ({
 			...options,
-			drawer: true,
-		}));
-	};
-	
-	const closeDrawer = () => {
-		setOptions(options => ({
-			...options,
-			drawer: false,
+			drawer: !options.drawer,
 		}));
 	};
 	
 	return (
 		<Box className={classes.outer}>
 			<Box className={classes.inner}>
-				<Box position="absolute"
-				     fontSize="1.2em"
-				     marginLeft="12px"
-				     display={{ xs: 'block', md: 'none' }}
-				     onClick={openDrawer}
-				>
+				<Box onClick={toggleDrawer} className={classes.hamburger}>
 					<FontAwesomeIcon icon={faBars} />
 				</Box>
-				<Backdrop open={options.drawer} onClick={closeDrawer} />
+				<Backdrop open={options.drawer} onClick={toggleDrawer} />
 				<Box display="flex" alignItems="center">
 					<img className={classes.logo} alt="NX KMUTT Logo" src={logoOrig} />
 					<Typography color="textPrimary" variant="h5">NX Center KMUTT</Typography>
@@ -131,12 +119,21 @@ const useStyles = makeStyles(
 		inner: (props) => ({
 			height: '100%',
 			maxWidth: theme.breakpoints.values.lg,
-			paddingLeft: theme.spacing(2),
-			paddingRight: theme.spacing(2),
+			padding: `0 ${theme.spacing(6)}px`,
 			margin: 'auto',
 			display: 'flex',
 			justifyContent: 'space-between',
 			alignItems: 'center',
+		}),
+		hamburger: (props) => ({
+			position: 'absolute',
+			zIndex: 993,
+			left: props.drawer ? theme.spacing(46) : theme.spacing(1),
+			fontSize: 24,
+			color: theme.palette.text.primary,
+			padding: theme.spacing(3),
+			display: { xs: 'block', md: 'none' },
+			transition: '.3s ease-in-out',
 		}),
 		drawer: (props) => ({
 			display: 'flex',
@@ -146,23 +143,24 @@ const useStyles = makeStyles(
 			[theme.breakpoints.down('sm')]: (props) => ({
 				position: 'fixed',
 				zIndex: 922,
-				padding: theme.spacing(12),
+				padding: `${theme.spacing(14)}px ${theme.spacing(6)}px`,
 				top: 0,
-				left: props.drawer ? 0 : -(theme.spacing(54) + 2 * theme.spacing(12)),
-				width: theme.spacing(54),
+				left: props.drawer ? 0 : -(theme.spacing(48) + 2 * theme.spacing(6)),
+				width: theme.spacing(48),
 				height: '100vh',
 				flexDirection: 'column',
 				alignItems: 'stretch',
 				backgroundColor: theme.palette.background.paper,
-				boxShadow: props.drawer ? `0px 0px ${theme.spacing(2)}px 0px rgba(0, 0, 0, 0.36)` : 'none',
-				transition: '.3s',
+				// ! Removed due to no obvious effect of shadow when open along with backdrop
+				// boxShadow: props.drawer ? `0px 0px ${theme.spacing(2)}px 0px rgba(0, 0, 0, 0.36)` : 'none',
+				transition: '.3s ease-in-out',
 			}),
 		}),
 		logo: (props) => ({
 			width: theme.spacing(12),
 			marginRight: theme.spacing(2),
 			[theme.breakpoints.down('sm')]: {
-				marginLeft: theme.spacing(10),
+				marginLeft: theme.spacing(6),
 			},
 		}),
 	}))
