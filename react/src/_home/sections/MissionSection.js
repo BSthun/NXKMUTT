@@ -10,7 +10,7 @@ import React from 'react';
 const MissionSection = () => {
 	const classes = useStyles();
 	return (
-		<Paper className={classes.root} square>
+		<Paper className={classes.root} square elevation={0}>
 			<Container maxWidth="lg">
 				<Grid container>
 					<Grid item>
