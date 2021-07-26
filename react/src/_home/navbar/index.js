@@ -110,6 +110,7 @@ const useStyles = makeStyles(
 			width: '100%',
 			position: 'fixed',
 			top: 0,
+			zIndex: 900,
 			backgroundColor: props.scrolled ? theme.palette.background.paper : 'transparent',
 			boxShadow: props.scrolled ? '0px 3px 5px 0px rgba(0, 0, 0, 0.24)' : 'none',
 			transition: '0.3s all',
