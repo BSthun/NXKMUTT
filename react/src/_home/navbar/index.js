@@ -71,7 +71,7 @@ const Navbar = () => {
 	return (
 		<Box className={classes.outer}>
 			<Box className={classes.inner}>
-				<Box onClick={toggleDrawer} className={classes.hamburger}>
+				<Box onClick={toggleDrawer} className={classes.hamburger} display={{ xs: 'block', md: 'none' }}>
 					<FontAwesomeIcon icon={faBars} />
 				</Box>
 				<Backdrop open={options.drawer} onClick={toggleDrawer} />
@@ -87,9 +87,7 @@ const Navbar = () => {
 						<NavbarToggle
 							fa={faAdjust}
 							tooltip={t('toggledarktheme')}
-							onClick={() => {
-								toggleDark();
-							}}
+							onClick={toggleDark}
 						/>
 						<NavbarToggle
 							fa={faLanguage}
@@ -112,6 +110,7 @@ const useStyles = makeStyles(
 			width: '100%',
 			position: 'fixed',
 			top: 0,
+			zIndex: 900,
 			backgroundColor: props.scrolled ? theme.palette.background.paper : 'transparent',
 			boxShadow: props.scrolled ? '0px 3px 5px 0px rgba(0, 0, 0, 0.24)' : 'none',
 			transition: '0.3s all',
@@ -132,7 +131,6 @@ const useStyles = makeStyles(
 			fontSize: 24,
 			color: theme.palette.text.primary,
 			padding: theme.spacing(3),
-			display: { xs: 'block', md: 'none' },
 			transition: '.3s ease-in-out',
 		}),
 		drawer: (props) => ({
