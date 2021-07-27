@@ -21,7 +21,7 @@ const BannerSection = () => {
 			          bgImageAlt="background"
 			          bgImageStyle={{ height: '100%', width: '100%', objectFit: 'cover' }}
 			          strength={300}
-			          className={classes.root}
+			          className={classes.parallax}
 			>
 				<Container maxWidth="lg" className={classes.container}>
 					<Typography variant="h3" align="right" color="textPrimary">Neuroscience Center</Typography>
@@ -37,15 +37,11 @@ const BannerSection = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	root: (props) => ({
+	parallax: (props) => ({
 		minHeight: '100vh',
-		// position: 'relative',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		// backgroundImage: `url(${theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight})`,
-		// backgroundSize: 'cover',
-		// backgroundPosition: 'center',
 	}),
 	container: (props) => ({
 		display: 'flex',

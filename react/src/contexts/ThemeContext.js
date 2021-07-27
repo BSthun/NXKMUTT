@@ -5,13 +5,19 @@ import {
 } from '@material-ui/core/styles';
 import {
 	createContext,
+	useEffect,
 	useState,
 } from 'react';
 
 export const ThemeContext = createContext({});
 
 export const ThemeContextProvider = ({ children }) => {
-	const [dark, setDark] = useState(useMediaQuery('(prefers-color-scheme: dark)'));
+	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+	const [dark, setDark] = useState(prefersDarkMode);
+	
+	useEffect(() => {
+		setDark(prefersDarkMode);
+	}, [prefersDarkMode]);
 	
 	const theme = createMuiTheme({
 		palette: {

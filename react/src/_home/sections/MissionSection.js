@@ -11,7 +11,9 @@ const MissionSection = () => {
 	const classes = useStyles();
 	return (
 		<Paper className={classes.root} square elevation={0}>
-			<div className={classes.slab} />
+			<div className={classes.decoCircle}>
+				<img alt="Decoration element" src="" />
+			</div>
 			<Container maxWidth="lg">
 				<Grid container>
 					<Grid item>
@@ -29,9 +31,11 @@ const MissionSection = () => {
 
 const useStyles = makeStyles((theme) => ({
 	root: (props) => ({
+		position: 'relative',
 		display: 'flex',
 		justifyContent: 'center',
 	}),
+	decoCircle: (props) => ({}),
 }));
 
 export default MissionSection;
