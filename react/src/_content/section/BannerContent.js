@@ -16,7 +16,7 @@ import spiralangleLight from '../../images/abstract/spiralangle-light.svg';
 
 const BannerContent = () => {
 	const classes = useStyles();
-	const [t, i18n] = useTranslation('content');
+	const [t] = useTranslation('content');
 	
 	return (
 		<Box className={classes.root}>
