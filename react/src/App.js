@@ -22,6 +22,9 @@ const App = () => {
 						<Route path="/home">
 							<Home />
 						</Route>
+						<Route path="/content">
+							{/*<Home />*/}
+						</Route>
 					</Switch>
 				</BrowserRouter>
 			</FloatingContextProvider>

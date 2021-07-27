@@ -81,7 +81,7 @@ const Navbar = () => {
 				</Box>
 				<Box className={classes.drawer}>
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
-					<NavbarButton to="/publication" fa={faPenAlt} text={t('publication')} />
+					<NavbarButton to="/content" fa={faPenAlt} text={t('content')} />
 					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
 					<Box display="flex">
 						<NavbarToggle
