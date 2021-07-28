@@ -6,6 +6,7 @@ import {
 import {
 	createContext,
 	useEffect,
+	useMemo,
 	useState,
 } from 'react';
 
@@ -19,7 +20,7 @@ export const ThemeContextProvider = ({ children }) => {
 		setDark(prefersDarkMode);
 	}, [prefersDarkMode]);
 	
-	const theme = createMuiTheme({
+	const theme = useMemo(() => createMuiTheme({
 		palette: {
 			type: dark ? 'dark' : 'light',
 		},
@@ -37,7 +38,7 @@ export const ThemeContextProvider = ({ children }) => {
 		shape: {
 			borderRadius: 10,
 		},
-	});
+	}), [dark]);
 	
 	const handlers = {
 		toggleDark: () => {

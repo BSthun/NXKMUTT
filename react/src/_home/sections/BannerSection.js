@@ -56,11 +56,13 @@ const useStyles = makeStyles((theme) => ({
 	}),
 	slab: (props) => ({
 		position: 'absolute',
-		bottom: 0,
+		bottom: theme.spacing(-1), // ! Random whitespace issue workaround (-4px instead 0)
 		width: '100%',
 		height: 'calc(5 / 32 * 100vw)',
+		maxHeight: theme.spacing(48),
 		maskImage: `url(${HeaderSlabMask})`,
-		backgroundColor: theme.palette.background.paper,
+		maskSize: '100% 100%',
+		backgroundColor: theme.palette.background.default,
 	}),
 }));
 

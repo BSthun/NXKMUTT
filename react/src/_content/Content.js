@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
-import Navbar from '../_home/navbar';
+import Navbar from '../_navbar';
 import BannerContent from './section/BannerContent';
 
 const Content = () => {

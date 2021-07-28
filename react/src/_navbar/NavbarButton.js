@@ -5,9 +5,13 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DelayLink from '../../components/routing/DelayLink';
+import DelayLink from '../components/routing/DelayLink';
 
-const NavbarButton = ({ to, fa, text }) => {
+const NavbarButton = ({
+	                      to,
+	                      fa,
+	                      text,
+                      }) => {
 	const classes = useStyles();
 	return (
 		<DelayLink to={to} className={classes.link}>

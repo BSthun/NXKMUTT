@@ -3,10 +3,11 @@ import {
 	Container,
 	Grid,
 	makeStyles,
-	Paper,
 	Typography,
+	useTheme,
 } from '@material-ui/core';
 import React from 'react';
+import { Tween } from 'react-gsap';
 import {
 	Controller,
 	Scene,
@@ -14,21 +15,25 @@ import {
 import DecoSpotWave from '../../images/decorate/spotwave.svg';
 
 const MissionSection = () => {
+	const theme = useTheme();
 	const classes = useStyles();
 	
 	return (
-		<Paper className={classes.root} square elevation={0}>
-			<div id="trigger" />
-			<Box
-				className={classes.decoCircle}>
+		<Box bgcolor="background.default" className={classes.root}>
+			<Box position="absolute" top={0} left={-theme.spacing(64)} width={theme.spacing(128)}>
 				<Controller>
-					<Scene
-						triggerElement="#trigger"
-						duration={500}
-					>
+					<Scene duration={500}>
 						{(progress) => (
-							<img alt="Decoration element" src={DecoSpotWave}
-							     style={{ transform: `rotate(${progress * 180}deg)` }} />
+							<Tween
+								to={{
+									rotation: 180,
+								}}
+								ease="linear"
+								totalProgress={progress}
+								paused
+							>
+								<img alt="Decoration element" src={DecoSpotWave} />
+							</Tween>
 						)}
 					</Scene>
 				</Controller>
@@ -44,7 +49,7 @@ const MissionSection = () => {
 					</Grid>
 				</Grid>
 			</Container>
-		</Paper>
+		</Box>
 	);
 };
 
@@ -54,13 +59,6 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		minHeight: theme.spacing(128),
-	}),
-	decoCircle: (props) => ({
-		position: 'absolute',
-		top: theme.spacing(0),
-		left: theme.spacing(-64),
-		width: theme.spacing(128),
-		height: theme.spacing(128),
 	}),
 }));
 

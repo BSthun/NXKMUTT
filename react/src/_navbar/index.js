@@ -19,8 +19,8 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from '../../contexts/ThemeContext';
-import logoOrig from '../../images/logo_orig.png';
+import { ThemeContext } from '../contexts/ThemeContext';
+import logoOrig from '../images/logo_orig.png';
 import NavbarButton from './NavbarButton';
 import NavbarToggle from './NavbarToggle';
 
@@ -71,7 +71,10 @@ const Navbar = () => {
 	return (
 		<Box className={classes.outer}>
 			<Box className={classes.inner}>
-				<Box onClick={toggleDrawer} className={classes.hamburger} display={{ xs: 'block', md: 'none' }}>
+				<Box onClick={toggleDrawer} className={classes.hamburger} display={{
+					xs: 'block',
+					md: 'none',
+				}}>
 					<FontAwesomeIcon icon={faBars} />
 				</Box>
 				<Backdrop open={options.drawer} onClick={toggleDrawer} />
