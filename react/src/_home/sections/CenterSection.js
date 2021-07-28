@@ -8,19 +8,17 @@ import {
 	Container,
 	Grid,
 	makeStyles,
-	useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import CenterCard from '../components/CenterCard';
 
 const CenterSection = () => {
-	const theme = useTheme();
 	const classes = useStyles();
 	
 	return (
 		<Box bgcolor="background.default">
 			<Container className={classes.container}>
-				<Box position="absolute" top={theme.spacing(-42)} left={theme.spacing(4)} right={theme.spacing(4)}>
+				<div className={classes.div}>
 					<Grid container spacing={4}>
 						<Grid item xs={12} md={4}>
 							<CenterCard fa={faBrain}
@@ -41,21 +39,29 @@ const CenterSection = () => {
 							/>
 						</Grid>
 					</Grid>
-				</Box>
+				</div>
 			</Container>
 		</Box>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
-		container: (props) => ({
-			position: 'relative',
-			height: theme.spacing(6),
-			[theme.breakpoints.down('sm')]: {
-				height: theme.spacing(102),
-			},
-		}),
-	}))
-;
+	container: (props) => ({
+		position: 'relative',
+		height: theme.spacing(10), // 8 + 2
+		[theme.breakpoints.down('sm')]: {
+			height: theme.spacing(130), // 108 + 20 + 2
+		},
+	}),
+	div: (props) => ({
+		position: 'absolute',
+		top: theme.spacing(-40),
+		left: theme.spacing(4),
+		right: theme.spacing(4),
+		[theme.breakpoints.down('sm')]: {
+			top: theme.spacing(-20),
+		},
+	}),
+}));
 
 export default CenterSection;
