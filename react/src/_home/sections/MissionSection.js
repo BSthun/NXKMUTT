@@ -1,19 +1,40 @@
 import {
+	Box,
 	Container,
 	Grid,
 	makeStyles,
 	Paper,
 	Typography,
+	useTheme,
 } from '@material-ui/core';
 import React from 'react';
+import {
+	Controller,
+	Scene,
+} from 'react-scrollmagic';
+import DecoSpotWave from '../../images/decorate/spotwave.svg';
 
 const MissionSection = () => {
+	const theme = useTheme();
 	const classes = useStyles();
+	
 	return (
 		<Paper className={classes.root} square elevation={0}>
-			<div className={classes.decoCircle}>
-				<img alt="Decoration element" src="" />
-			</div>
+			<div id="trigger" />
+			<Box
+				className={classes.decoCircle}>
+				<Controller>
+					<Scene
+						triggerElement="#trigger"
+						duration={500}
+					>
+						{(progress) => (
+							<img alt="Decoration element" src={DecoSpotWave}
+							     style={{ transform: `rotate(${progress * 180}deg)` }} />
+						)}
+					</Scene>
+				</Controller>
+			</Box>
 			<Container maxWidth="lg">
 				<Grid container>
 					<Grid item>
@@ -34,8 +55,15 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative',
 		display: 'flex',
 		justifyContent: 'center',
+		minHeight: theme.spacing(128),
 	}),
-	decoCircle: (props) => ({}),
+	decoCircle: (props) => ({
+		position: 'absolute',
+		top: theme.spacing(0),
+		left: theme.spacing(-64),
+		width: theme.spacing(128),
+		height: theme.spacing(128),
+	}),
 }));
 
 export default MissionSection;

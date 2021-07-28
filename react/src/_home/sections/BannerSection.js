@@ -19,7 +19,11 @@ const BannerSection = () => {
 		<Box position="relative">
 			<Parallax bgImage={theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight}
 			          bgImageAlt="background"
-			          bgImageStyle={{ height: '100%', width: '100%', objectFit: 'cover' }}
+			          bgImageStyle={{
+				          height: '100%',
+				          width: '100%',
+				          objectFit: 'cover',
+			          }}
 			          strength={300}
 			          className={classes.parallax}
 			>
