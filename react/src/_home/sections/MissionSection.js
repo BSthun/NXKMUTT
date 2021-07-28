@@ -5,7 +5,6 @@ import {
 	makeStyles,
 	Paper,
 	Typography,
-	useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import {
@@ -15,7 +14,6 @@ import {
 import DecoSpotWave from '../../images/decorate/spotwave.svg';
 
 const MissionSection = () => {
-	const theme = useTheme();
 	const classes = useStyles();
 	
 	return (
