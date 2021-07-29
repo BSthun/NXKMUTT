@@ -19,7 +19,7 @@ const NavbarToggle = ({ fa, tooltip, onClick }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	button: (props) => ({
+	button: {
 		margin: `${theme.spacing(2)}px 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
 		padding: theme.spacing(2),
 		minWidth: theme.spacing(10),
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 			color: theme.palette.background.paper,
 			backgroundColor: theme.palette.text.primary,
 		},
-	}),
+	},
 }));
 
 NavbarToggle.propTypes = {

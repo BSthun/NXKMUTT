@@ -21,7 +21,7 @@ const MethodItem = ({ image, fa, title, subtitle }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	root: (props) => ({
+	root: {
 		position: 'relative',
 		height: theme.spacing(100),
 		width: theme.spacing(90),
@@ -34,20 +34,20 @@ const useStyles = makeStyles((theme) => ({
 				transform: 'scale(1.1)',
 			},
 		},
-	}),
-	image: (props) => ({
+	},
+	image: {
 		position: 'absolute',
 		width: '100%',
 		height: '100%',
-		backgroundImage: `url(${props.image})`,
+		backgroundImage: ({ image }) => `url(${image})`,
 		transition: '1s ease-in-out',
-	}),
-	content: (props) => ({
+	},
+	content: {
 		width: '60%',
 		height: '60%',
 		maskImage: `url(${Hexagon})`,
 		backgroundColor: theme.palette.background.paper,
-	}),
+	},
 }));
 
 MethodItem.propTypes = {

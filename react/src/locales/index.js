@@ -4,10 +4,12 @@ import { initReactI18next } from 'react-i18next';
 i18n.use(initReactI18next).init({
 	resources: {
 		en: {
-			home: require('./home-en.json')
+			home: require('./home-en.json'),
+			content: require('./content-en.json')
 		},
 		th: {
-			home: require('./home-th.json')
+			home: require('./home-th.json'),
+			content: require('./content-th.json')
 		}
 	},
 	ns: ['home'],

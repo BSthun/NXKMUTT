@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import DelayLink from '../../components/routing/DelayLink';
+import DelayLink from '../components/routing/DelayLink';
 
 const NavbarButton = ({ to, fa, text }) => {
 	const classes = useStyles();
@@ -19,11 +19,11 @@ const NavbarButton = ({ to, fa, text }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	link: (props) => ({
+	link: {
 		textDecoration: 'none',
 		marginLeft: theme.spacing(2),
-	}),
-	button: (props) => ({
+	},
+	button: {
 		padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
 		color: theme.palette.text.primary,
 		border: '1px solid transparent',
@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 			margin: `${theme.spacing(2)}px 0`,
 			border: `1px solid ${theme.palette.text.primary}`,
 		},
-	}),
-	fa: (props) => ({
+	},
+	fa: {
 		marginRight: theme.spacing(2),
-	}),
+	},
 }));
 
 NavbarButton.propTypes = {
