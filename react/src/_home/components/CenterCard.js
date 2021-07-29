@@ -20,9 +20,9 @@ const CenterCard = ({ fa, text, desc }) => {
 	return (
 		<Card className={classes.card}>
 			<Box display="flex" alignItems="center" margin={theme.spacing(1)}>
-				<Box className={classes.fa}>
+				<div className={classes.fa}>
 					<FontAwesomeIcon icon={fa} />
-				</Box>
+				</div>
 				{text}
 			</Box>
 			<Box padding={`0 ${theme.spacing(4)}px`}>
@@ -37,12 +37,12 @@ const CenterCard = ({ fa, text, desc }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	card: (props) => ({
+	card: {
 		marginBottom: theme.spacing(1),
 		width: '100%',
 		// padding: `${theme.spacing(4)}px ${theme.spacing(8)}px`,
-	}),
-	fa: (props) => ({
+	},
+	fa: {
 		width: theme.spacing(12),
 		height: theme.spacing(12),
 		borderRadius: 999,
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 			fontSize: theme.spacing(6),
 			margin: `${theme.spacing(3)}px auto`,
 		},
-	}),
+	},
 }));
 
 CenterCard.propTypes = {

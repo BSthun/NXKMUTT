@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@material-ui/core';
 import {
-	createMuiTheme,
+	createTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
 import {
@@ -20,7 +20,7 @@ export const ThemeContextProvider = ({ children }) => {
 		setDark(prefersDarkMode);
 	}, [prefersDarkMode]);
 	
-	const theme = useMemo(() => createMuiTheme({
+	const theme = useMemo(() => createTheme({
 		palette: {
 			type: dark ? 'dark' : 'light',
 		},

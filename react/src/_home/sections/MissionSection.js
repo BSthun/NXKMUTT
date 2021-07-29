@@ -22,7 +22,8 @@ const MissionSection = () => {
 		<Box bgcolor="background.default" className={classes.root}>
 			<Box position="absolute" top={0} left={-theme.spacing(64)} width={theme.spacing(128)}>
 				<Controller>
-					<Scene duration={500}>
+					<div id="home-mission-deco1" />
+					<Scene duration={500} triggerElement="#home-mission-deco1">
 						{(progress) => (
 							<Tween
 								to={{
@@ -54,12 +55,12 @@ const MissionSection = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	root: (props) => ({
+	root: {
 		position: 'relative',
 		display: 'flex',
 		justifyContent: 'center',
 		minHeight: theme.spacing(128),
-	}),
+	},
 }));
 
 export default MissionSection;

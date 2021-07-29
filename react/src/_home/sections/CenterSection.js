@@ -46,14 +46,14 @@ const CenterSection = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	container: (props) => ({
+	container: {
 		position: 'relative',
 		height: theme.spacing(10), // 8 + 2
 		[theme.breakpoints.down('sm')]: {
 			height: theme.spacing(130), // 108 + 20 + 2
 		},
-	}),
-	div: (props) => ({
+	},
+	div: {
 		position: 'absolute',
 		top: theme.spacing(-40),
 		left: theme.spacing(4),
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down('sm')]: {
 			top: theme.spacing(-20),
 		},
-	}),
+	},
 }));
 
 export default CenterSection;

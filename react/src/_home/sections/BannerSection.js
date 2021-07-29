@@ -6,7 +6,7 @@ import {
 	useTheme,
 } from '@material-ui/core';
 import React from 'react';
-import { Parallax } from 'react-parallax';
+import { Parallax } from 'react-scroll-parallax';
 import BannerBgDark from '../../images/bannerbg-dark.jpg';
 import BannerBgLight from '../../images/bannerbg-light.jpg';
 import HeaderSlabMask from '../../images/mask/headerslab.svg';
@@ -16,54 +16,55 @@ const BannerSection = () => {
 	const classes = useStyles();
 	
 	return (
-		<Box position="relative">
-			<Parallax bgImage={theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight}
-			          bgImageAlt="background"
-			          bgImageStyle={{
-				          height: '100%',
-				          width: '100%',
-				          objectFit: 'cover',
-			          }}
-			          strength={300}
-			          className={classes.parallax}
-			>
-				<Container maxWidth="lg" className={classes.container}>
-					<Typography variant="h3" align="right" color="textPrimary">Neuroscience Center</Typography>
-					<Typography variant="h4" align="right" color="textPrimary">
-						for Research and Innovation (NX),
-						<br /> Learning Institute, KMUTT
-					</Typography>
-				</Container>
+		<Box position="relative" minHeight="100vh" display="flex" overflow="hidden">
+			{/*<BannerParallax className={classes.parallax} />*/}
+			<Parallax className={classes.parallax} y={[-30, 30]} tagOuter="figure">
+				<img alt="Background" src={theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight} />
 			</Parallax>
+			<Container maxWidth="lg" className={classes.container}>
+				<Typography variant="h3" align="right" color="textPrimary">Neuroscience Center</Typography>
+				<Typography variant="h4" align="right" color="textPrimary">
+					for Research and Innovation (NX),
+					<br /> Learning Institute, KMUTT
+				</Typography>
+			</Container>
 			<div className={classes.slab} />
 		</Box>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
-	parallax: (props) => ({
-		minHeight: '100vh',
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'center',
-	}),
-	container: (props) => ({
+	parallax: {
+		position: 'absolute',
+		inset: 0,
+		'& div': {
+			height: '100%',
+			'& img': {
+				width: '100%',
+				height: '100%',
+				objectFit: 'cover',
+				objectPosition: 'center center',
+			},
+		},
+	},
+	container: {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'flex-end',
 		justifyContent: 'center',
 		paddingBottom: theme.spacing(36),
-	}),
-	slab: (props) => ({
+		zIndex: 2,
+	},
+	slab: {
 		position: 'absolute',
-		bottom: theme.spacing(-1), // ! Random whitespace issue workaround (-4px instead 0)
+		bottom: 0,
 		width: '100%',
 		height: 'calc(5 / 32 * 100vw)',
 		maxHeight: theme.spacing(48),
 		maskImage: `url(${HeaderSlabMask})`,
 		maskSize: '100% 100%',
 		backgroundColor: theme.palette.background.default,
-	}),
+	},
 }));
 
 export default BannerSection;
