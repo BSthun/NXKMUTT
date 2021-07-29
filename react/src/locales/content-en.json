@@ -1,4 +1,11 @@
 {
 	"content": "Content",
-	"search": "Search"
+	"search": "Search",
+	"filter": "Filter by",
+	"type": "Type",
+	"tag": "Tags",
+	"publish-year": "Publish year",
+	"blog": "Blog",
+	"paper": "Paper",
+	"publication": "Publication"
 }
