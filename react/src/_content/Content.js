@@ -1,7 +1,6 @@
 import {
 	Box,
 	Container,
-	useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import Navbar from '../_navbar';
@@ -10,7 +9,6 @@ import FilterContent from './section/FilterContent';
 import NewsSection from './section/NewsSection';
 
 const Content = () => {
-	const theme = useTheme();
 	
 	return (
 		<Box display="flex" flexDirection="column" alignItems="center" bgcolor="background.default">
