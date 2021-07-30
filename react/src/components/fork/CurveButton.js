@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 CurveButton.propTypes = {
-	children: PropTypes.object.isRequired,
+	children: PropTypes.array.isRequired,
 	marginRight: PropTypes.number,
 };
 export default CurveButton;

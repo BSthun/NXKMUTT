@@ -17,9 +17,7 @@ const BannerSection = () => {
 	
 	return (
 		<Box position="relative" minHeight="100vh" display="flex" overflow="hidden">
-			<Parallax className={classes.parallax} y={[-40, 40]}>
-				<img alt="Background" src={theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight} />
-			</Parallax>
+			<Parallax className={classes.parallax} y={[-40, 40]} />
 			<Container maxWidth="lg" className={classes.container}>
 				<Typography variant="h3" align="right" color="textPrimary">Neuroscience Center</Typography>
 				<Typography variant="h4" align="right" color="textPrimary">
@@ -36,14 +34,12 @@ const useStyles = makeStyles((theme) => ({
 	parallax: {
 		position: 'absolute',
 		inset: 0,
-		'& div': {
+		'& > div': {
+			width: '100%',
 			height: '100%',
-			'& img': {
-				width: '100%',
-				height: '100%',
-				objectFit: 'cover',
-				objectPosition: 'center',
-			},
+			backgroundImage: `url(${theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight})`,
+			backgroundPosition: 'center',
+			backgroundSize: 'cover',
 		},
 	},
 	container: {

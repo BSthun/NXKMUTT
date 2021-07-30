@@ -19,7 +19,7 @@ import {
 import CurveButton from '../../components/fork/CurveButton';
 import DecoSpotWave from '../../images/decorate/spotwave.svg';
 
-const MissionSection = () => {
+const AboutSection = () => {
 	const classes = useStyles();
 	const [t] = useTranslation('home');
 	
@@ -46,16 +46,15 @@ const MissionSection = () => {
 			<Container maxWidth="lg" className={classes.container}>
 				<div>
 					<Typography variant="h5" className={classes.title}>ABOUT US</Typography>
-					<Box display="flex" alignItems="center" flexDirection={{ xs: 'column', md: 'row' }}>
+					<div className={classes.body}>
 						<div>
-							<Typography variant="body1" color="textPrimary" className={classes.body}>
+							<Typography variant="h5" color="textPrimary" gutterBottom>Our mission</Typography>
+							<Typography variant="body1" color="textSecondary">
 								Our team investigates neural and computational mechanism that support human perception
-								and
-								cognitive functions, and study how they develop from children and teenagers to fully
-								grown
-								adults. Moreover, we study how brain functions decline in aging society.
+								and cognitive functions, and study how they develop from children and teenagers to fully
+								grown adults. Moreover, we study how brain functions decline in aging society.
 							</Typography>
-							<Box display="flex" justifyContent="center" paddingBottom={4}>
+							<Box display="flex" justifyContent={{ xs: 'flex-start', md: 'center' }} marginTop={6}>
 								<CurveButton minWidth={142} marginRight={16}>
 									<FontAwesomeIcon icon={faEllipsisV} /> &nbsp; {t('moredetail')}
 								</CurveButton>
@@ -64,7 +63,17 @@ const MissionSection = () => {
 								</CurveButton>
 							</Box>
 						</div>
-					</Box>
+						<div className={classes.list}>
+							<h6>Frontier research lab in neuroscience, neurotechnology, and learning innovation.</h6>
+							<h6>Pioneering the field of neuroscience using an integrative framework.</h6>
+							<h6>Inventing new ways to tackle neurological and mental disorders and promote cognitive
+								health across lifespan.
+							</h6>
+							<h6>Translating results from empirical experiments into useful industrial applications.</h6>
+							<h6>Aiming to become a world-class excellence center.</h6>
+							<h6>Making the impossible possible 💫</h6>
+						</div>
+					</div>
 				</div>
 			</Container>
 		</Box>
@@ -89,14 +98,47 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	title: {
-		margin: '32px auto',
+		marginTop: 32,
 		textAlign: 'center',
 		fontWeight: 500,
 		color: '#448aff', // Mui color palette : Blue A200
 	},
 	body: {
-		paddingBottom: 32,
+		display: 'flex',
+		alignItems: 'center',
+		flexDirection: 'row',
+		'& > div': {
+			padding: 32,
+			'&:first-child': {
+				flex: 4,
+			},
+		},
+		[theme.breakpoints.down('md')]: {
+			flexDirection: 'column',
+			'& > div': {
+				padding: 8,
+				paddingTop: 32,
+			},
+		},
+	},
+	list: {
+		flex: 7,
+		maxWidth: 600,
+		'& > h6': {
+			padding: '12px 6px',
+			fontSize: '1em',
+			color: theme.palette.text.secondary,
+			fontWeight: 400,
+			borderBottom: `1px solid ${theme.palette.text.hint}`,
+			'&:first-child': {
+				paddingTop: 0,
+			},
+			'&:last-child': {
+				paddingBottom: 0,
+				borderBottom: 'none',
+			},
+		},
 	},
 }));
 
-export default MissionSection;
+export default AboutSection;
