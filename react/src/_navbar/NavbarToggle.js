@@ -20,7 +20,7 @@ const NavbarToggle = ({ fa, tooltip, onClick }) => {
 
 const useStyles = makeStyles((theme) => ({
 	button: {
-		margin: `${theme.spacing(2)}px 0 ${theme.spacing(2)}px ${theme.spacing(2)}px`,
+		margin: '8px 0 8px 8px',
 		padding: theme.spacing(2),
 		minWidth: theme.spacing(10),
 		display: 'flex',

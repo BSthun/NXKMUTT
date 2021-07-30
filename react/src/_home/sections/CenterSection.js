@@ -48,18 +48,19 @@ const CenterSection = () => {
 const useStyles = makeStyles((theme) => ({
 	container: {
 		position: 'relative',
-		height: theme.spacing(10), // 8 + 2
+		height: 48,
 		[theme.breakpoints.down('sm')]: {
-			height: theme.spacing(130), // 108 + 20 + 2
+			height: 544,
 		},
 	},
 	div: {
 		position: 'absolute',
-		top: theme.spacing(-40),
-		left: theme.spacing(4),
-		right: theme.spacing(4),
+		top: -160,
+		left: 16,
+		right: 16,
+		zIndex: 3,
 		[theme.breakpoints.down('sm')]: {
-			top: theme.spacing(-20),
+			top: -60,
 		},
 	},
 }));

@@ -31,7 +31,6 @@ const Navbar = () => {
 		drawer: false,
 	});
 	const [t, i18n] = useTranslation('home');
-	
 	const classes = useStyles(options);
 	
 	useEffect(() => {
@@ -45,12 +44,12 @@ const Navbar = () => {
 	});
 	
 	const onScroll = () => {
-		if (window.pageYOffset > 100) {
+		if (window.pageYOffset > 100 && !options.scrolled) {
 			setOptions(options => ({
 				...options,
 				scrolled: true,
 			}));
-		} else {
+		} else if (window.pageYOffset <= 100 && options.scrolled) {
 			setOptions(options => ({
 				...options,
 				scrolled: false,
@@ -135,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drawer: {
 		display: 'flex',
-		[theme.breakpoints.up('sm')]: {
+		[theme.breakpoints.up('md')]: {
 			alignItems: 'center',
 		},
 		[theme.breakpoints.down('sm')]: {

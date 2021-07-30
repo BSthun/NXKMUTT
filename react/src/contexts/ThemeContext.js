@@ -44,7 +44,6 @@ export const ThemeContextProvider = ({ children }) => {
 		toggleDark: () => {
 			setDark((dark) => !dark);
 		},
-		isDark: dark,
 	};
 	
 	return (

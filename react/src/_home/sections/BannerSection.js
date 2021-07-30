@@ -7,9 +7,9 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
+import BottomSlab from '../../components/decorate/BottomSlab';
 import BannerBgDark from '../../images/bannerbg-dark.jpg';
 import BannerBgLight from '../../images/bannerbg-light.jpg';
-import HeaderSlabMask from '../../images/mask/headerslab.svg';
 
 const BannerSection = () => {
 	const theme = useTheme();
@@ -17,8 +17,7 @@ const BannerSection = () => {
 	
 	return (
 		<Box position="relative" minHeight="100vh" display="flex" overflow="hidden">
-			{/*<BannerParallax className={classes.parallax} />*/}
-			<Parallax className={classes.parallax} y={[-30, 30]} tagOuter="figure">
+			<Parallax className={classes.parallax} y={[-40, 40]}>
 				<img alt="Background" src={theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight} />
 			</Parallax>
 			<Container maxWidth="lg" className={classes.container}>
@@ -28,7 +27,7 @@ const BannerSection = () => {
 					<br /> Learning Institute, KMUTT
 				</Typography>
 			</Container>
-			<div className={classes.slab} />
+			<BottomSlab />
 		</Box>
 	);
 };
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 				width: '100%',
 				height: '100%',
 				objectFit: 'cover',
-				objectPosition: 'center center',
+				objectPosition: 'center',
 			},
 		},
 	},
@@ -53,17 +52,11 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'flex-end',
 		justifyContent: 'center',
 		paddingBottom: theme.spacing(36),
+		paddingRight: theme.spacing(12),
 		zIndex: 2,
-	},
-	slab: {
-		position: 'absolute',
-		bottom: 0,
-		width: '100%',
-		height: 'calc(5 / 32 * 100vw)',
-		maxHeight: theme.spacing(48),
-		maskImage: `url(${HeaderSlabMask})`,
-		maskSize: '100% 100%',
-		backgroundColor: theme.palette.background.default,
+		[theme.breakpoints.down('sm')]: {
+			paddingRight: theme.spacing(6),
+		},
 	},
 }));
 
