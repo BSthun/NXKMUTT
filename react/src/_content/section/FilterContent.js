@@ -5,8 +5,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	Box,
+	Checkbox,
 	makeStyles,
+	Radio,
 	Typography,
+	withStyles,
 } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,19 +18,42 @@ const types = ['blog', 'paper', 'publication'];
 const year = ['2020', '2021'];
 const tags = ['EEG', 'MRI', 'etc.'];
 
+const CustomCheckbox = withStyles({
+	root: {
+		color: '#FFB740',
+		'&$checked': {
+			color: '#FFB740',
+		},
+	},
+	checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
+const CustomRadio = withStyles({
+	root: {
+		color: '#FFB740',
+		'&$checked': {
+			color: '#FFB740',
+		},
+	},
+	checked: {},
+})((props) => <Radio color="default" {...props} />);
+
 const FilterContent = () => {
 	const classes = useStyles();
+	const [selectedValue, setSelectedValue] = React.useState('2020');
 	const [filterClicked, setFilterClicked] = useState({
 		type: false,
 		year: false,
 		tags: false,
 	});
 	const [t] = useTranslation('content');
+	const handleChange = (event) => {
+		setSelectedValue(event.target.value);
+	};
 	
 	return (
 		<Box display="flex" flexDirection="column" padding="50px 10px 0 20px">
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
-			{/*check box*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -42,15 +68,17 @@ const FilterContent = () => {
 				<Box className={classes.subTitle} style={{ display: filterClicked.type ? null : 'none' }}>
 					{types.map((type) => {
 						return (
-							<Typography variant="p"
-							            color="textPrimary"
-							            className={classes.inSubTitle}
-							>{t(type)}</Typography>
+							<Box display="flex" alignItems="center">
+								<CustomCheckbox />
+								<Typography variant="p"
+								            color="textPrimary"
+								            className={classes.inSubTitle}
+								>{t(type)}</Typography>
+							</Box>
 						);
 					})}
 				</Box>
 			</Box>
-			{/*radio*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -65,15 +93,17 @@ const FilterContent = () => {
 				<Box className={classes.subTitle} style={{ display: filterClicked.year ? null : 'none' }}>
 					{year.map((year) => {
 						return (
-							<Typography variant="p"
-							            color="textPrimary"
-							            className={classes.inSubTitle}
-							>{year}</Typography>
+							<Box display="flex" alignItems="center">
+								<CustomRadio checked={selectedValue === year} onChange={handleChange} value={year} />
+								<Typography variant="p"
+								            color="textPrimary"
+								            className={classes.inSubTitle}
+								>{year}</Typography>
+							</Box>
 						);
 					})}
 				</Box>
 			</Box>
-			{/*tag or chip box*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -88,10 +118,13 @@ const FilterContent = () => {
 				<Box className={classes.subTitle} style={{ display: filterClicked.tags ? null : 'none' }}>
 					{tags.map((tag) => {
 						return (
-							<Typography variant="p"
-							            color="textPrimary"
-							            className={classes.inSubTitle}
-							>{tag}</Typography>
+							<Box display="flex" alignItems="center">
+								<CustomCheckbox />
+								<Typography variant="p"
+								            color="textPrimary"
+								            className={classes.inSubTitle}
+								>{tag}</Typography>
+							</Box>
 						);
 					})}
 				</Box>
@@ -118,7 +151,6 @@ const useStyles = makeStyles((theme) => ({
 		padding: '10px 0px 0px 20px',
 	},
 	inSubTitle: {
-		marginBottom: '5px',
 		cursor: 'pointer',
 	},
 	plusIcon: {
