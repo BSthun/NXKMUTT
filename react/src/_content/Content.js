@@ -15,7 +15,11 @@ const Content = () => {
 			<Navbar />
 			<BannerContent />
 			<Container maxWidth="lg">
-				<Box display="flex" justifyContent="space-between" width="100%">
+				<Box display="flex"
+				     justifyContent="space-between"
+				     width="100%"
+				     flexDirection={{ xs: 'column', md: 'row' }}
+				>
 					<Box flex="1">
 						<FilterContent />
 					</Box>

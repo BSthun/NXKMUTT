@@ -46,10 +46,12 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		height: '200px',
 		backgroundImage: theme.palette.type === 'dark' ? `url("${spiralangleDark}")` : `url("${spiralangleLight}")`,
+		backgroundPosition: 'center',
+		backgroundSize: 'cover',
 		display: 'flex',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('xs')]: {
 			flexDirection: 'column',
 		},
 	}),
