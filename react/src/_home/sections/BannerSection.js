@@ -3,7 +3,6 @@ import {
 	Container,
 	makeStyles,
 	Typography,
-	useTheme,
 } from '@material-ui/core';
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
@@ -12,12 +11,11 @@ import BannerBgDark from '../../images/bannerbg-dark.jpg';
 import BannerBgLight from '../../images/bannerbg-light.jpg';
 
 const BannerSection = () => {
-	const theme = useTheme();
 	const classes = useStyles();
 	
 	return (
 		<Box position="relative" minHeight="100vh" display="flex" overflow="hidden">
-			<Parallax className={classes.parallax} y={[-40, 40]} />
+			<Parallax className={classes.parallax} y={[-60, 40]} />
 			<Container maxWidth="lg" className={classes.container}>
 				<Typography variant="h3" align="right" color="textPrimary">Neuroscience Center</Typography>
 				<Typography variant="h4" align="right" color="textPrimary">
@@ -36,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 		inset: 0,
 		'& > div': {
 			width: '100%',
-			height: '100%',
+			height: 'calc(100% + 10%)',
 			backgroundImage: `url(${theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight})`,
 			backgroundPosition: 'center',
 			backgroundSize: 'cover',

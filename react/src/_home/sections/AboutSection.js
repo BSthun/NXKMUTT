@@ -25,8 +25,8 @@ const AboutSection = () => {
 	
 	return (
 		<Box bgcolor="background.default" className={classes.root}>
-			<Box position="absolute" top={-48} left={-256} width={512} zIndex={2}>
-				<Controller>
+			<Controller>
+				<Box position="absolute" top={-96} left={-256} width={512} zIndex={2}>
 					<div id="home-mission-deco1" />
 					<Scene duration={600} triggerElement="#home-mission-deco1">
 						{(progress) => (
@@ -41,8 +41,29 @@ const AboutSection = () => {
 							</Tween>
 						)}
 					</Scene>
-				</Controller>
-			</Box>
+				</Box>
+				{/*<Box position="absolute" bottom={-192} right={0} width={256} height={512} overflow="hidden" zIndex={2}>
+					<Box position="absolute" bottom={0} right={-256} width={512}>
+						<div id="home-mission-deco2" />
+						<Scene duration={600} triggerElement="#home-mission-deco2">
+							{(progress) => (
+								<Tween
+									from={{
+										rotation: 359,
+									}}
+									to={{
+										rotation: 180,
+									}}
+									totalProgress={progress}
+									paused
+								>
+									<img alt="Decoration element" src={DecoCrescentMoon} />
+								</Tween>
+							)}
+						</Scene>
+					</Box>
+				</Box>*/}
+			</Controller>
 			<Container maxWidth="lg" className={classes.container}>
 				<div>
 					<Typography variant="h5" className={classes.title}>ABOUT US</Typography>

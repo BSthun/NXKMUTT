@@ -14,7 +14,7 @@ const BottomSlab = ({ className }) => {
 const useStyles = makeStyles((theme) => ({
 	slab: {
 		position: 'absolute',
-		bottom: 0,
+		bottom: -1,
 		width: '100%',
 		height: 'calc(5 / 32 * 100vw)',
 		maxHeight: theme.spacing(48),

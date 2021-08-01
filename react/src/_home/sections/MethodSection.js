@@ -6,8 +6,10 @@ import MethodItem from '../components/MethodItem';
 
 const MethodSection = () => {
 	return (
-		<Box bgcolor="background.default">
-			<MethodItem image={ImgEggwave} fa={faAddressCard} title="EEG" subtitle="Perfect anyway" />
+		<Box bgcolor="background.default" position="relative">
+			<Box position="absolute">
+				<MethodItem image={ImgEggwave} fa={faAddressCard} title="EEG" subtitle="Perfect anyway" />
+			</Box>
 		</Box>
 	);
 };
