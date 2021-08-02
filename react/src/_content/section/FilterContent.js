@@ -52,7 +52,7 @@ const FilterContent = () => {
 	};
 	
 	return (
-		<Box display="flex" flexDirection="column" padding="50px 10px 0 20px">
+		<Box className={classes.section}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
@@ -60,7 +60,7 @@ const FilterContent = () => {
 					     setFilterClicked({ ...filterClicked, type: !filterClicked.type });
 				     }}
 				>
-					<Typography variant="p" color="textPrimary">- {t('type')}</Typography>
+					<Typography variant="p" color="textPrimary">{t('type')}</Typography>
 					<FontAwesomeIcon icon={filterClicked.type ? faMinus : faPlus}
 					                 className={classes.plusIcon}
 					/>
@@ -85,7 +85,7 @@ const FilterContent = () => {
 					     setFilterClicked({ ...filterClicked, year: !filterClicked.year });
 				     }}
 				>
-					<Typography variant="p" color="textPrimary">- {t('publish-year')}</Typography>
+					<Typography variant="p" color="textPrimary">{t('publish-year')}</Typography>
 					<FontAwesomeIcon icon={filterClicked.year ? faMinus : faPlus}
 					                 className={classes.plusIcon}
 					/>
@@ -110,7 +110,7 @@ const FilterContent = () => {
 					     setFilterClicked({ ...filterClicked, tags: !filterClicked.tags });
 				     }}
 				>
-					<Typography variant="p" color="textPrimary">- {t('tag')}</Typography>
+					<Typography variant="p" color="textPrimary">{t('tag')}</Typography>
 					<FontAwesomeIcon icon={filterClicked.tags ? faMinus : faPlus}
 					                 className={classes.plusIcon}
 					/>
@@ -134,6 +134,16 @@ const FilterContent = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
+	section: {
+		display: 'flex',
+		flexDirection: 'column',
+		margin: '50px 10px 0 20px',
+		padding: '0 40px 0 0',
+		height: 'auto',
+		[theme.breakpoints.up('lg')]: {
+			borderRight: `2px ${theme.palette.text.primary} solid`,
+		},
+	},
 	filterBox: {
 		padding: '15px 0px 5px 0px',
 		height: 'auto',
