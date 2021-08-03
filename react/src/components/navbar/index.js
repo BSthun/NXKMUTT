@@ -19,8 +19,8 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from '../contexts/ThemeContext';
-import logoOrig from '../images/logo_orig.png';
+import { ThemeContext } from '../../contexts/ThemeContext';
+import logoOrig from '../../images/logo_orig.png';
 import NavbarButton from './NavbarButton';
 import NavbarToggle from './NavbarToggle';
 

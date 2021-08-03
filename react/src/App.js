@@ -7,6 +7,8 @@ import {
 import { ParallaxProvider } from 'react-scroll-parallax';
 import Content from './_content/Content';
 import Home from './_home/Home';
+import Footer from './components/footer';
+import Navbar from './components/navbar';
 import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
@@ -18,6 +20,7 @@ const App = () => {
 			<FloatingContextProvider>
 				<ParallaxProvider>
 					<BrowserRouter>
+						<Navbar />
 						<Switch>
 							<Route exact path="/">
 								<Redirect to={{ pathname: '/home' }} />
@@ -29,6 +32,7 @@ const App = () => {
 								<Content />
 							</Route>
 						</Switch>
+						<Footer />
 					</BrowserRouter>
 				</ParallaxProvider>
 			</FloatingContextProvider>

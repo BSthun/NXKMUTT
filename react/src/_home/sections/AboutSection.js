@@ -18,6 +18,7 @@ import {
 } from 'react-scrollmagic';
 import CurveButton from '../../components/fork/CurveButton';
 import DecoSpotWave from '../../images/decorate/spotwave.svg';
+import Title from '../components/Title';
 
 const AboutSection = () => {
 	const classes = useStyles();
@@ -66,7 +67,7 @@ const AboutSection = () => {
 			</Controller>
 			<Container maxWidth="lg" className={classes.container}>
 				<div>
-					<Typography variant="h5" className={classes.title}>ABOUT US</Typography>
+					<Title color="#448aff" /* blue A200 */>ABOUT US</Title>
 					<div className={classes.body}>
 						<div>
 							<Typography variant="h5" color="textPrimary" gutterBottom>Our mission</Typography>
@@ -118,18 +119,12 @@ const useStyles = makeStyles((theme) => ({
 			backdropFilter: `blur(6px) brightness(${theme.palette.type === 'dark' ? '8' : '12'}0%)`,
 		},
 	},
-	title: {
-		marginTop: 32,
-		textAlign: 'center',
-		fontWeight: 500,
-		color: '#448aff', // Mui color palette : Blue A200
-	},
 	body: {
 		display: 'flex',
 		alignItems: 'center',
 		flexDirection: 'row',
 		'& > div': {
-			padding: 32,
+			padding: '0 32px 32px 32px',
 			'&:first-child': {
 				flex: 4,
 			},

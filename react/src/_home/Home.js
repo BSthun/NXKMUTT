@@ -1,9 +1,10 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
-import Navbar from '../_navbar';
+import Navbar from '../components/navbar';
 import AboutSection from './sections/AboutSection';
 import BannerSection from './sections/BannerSection';
 import CenterSection from './sections/CenterSection';
+import ContactSection from './sections/ContactSection';
 import MethodSection from './sections/MethodSection';
 import TopicSection from './sections/TopicSection';
 
@@ -16,6 +17,7 @@ const Home = () => {
 			<AboutSection />
 			<TopicSection />
 			<MethodSection />
+			<ContactSection />
 		</Box>
 	);
 	
