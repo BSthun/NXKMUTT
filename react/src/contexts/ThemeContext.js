@@ -38,6 +38,9 @@ export const ThemeContextProvider = ({ children }) => {
 		shape: {
 			borderRadius: 10,
 		},
+		selectedColor: {
+			tag: '#FFB740',
+		},
 	}), [dark]);
 	
 	const handlers = {

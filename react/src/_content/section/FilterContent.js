@@ -1,4 +1,5 @@
 import {
+	faHashtag,
 	faMinus,
 	faPlus,
 } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +10,7 @@ import {
 	makeStyles,
 	Radio,
 	Typography,
+	useTheme,
 	withStyles,
 } from '@material-ui/core';
 import React, { useState } from 'react';
@@ -16,7 +18,6 @@ import { useTranslation } from 'react-i18next';
 
 const types = ['blog', 'paper', 'publication'];
 const year = ['2020', '2021'];
-const tags = ['EEG', 'MRI', 'etc.'];
 
 const CustomCheckbox = withStyles({
 	root: {
@@ -40,11 +41,17 @@ const CustomRadio = withStyles({
 
 const FilterContent = () => {
 	const classes = useStyles();
+	const theme = useTheme();
 	const [selectedValue, setSelectedValue] = React.useState('2020');
 	const [filterClicked, setFilterClicked] = useState({
 		type: false,
 		year: false,
 		tags: false,
+	});
+	const [selectedTag, setSelectedTag] = useState({
+		eeg: false,
+		mri: true,
+		etc: false,
 	});
 	const [t] = useTranslation('content');
 	const handleChange = (event) => {
@@ -72,7 +79,6 @@ const FilterContent = () => {
 								<CustomCheckbox />
 								<Typography variant="p"
 								            color="textPrimary"
-								            className={classes.inSubTitle}
 								>{t(type)}</Typography>
 							</Box>
 						);
@@ -97,7 +103,6 @@ const FilterContent = () => {
 								<CustomRadio checked={selectedValue === year} onChange={handleChange} value={year} />
 								<Typography variant="p"
 								            color="textPrimary"
-								            className={classes.inSubTitle}
 								>{year}</Typography>
 							</Box>
 						);
@@ -115,18 +120,51 @@ const FilterContent = () => {
 					                 className={classes.plusIcon}
 					/>
 				</Box>
-				<Box className={classes.subTitle} style={{ display: filterClicked.tags ? null : 'none' }}>
-					{tags.map((tag) => {
-						return (
-							<Box display="flex" alignItems="center">
-								<CustomCheckbox />
-								<Typography variant="p"
-								            color="textPrimary"
-								            className={classes.inSubTitle}
-								>{tag}</Typography>
-							</Box>
-						);
-					})}
+				<Box className={classes.subTitle}
+				     alignItems="center"
+				     style={{ display: filterClicked.tags ? null : 'none' }}
+				>
+					<Box className={classes.tagBox}
+					     boxShadow={2}
+					     bgcolor={selectedTag.eeg ? theme.selectedColor.tag : null}
+					     onClick={() => {
+						     setSelectedTag({ ...selectedTag, eeg: !selectedTag.eeg });
+					     }}
+					>
+						<FontAwesomeIcon icon={faHashtag}
+						                 color={theme.palette.text.primary}
+						/>
+						<Typography variant="p"
+						            color="textPrimary"
+						            className={classes.tagsTitle}
+						>EEG</Typography>
+					</Box>
+					<Box className={classes.tagBox}
+					     boxShadow={2}
+					     bgcolor={selectedTag.mri ? theme.selectedColor.tag : null}
+					     onClick={() => {
+						     setSelectedTag({ ...selectedTag, mri: !selectedTag.mri });
+					     }}
+					>
+						<FontAwesomeIcon icon={faHashtag} color={theme.palette.text.primary} />
+						<Typography variant="p"
+						            color="textPrimary"
+						            className={classes.tagsTitle}
+						>MRI</Typography>
+					</Box>
+					<Box className={classes.tagBox}
+					     boxShadow={2}
+					     bgcolor={selectedTag.etc ? theme.selectedColor.tag : null}
+					     onClick={() => {
+						     setSelectedTag({ ...selectedTag, etc: !selectedTag.etc });
+					     }}
+					>
+						<FontAwesomeIcon icon={faHashtag} color={theme.palette.text.primary} />
+						<Typography variant="p"
+						            color="textPrimary"
+						            className={classes.tagsTitle}
+						>etc.</Typography>
+					</Box>
 				</Box>
 			</Box>
 		</Box>
@@ -147,25 +185,38 @@ const useStyles = makeStyles((theme) => ({
 	filterBox: {
 		padding: '15px 0px 5px 0px',
 		height: 'auto',
-		cursor: 'pointer',
 	},
 	filterTitle: {
 		display: 'flex',
 		alignItems: 'center',
 		width: '100%',
 		justifyContent: 'space-between',
+		cursor: 'pointer',
 	},
 	subTitle: {
 		display: 'flex',
 		flexDirection: 'column',
 		padding: '10px 0px 0px 20px',
 	},
-	inSubTitle: {
-		cursor: 'pointer',
-	},
 	plusIcon: {
-		cursor: 'pointer',
 		color: theme.palette.text.primary,
+	},
+	tagsTitle: {
+		marginLeft: '10px',
+	},
+	tagBox: {
+		display: 'flex',
+		alignItems: 'center',
+		height: 40,
+		padding: '0 20px',
+		borderRadius: theme.shape.borderRadius,
+		cursor: 'pointer',
+		justifyContent: 'center',
+		marginBottom: 10,
+		width: 100,
+		[theme.breakpoints.down('xs')]: {
+			width: 150,
+		},
 	},
 }));
 
