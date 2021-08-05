@@ -4,6 +4,7 @@ import {
 	faEnvelope,
 	faHome,
 	faLanguage,
+	faNewspaper,
 	faPenAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -77,6 +78,7 @@ const Navbar = () => {
 				</Box>
 				<div className={classes.drawer}>
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
+					<NavbarButton to="/news" fa={faNewspaper} text={t('news')} />
 					<NavbarButton to="/content" fa={faPenAlt} text={t('content')} />
 					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
 					<Box display="flex">
