@@ -39,7 +39,11 @@ export const ThemeContextProvider = ({ children }) => {
 			borderRadius: 10,
 		},
 		selectedColor: {
-			tag: '#FFB740',
+			selected: '#FFB740',
+			tag: {
+				lightTag: '#EEEEEE',
+				darkTag: '#2B2B2B',
+			},
 		},
 	}), [dark]);
 	

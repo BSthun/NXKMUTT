@@ -61,6 +61,7 @@ const FilterContent = () => {
 	return (
 		<Box className={classes.section}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
+			{/*Type*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -85,6 +86,7 @@ const FilterContent = () => {
 					})}
 				</Box>
 			</Box>
+			{/*Publish year*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -109,6 +111,7 @@ const FilterContent = () => {
 					})}
 				</Box>
 			</Box>
+			{/*tag*/}
 			<Box className={classes.filterBox}>
 				<Box className={classes.filterTitle}
 				     onClick={() => {
@@ -125,8 +128,7 @@ const FilterContent = () => {
 				     style={{ display: filterClicked.tags ? null : 'none' }}
 				>
 					<Box className={classes.tagBox}
-					     boxShadow={2}
-					     bgcolor={selectedTag.eeg ? theme.selectedColor.tag : null}
+					     bgcolor={selectedTag.eeg ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, eeg: !selectedTag.eeg });
 					     }}
@@ -140,8 +142,7 @@ const FilterContent = () => {
 						>EEG</Typography>
 					</Box>
 					<Box className={classes.tagBox}
-					     boxShadow={2}
-					     bgcolor={selectedTag.mri ? theme.selectedColor.tag : null}
+					     bgcolor={selectedTag.mri ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, mri: !selectedTag.mri });
 					     }}
@@ -153,8 +154,7 @@ const FilterContent = () => {
 						>MRI</Typography>
 					</Box>
 					<Box className={classes.tagBox}
-					     boxShadow={2}
-					     bgcolor={selectedTag.etc ? theme.selectedColor.tag : null}
+					     bgcolor={selectedTag.etc ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, etc: !selectedTag.etc });
 					     }}
