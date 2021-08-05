@@ -11,10 +11,10 @@ const FeaturedSection = () => {
 	return (
 		<Box className={classes.section}>
 			<Box className={classes.featureBox}>
-				<Paper className={classes.setBox} />
+				<Paper className={classes.setBox} elevation={3} />
 				<Box className={classes.subBox}>
-					<Paper className={classes.setBox} />
-					<Paper className={classes.setBox} />
+					<Paper className={classes.setBox} elevation={3} />
+					<Paper className={classes.setBox} elevation={3} />
 				</Box>
 			</Box>
 		</Box>
@@ -24,12 +24,12 @@ const FeaturedSection = () => {
 
 const useStyles = makeStyles((theme) => ({
 	section: {
-		marginTop: '20px',
+		marginTop: 20,
 	},
 	featureBox: {
 		display: 'flex',
 		height: 380,
-		marginBottom: 100,
+		marginBottom: 50,
 		[theme.breakpoints.down('sm')]: {
 			flexDirection: 'column',
 			height: '600px',
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: theme.shape.borderRadius,
 		flex: '1',
 		padding: '15px',
-		margin: '5px',
+		margin: 5,
 	},
 	subBox: {
 		flex: '1',
