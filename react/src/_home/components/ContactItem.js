@@ -25,10 +25,10 @@ const ContactItem = ({ anchor, text, fa }) => {
 					<FontAwesomeIcon icon={fa} className={classes.fa} />
 				</ButtonBase>
 			</a>
-			<ButtonBase className={classes.separator} onClick={copy}>
+			<p>{text}</p>
+			<div className={classes.copier} onClick={copy}>
 				<FontAwesomeIcon icon={faClipboard} className={classes.fa} />
-			</ButtonBase>
-			<p style={{ margin: 'auto' }}>{text}</p>
+			</div>
 		</div>
 	);
 };
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 		height: 40,
 		marginTop: 12,
 		display: 'flex',
-		justifyContent: 'left',
+		justifyContent: 'space-between',
 		alignItems: 'center',
 		overflow: 'hidden',
 		border: `1px solid ${theme.palette.text.primary}`,
@@ -49,14 +49,15 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	separator: {
-		padding: '11px 12px',
+		padding: '11px 16px 11px 20px',
 		borderRight: `1px solid ${theme.palette.text.primary}`,
 		'&:hover': {
 			backgroundColor: alpha(theme.palette.text.primary, 0.1),
 		},
-		'&:first-child': {
-			padding: '11px 12px 11px 18px',
-		},
+	},
+	copier: {
+		marginRight: 15,
+		cursor: 'pointer',
 	},
 	fa: {
 		fontSize: 18,

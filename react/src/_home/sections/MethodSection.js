@@ -5,8 +5,14 @@ import {
 	faWater,
 	faXRay,
 } from '@fortawesome/free-solid-svg-icons';
-import { Box } from '@material-ui/core';
+import {
+	Box,
+	darken,
+	lighten,
+	makeStyles,
+} from '@material-ui/core';
 import React from 'react';
+import BottomSlab from '../../components/decorate/BottomSlab';
 import ImgDlBrainCell from '../../images/download/braincell.jpg';
 import ImgDlBrainMri from '../../images/download/brainmri.jpeg';
 import ImgDlBrainSti from '../../images/download/brainsti.jpeg';
@@ -16,10 +22,16 @@ import MethodItem from '../components/MethodItem';
 import Title from '../components/Title';
 
 const MethodSection = () => {
+	const classes = useStyles();
+	
 	return (
-		<Box bgcolor="background.default" padding="24px 0">
+		<Box bgcolor="background.default" paddingTop={6} paddingBottom={32} position="relative">
 			<Title color="#e040fb" /* purple A200 */>NEUROSCIENCE & COMPUTATIONAL TECHNIQUES</Title>
-			<Box position="relative" width={{ xs: 288, lg: 1280 }} height={{ xs: 1640, lg: 750 }} margin="auto">
+			<Box position="relative"
+			     width={{ xs: 288, lg: 1280 }}
+			     height={{ xs: 1640, lg: 750 }}
+			     margin="auto"
+			>
 				<MethodItem image={ImgDlEegWave}
 				            fa={faWater}
 				            title="EEG"
@@ -51,8 +63,15 @@ const MethodSection = () => {
 				            styles={{ top: { xs: 1320, lg: 350 }, left: { lg: 665 } }}
 				/>
 			</Box>
+			<BottomSlab className={classes.slab} />
 		</Box>
 	);
 };
 
+const useStyles = makeStyles((theme) => ({
+	slab: {
+		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
+			: darken(theme.palette.background.default, 0.03),
+	},
+}));
 export default MethodSection;

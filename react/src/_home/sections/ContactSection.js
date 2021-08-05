@@ -5,6 +5,8 @@ import {
 import {
 	Box,
 	Container,
+	darken,
+	lighten,
 	makeStyles,
 	Paper,
 	Typography,
@@ -17,7 +19,7 @@ const ContactSection = () => {
 	const classes = useStyles();
 	
 	return (
-		<Box bgcolor="background.default" paddingBottom={6}>
+		<div className={classes.root}>
 			<Container maxWidth="lg">
 				<Title color="#ffab40" /* orange A200 */>CONTACT</Title>
 				<Paper className={classes.paper}>
@@ -40,11 +42,16 @@ const ContactSection = () => {
 					</Box>
 				</Paper>
 			</Container>
-		</Box>
+		</div>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
+	root: {
+		paddingBottom: 96,
+		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
+			: darken(theme.palette.background.default, 0.03),
+	},
 	paper: {
 		display: 'flex',
 		overflow: 'hidden',

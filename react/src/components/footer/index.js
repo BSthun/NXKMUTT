@@ -1,7 +1,6 @@
 import {
 	Container,
 	darken,
-	Grid,
 	lighten,
 	makeStyles,
 	Typography,
@@ -13,15 +12,11 @@ const Footer = () => {
 	
 	return (
 		<div className={classes.outer}>
-			<Container maxWidth="lg">
-				<Grid container spacing={4}>
-					<Grid item xs={12} md={4}>
-						<Typography variant="h5" color="textPrimary" gutterBottom>NX KMUTT website</Typography>
-						<Typography variant="body2" color="textSecondary" gutterBottom>
-							&copy; 2021 NX Neuroscience Center KMUTT, all rights reserved.
-						</Typography>
-					</Grid>
-				</Grid>
+			<Container maxWidth="lg" className={classes.container}>
+				<Typography variant="h6" color="textPrimary">NX KMUTT website</Typography>
+				<Typography variant="body2" color="textSecondary">
+					&copy; 2021 NX Neuroscience Center KMUTT, all rights reserved.
+				</Typography>
 			</Container>
 		</div>
 	);
@@ -32,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
 		padding: '32px 0',
 		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
 			: darken(theme.palette.background.default, 0.1),
+	},
+	container: {
+		display: 'flex',
+		flexDirection: 'column',
+		[theme.breakpoints.down('sm')]: {
+			alignItems: 'center',
+		},
 	},
 }));
 

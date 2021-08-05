@@ -1,6 +1,7 @@
 import {
 	Box,
 	makeStyles,
+	Paper,
 } from '@material-ui/core';
 import React from 'react';
 
@@ -10,16 +11,10 @@ const FeaturedSection = () => {
 	return (
 		<Box className={classes.section}>
 			<Box className={classes.featureBox}>
-				<Box className={classes.setBox}>
-				
-				</Box>
+				<Paper className={classes.setBox} />
 				<Box className={classes.subBox}>
-					<Box className={classes.setBox}>
-					
-					</Box>
-					<Box className={classes.setBox}>
-					
-					</Box>
+					<Paper className={classes.setBox} />
+					<Paper className={classes.setBox} />
 				</Box>
 			</Box>
 		</Box>
@@ -33,22 +28,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 	featureBox: {
 		display: 'flex',
-		height: '400px',
+		height: 380,
+		marginBottom: 100,
 		[theme.breakpoints.down('sm')]: {
 			flexDirection: 'column',
 			height: '600px',
 		},
 	},
 	setBox: {
-		boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
 		borderRadius: theme.shape.borderRadius,
 		flex: '1',
 		padding: '15px',
 		margin: '5px',
-		backgroundImage: `url("https://www.apple.com/v/environment/m/images/meta/og__bghpqp9r7ewi.png?202105201948")`,
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
 	},
 	subBox: {
 		flex: '1',
