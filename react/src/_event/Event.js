@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 
-const News = () => {
+const Event = () => {
 	return (
 		<Box marginTop="60px">
 			News (Temp)
@@ -9,4 +9,4 @@ const News = () => {
 	);
 };
 
-export default News;
+export default Event;

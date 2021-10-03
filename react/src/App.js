@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import Content from './_content/Content';
+import Event from './_event/Event';
 import Home from './_home/Home';
-import News from './_news/News';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import { FloatingContextProvider } from './contexts/FloatingContext';
@@ -29,13 +29,12 @@ const App = () => {
 							<Route path="/home">
 								<Home />
 							</Route>
-							<Route path="/news">
-								<News />
+							<Route path="/event">
+								<Event />
 							</Route>
 							<Route path="/content">
 								<Content />
 							</Route>
-						
 						</Switch>
 						<Footer />
 					</BrowserRouter>

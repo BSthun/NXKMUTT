@@ -9,7 +9,7 @@ on:
 jobs:
   react-build:
     name: Build React.js Frontend
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     timeout-minutes: 5
     container: node:lts
     steps:
@@ -30,7 +30,7 @@ jobs:
 
   upload:
     name: Preview Server Uploading
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     timeout-minutes: 2
     container: alpine
     needs: [react-build]
