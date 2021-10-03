@@ -1,10 +1,8 @@
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	ButtonBase,
-	makeStyles,
-} from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles/colorManipulator';
+import { ButtonBase } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { alpha } from '@mui/material/styles';
 import React, { useContext } from 'react';
 import { FloatingContext } from '../../contexts/FloatingContext';
 
@@ -44,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 		overflow: 'hidden',
 		border: `1px solid ${theme.palette.text.primary}`,
 		borderRadius: 1000,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			width: '100%',
 		},
 	},

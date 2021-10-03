@@ -1,9 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	ButtonBase,
-	makeStyles,
-	Tooltip,
-} from '@material-ui/core';
+import { ButtonBase, Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 

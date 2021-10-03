@@ -4,15 +4,9 @@ import {
 	faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	Checkbox,
-	makeStyles,
-	Radio,
-	Typography,
-	useTheme,
-	withStyles,
-} from '@material-ui/core';
+import { Box, Checkbox, Radio, Typography, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import withStyles from '@mui/styles/withStyles';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -128,7 +122,7 @@ const FilterContent = () => {
 				     style={{ display: filterClicked.tags ? null : 'none' }}
 				>
 					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.eeg ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
+					     bgcolor={selectedTag.eeg ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, eeg: !selectedTag.eeg });
 					     }}
@@ -142,7 +136,7 @@ const FilterContent = () => {
 						>EEG</Typography>
 					</Box>
 					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.mri ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
+					     bgcolor={selectedTag.mri ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, mri: !selectedTag.mri });
 					     }}
@@ -154,7 +148,7 @@ const FilterContent = () => {
 						>MRI</Typography>
 					</Box>
 					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.etc ? theme.selectedColor.selected : (theme.palette.type === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
+					     bgcolor={selectedTag.etc ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
 					     onClick={() => {
 						     setSelectedTag({ ...selectedTag, etc: !selectedTag.etc });
 					     }}
@@ -214,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: 'center',
 		marginBottom: 10,
 		width: 100,
-		[theme.breakpoints.down('xs')]: {
+		[theme.breakpoints.down('sm')]: {
 			width: 150,
 		},
 	},

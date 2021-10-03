@@ -1,13 +1,7 @@
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	Button,
-	Card,
-	CardActions,
-	makeStyles,
-	useTheme,
-} from '@material-ui/core';
+import { Box, Button, Card, CardActions, useTheme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,7 +19,7 @@ const CenterCard = ({ fa, text, desc }) => {
 				</div>
 				{text}
 			</Box>
-			<Box padding={`0 ${theme.spacing(4)}px`}>
+			<Box padding={`0 ${theme.spacing(4)}`}>
 				{desc}
 			</Box>
 			<CardActions>
@@ -40,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	card: {
 		marginBottom: theme.spacing(1),
 		width: '100%',
-		// padding: `${theme.spacing(4)}px ${theme.spacing(8)}px`,
+		// padding: `${theme.spacing(4)} ${theme.spacing(8)}`,
 	},
 	fa: {
 		width: theme.spacing(12),
@@ -51,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 		'& > svg': {
 			display: 'block',
 			fontSize: theme.spacing(6),
-			margin: `${theme.spacing(3)}px auto`,
+			margin: `${theme.spacing(3)} auto`,
 		},
 	},
 }));

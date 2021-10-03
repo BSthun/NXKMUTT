@@ -1,8 +1,6 @@
-import {
-	ButtonBase,
-	makeStyles,
-} from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles/colorManipulator';
+import { ButtonBase } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { alpha } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 

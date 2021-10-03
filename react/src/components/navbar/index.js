@@ -8,12 +8,8 @@ import {
 	faPenAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Backdrop,
-	Box,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Backdrop, Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React, {
 	useContext,
 	useEffect,
@@ -115,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
 	inner: {
 		height: '100%',
 		maxWidth: theme.breakpoints.values.lg,
-		padding: `0 ${theme.spacing(6)}px`,
+		padding: `0 ${theme.spacing(6)}`,
 		margin: 'auto',
 		display: 'flex',
 		justifyContent: 'space-between',
@@ -130,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.text.primary,
 		padding: theme.spacing(3),
 		transition: '.3s ease-in-out',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			display: 'block',
 		},
 	},
@@ -139,10 +135,10 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.up('md')]: {
 			alignItems: 'center',
 		},
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			position: 'fixed',
 			zIndex: 922,
-			padding: `${theme.spacing(14)}px ${theme.spacing(6)}px`,
+			padding: `${theme.spacing(14)} ${theme.spacing(6)}`,
 			top: 0,
 			left: ({ drawer }) => drawer ? 0 : -(theme.spacing(48) + 2 * theme.spacing(6)),
 			width: theme.spacing(48),
@@ -151,14 +147,14 @@ const useStyles = makeStyles((theme) => ({
 			alignItems: 'stretch',
 			backgroundColor: theme.palette.background.paper,
 			// ! Removed due to no obvious effect of shadow when open along with backdrop
-			// boxShadow: props.drawer ? `0px 0px ${theme.spacing(2)}px 0px rgba(0, 0, 0, 0.36)` : 'none',
+			// boxShadow: props.drawer ? `0px 0px ${theme.spacing(2)} 0px rgba(0, 0, 0, 0.36)` : 'none',
 			transition: '.3s ease-in-out',
 		},
 	},
 	logo: {
 		width: theme.spacing(12),
 		marginRight: theme.spacing(2),
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			marginLeft: theme.spacing(6),
 		},
 	},

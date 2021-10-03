@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	ButtonBase,
-	makeStyles,
-} from '@material-ui/core';
+import { ButtonBase } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import DelayLink from '../routing/DelayLink';
@@ -24,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: theme.spacing(2),
 	},
 	button: {
-		padding: `${theme.spacing(2)}px ${theme.spacing(4)}px`,
+		padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
 		color: theme.palette.text.primary,
 		border: '1px solid transparent',
 		borderRadius: 1000,
@@ -32,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': {
 			border: `1px solid ${theme.palette.text.primary}`,
 		},
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			width: '100%',
-			margin: `${theme.spacing(2)}px 0`,
+			margin: `${theme.spacing(2)} 0`,
 			border: `1px solid ${theme.palette.text.primary}`,
 		},
 	},

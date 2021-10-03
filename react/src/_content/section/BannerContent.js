@@ -1,14 +1,7 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	FormControl,
-	Input,
-	InputAdornment,
-	InputLabel,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Box, FormControl, Input, InputAdornment, InputLabel, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import spiralangleDark from '../../images/abstract/spiralangle-dark.svg';
@@ -45,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: '60px',
 		width: '100%',
 		height: '200px',
-		backgroundImage: theme.palette.type === 'dark' ? `url("${spiralangleDark}")` : `url("${spiralangleLight}")`,
+		backgroundImage: theme.palette.mode === 'dark' ? `url("${spiralangleDark}")` : `url("${spiralangleLight}")`,
 		backgroundPosition: 'center',
 		backgroundSize: 'cover',
 		display: 'flex',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		[theme.breakpoints.down('xs')]: {
+		[theme.breakpoints.down('sm')]: {
 			flexDirection: 'column',
 		},
 	}),

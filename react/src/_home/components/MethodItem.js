@@ -1,10 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles/colorManipulator';
+import { Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { alpha } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -42,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 				transform: 'scale(1.1)',
 			},
 		},
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('lg')]: {
 			height: theme.spacing(80),
 			width: theme.spacing(72),
 		},
@@ -53,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 		backgroundImage: ({ image }) => `url(${image})`,
 		backgroundSize: 'cover',
-		filter: `brightness(${theme.palette.type === 'dark' ? '8' : '12'}0%)`,
+		filter: `brightness(${theme.palette.mode === 'dark' ? '8' : '12'}0%)`,
 		transition: 'transform 1s ease-in-out',
 	},
 	content: {
@@ -66,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 		maskImage: `url(${Hexagon})`,
 		color: theme.palette.text.secondary,
 		backgroundColor: alpha(theme.palette.background.paper, 0.6),
-		backdropFilter: `blur(6px) brightness(${theme.palette.type === 'dark' ? '8' : '12'}0%)`,
+		backdropFilter: `blur(6px) brightness(${theme.palette.mode === 'dark' ? '8' : '12'}0%)`,
 		'& :first-child': {
 			marginBottom: 8,
 		},

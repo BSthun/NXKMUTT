@@ -2,15 +2,8 @@ import {
 	faEnvelope,
 	faPhoneAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-	Box,
-	Container,
-	darken,
-	lighten,
-	makeStyles,
-	Paper,
-	Typography,
-} from '@material-ui/core';
+import { Box, Container, darken, lighten, Paper, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import ContactItem from '../components/ContactItem';
 import Title from '../components/Title';
@@ -49,13 +42,13 @@ const ContactSection = () => {
 const useStyles = makeStyles((theme) => ({
 	root: {
 		paddingBottom: 96,
-		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
+		backgroundColor: theme.palette.mode === 'dark' ? lighten(theme.palette.background.default, 0.05)
 			: darken(theme.palette.background.default, 0.03),
 	},
 	paper: {
 		display: 'flex',
 		overflow: 'hidden',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			flexDirection: 'column',
 		},
 	},
@@ -63,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 		height: 400,
 		flex: 1,
 		border: 0,
-		filter: theme.palette.type === 'dark' ? 'invert(90%)' : 'none',
+		filter: theme.palette.mode === 'dark' ? 'invert(90%)' : 'none',
 	},
 }));
 

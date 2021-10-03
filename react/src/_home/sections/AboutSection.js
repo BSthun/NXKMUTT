@@ -3,12 +3,8 @@ import {
 	faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	Container,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Box, Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Tween } from 'react-gsap';
 import { useTranslation } from 'react-i18next';
@@ -114,9 +110,9 @@ const useStyles = makeStyles((theme) => ({
 		'& > div': {
 			padding: 16,
 			borderRadius: theme.shape.borderRadius,
-			background: theme.palette.type === 'dark' ? 'linear-gradient(135deg, #140b02, hsla(0,0%,100%,0) 80%)' :
+			background: theme.palette.mode === 'dark' ? 'linear-gradient(135deg, #140b02, hsla(0,0%,100%,0) 80%)' :
 				'linear-gradient(135deg, #ebf4fd, hsla(0,0%,100%,0) 80%)',
-			backdropFilter: `blur(6px) brightness(${theme.palette.type === 'dark' ? '8' : '12'}0%)`,
+			backdropFilter: `blur(6px) brightness(${theme.palette.mode === 'dark' ? '8' : '12'}0%)`,
 		},
 	},
 	body: {
@@ -129,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
 				flex: 4,
 			},
 		},
-		[theme.breakpoints.down('md')]: {
+		[theme.breakpoints.down('lg')]: {
 			flexDirection: 'column',
 			'& > div': {
 				padding: 8,

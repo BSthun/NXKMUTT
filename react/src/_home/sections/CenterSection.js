@@ -3,12 +3,8 @@ import {
 	faCloudMoon,
 	faHeart,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-	Box,
-	Container,
-	Grid,
-	makeStyles,
-} from '@material-ui/core';
+import { Box, Container, Grid } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import CenterCard from '../components/CenterCard';
 
@@ -49,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		position: 'relative',
 		height: 48,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			height: 544,
 		},
 	},
@@ -59,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
 		left: 16,
 		right: 16,
 		zIndex: 3,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			top: -60,
 		},
 	},

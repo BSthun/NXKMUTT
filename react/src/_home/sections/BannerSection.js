@@ -1,9 +1,5 @@
-import {
-	Box,
-	Container,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Box, Container, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import BottomSlab from '../../components/decorate/BottomSlab';
@@ -35,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		'& > div': {
 			width: '100%',
 			height: 'calc(100% + 10%)',
-			backgroundImage: `url(${theme.palette.type === 'dark' ? BannerBgDark : BannerBgLight})`,
+			backgroundImage: `url(${theme.palette.mode === 'dark' ? BannerBgDark : BannerBgLight})`,
 			backgroundPosition: 'center',
 			backgroundSize: 'cover',
 		},
@@ -48,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingBottom: theme.spacing(36),
 		paddingRight: theme.spacing(12),
 		zIndex: 2,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			paddingRight: theme.spacing(6),
 		},
 	},

@@ -1,8 +1,5 @@
-import {
-	Box,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import FeaturedSection from './FeaturedSection';

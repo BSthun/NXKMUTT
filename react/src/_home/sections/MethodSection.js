@@ -5,12 +5,8 @@ import {
 	faWater,
 	faXRay,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-	Box,
-	darken,
-	lighten,
-	makeStyles,
-} from '@material-ui/core';
+import { Box, darken, lighten } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import BottomSlab from '../../components/decorate/BottomSlab';
 import ImgDlBrainCell from '../../images/download/braincell.jpg';
@@ -70,7 +66,7 @@ const MethodSection = () => {
 
 const useStyles = makeStyles((theme) => ({
 	slab: {
-		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
+		backgroundColor: theme.palette.mode === 'dark' ? lighten(theme.palette.background.default, 0.05)
 			: darken(theme.palette.background.default, 0.03),
 	},
 }));

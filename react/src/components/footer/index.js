@@ -1,10 +1,5 @@
-import {
-	Container,
-	darken,
-	lighten,
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Container, darken, lighten, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 const Footer = () => {
@@ -25,13 +20,13 @@ const Footer = () => {
 const useStyles = makeStyles((theme) => ({
 	outer: {
 		padding: '32px 0',
-		backgroundColor: theme.palette.type === 'dark' ? lighten(theme.palette.background.default, 0.05)
+		backgroundColor: theme.palette.mode === 'dark' ? lighten(theme.palette.background.default, 0.05)
 			: darken(theme.palette.background.default, 0.1),
 	},
 	container: {
 		display: 'flex',
 		flexDirection: 'column',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			alignItems: 'center',
 		},
 	},

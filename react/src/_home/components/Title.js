@@ -1,7 +1,5 @@
-import {
-	makeStyles,
-	Typography,
-} from '@material-ui/core';
+import { Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import CenterCard from './CenterCard';

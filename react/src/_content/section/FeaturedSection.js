@@ -1,8 +1,5 @@
-import {
-	Box,
-	makeStyles,
-	Paper,
-} from '@material-ui/core';
+import { Box, Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 const FeaturedSection = () => {
@@ -30,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		height: 380,
 		marginBottom: 50,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			flexDirection: 'column',
 			height: '600px',
 		},
@@ -46,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			flex: '2.5',
 		},
 	},

@@ -1,8 +1,5 @@
-import {
-	Box,
-	makeStyles,
-	Paper,
-} from '@material-ui/core';
+import { Box, Paper } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
 const PublicationsSection = () => {
@@ -26,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	publicationsBox: {
 		display: 'flex',
 		marginBottom: 30,
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('md')]: {
 			flexDirection: 'column',
 			height: 600,
 		},

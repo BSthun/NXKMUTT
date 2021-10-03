@@ -1,8 +1,9 @@
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
 import {
 	createTheme,
+	StyledEngineProvider,
 	ThemeProvider,
-} from '@material-ui/core/styles';
+} from '@mui/material/styles';
 import {
 	createContext,
 	useEffect,
@@ -22,7 +23,7 @@ export const ThemeContextProvider = ({ children }) => {
 	
 	const theme = useMemo(() => createTheme({
 		palette: {
-			type: dark ? 'dark' : 'light',
+			mode: dark ? 'dark' : 'light',
 		},
 		spacing: 4,
 		typography: {
@@ -31,7 +32,6 @@ export const ThemeContextProvider = ({ children }) => {
 				'NotoSansThai',
 				'Arial',
 				'Roboto',
-				'\'Helvetica Neue\'',
 				'sans-serif',
 			].join(','),
 		},
@@ -55,9 +55,11 @@ export const ThemeContextProvider = ({ children }) => {
 	
 	return (
 		<ThemeContext.Provider value={handlers}>
-			<ThemeProvider theme={theme}>
-				{children}
-			</ThemeProvider>
+			<StyledEngineProvider injectFirst>
+				<ThemeProvider theme={theme}>
+					{children}
+				</ThemeProvider>
+			</StyledEngineProvider>
 		</ThemeContext.Provider>
 	);
 };

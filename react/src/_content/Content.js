@@ -1,7 +1,7 @@
 import {
 	Box,
 	Container,
-} from '@material-ui/core';
+} from '@mui/material';
 import React from 'react';
 import BannerContent from './section/BannerContent';
 import FilterContent from './section/FilterContent';

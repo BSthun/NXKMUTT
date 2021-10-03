@@ -1,5 +1,5 @@
 import { createContext, useState, } from 'react'
-import { Snackbar } from '@material-ui/core'
+import { Snackbar } from '@mui/material'
 
 export const FloatingContext = createContext({})
 
