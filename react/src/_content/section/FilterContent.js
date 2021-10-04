@@ -1,5 +1,5 @@
 
-import { Box, Checkbox, Radio, Typography, useTheme,Stack, Slider, Button } from '@mui/material';
+import { Box, Checkbox, Typography,Stack, Slider, Button } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, { useState } from 'react';
@@ -20,20 +20,20 @@ const CustomCheckbox = withStyles({
 	checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-const CustomRadio = withStyles({
-	root: {
-		color: '#FFB740',
-		'&$checked': {
-			color: '#FFB740',
-		},
-	},
-	checked: {},
-})((props) => <Radio color="default" {...props} />);
+// const CustomRadio = withStyles({
+// 	root: {
+// 		color: '#FFB740',
+// 		'&$checked': {
+// 			color: '#FFB740',
+// 		},
+// 	},
+// 	checked: {},
+// })((props) => <Radio color="default" {...props} />);
 
 const FilterContent = () => {
 	const classes = useStyles();
-	const theme = useTheme();
-	const [selectedValue, setSelectedValue] = React.useState('2020');
+	// const theme = useTheme();
+	// const [selectedValue, setSelectedValue] = React.useState('2020');
 	const [selectedType,setSelectedType] = useState([]);
 	const [years,setyears] = useState(rangeYear)
 	const [t] = useTranslation('content');

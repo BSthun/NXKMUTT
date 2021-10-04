@@ -4,10 +4,8 @@ import makeStyles from '@mui/styles/makeStyles';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faHashtag,
 	faMinus,
 	faPlus,
-	faRoad,
 } from '@fortawesome/free-solid-svg-icons';
 import React,{useState} from 'react'
 
