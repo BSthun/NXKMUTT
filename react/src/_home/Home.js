@@ -11,7 +11,6 @@ import TopicSection from './sections/TopicSection';
 const Home = () => {
 	return (
 		<Box display="flex" flexDirection="column">
-			<Navbar />
 			<BannerSection />
 			<CenterSection />
 			<AboutSection />

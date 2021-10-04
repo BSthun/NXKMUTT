@@ -74,7 +74,7 @@ const Navbar = () => {
 				</Box>
 				<div className={classes.drawer}>
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
-					<NavbarButton to="/news" fa={faNewspaper} text={t('news')} />
+					<NavbarButton to="/event" fa={faNewspaper} text={t('event')} />
 					<NavbarButton to="/content" fa={faPenAlt} text={t('content')} />
 					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
 					<Box display="flex">
