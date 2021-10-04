@@ -5,12 +5,14 @@ i18n.use(initReactI18next).init({
 	resources: {
 		en: {
 			home: require('./home-en.json'),
-			content: require('./content-en.json')
+			content: require('./content-en.json'),
+			event: require('./event-en.json'),
 		},
 		th: {
 			home: require('./home-th.json'),
-			content: require('./content-th.json')
-		}
+			content: require('./content-th.json'),
+			event: require('./event-th.json'),
+		},
 	},
 	ns: ['home'],
 	whitelist: ['en', 'th'],
@@ -19,9 +21,9 @@ i18n.use(initReactI18next).init({
 	detection: {
 		order: ['localStorage'],
 		lookupLocalStorage: 'lng',
-		checkWhitelist: true
+		checkWhitelist: true,
 	},
 	interpolation: {
-		escapeValue: false
-	}
+		escapeValue: false,
+	},
 });

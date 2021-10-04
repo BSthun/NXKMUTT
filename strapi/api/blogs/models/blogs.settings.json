@@ -91,6 +91,9 @@
     },
     "author": {
       "model": "blogs"
+    },
+    "tags": {
+      "collection": "tags"
     }
   }
 }

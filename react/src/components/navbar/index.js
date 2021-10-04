@@ -1,14 +1,18 @@
 import {
 	faAdjust,
 	faBars,
+	faCalendarAlt,
 	faEnvelope,
 	faHome,
 	faLanguage,
-	faNewspaper,
 	faPenAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Backdrop, Box, Typography } from '@mui/material';
+import {
+	Backdrop,
+	Box,
+	Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React, {
 	useContext,
@@ -74,7 +78,7 @@ const Navbar = () => {
 				</Box>
 				<div className={classes.drawer}>
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
-					<NavbarButton to="/event" fa={faNewspaper} text={t('event')} />
+					<NavbarButton to="/event" fa={faCalendarAlt} text={t('event')} />
 					<NavbarButton to="/content" fa={faPenAlt} text={t('content')} />
 					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
 					<Box display="flex">
@@ -140,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
 			zIndex: 922,
 			padding: `${theme.spacing(14)} ${theme.spacing(6)}`,
 			top: 0,
-			left: ({ drawer }) => drawer ? 0 : -(theme.spacing(48) + 2 * theme.spacing(6)),
+			left: ({ drawer }) => drawer ? 0 : -240,
 			width: theme.spacing(48),
 			height: '100vh',
 			flexDirection: 'column',

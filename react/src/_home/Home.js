@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import Navbar from '../components/navbar';
 import AboutSection from './sections/AboutSection';
 import BannerSection from './sections/BannerSection';
 import CenterSection from './sections/CenterSection';
