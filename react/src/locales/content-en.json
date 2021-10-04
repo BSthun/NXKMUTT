@@ -9,5 +9,7 @@
 	"paper": "Paper",
 	"publication": "Publication",
 	"featured": "Featured",
-	"publications": "Publications"
+	"publications": "Publications",
+	"technology":"technology",
+	"theme":"theme"
 }

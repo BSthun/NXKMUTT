@@ -1,17 +1,14 @@
-import {
-	faHashtag,
-	faMinus,
-	faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Checkbox, Radio, Typography, useTheme } from '@mui/material';
+
+import { Box, Checkbox, Radio, Typography, useTheme,Stack, Slider, Button } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import TagChip from './components/TagChip';
+import FilterBox from './components/FilterBox';
 
-const types = ['blog', 'paper', 'publication'];
-const year = ['2020', '2021'];
+const types = ['Preprints', 'Peer-reviewed publications', 'Conference papers','Invited talks','Poster presentations'];
+const rangeYear = [2020,2025];
 
 const CustomCheckbox = withStyles({
 	root: {
@@ -37,130 +34,52 @@ const FilterContent = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [selectedValue, setSelectedValue] = React.useState('2020');
-	const [filterClicked, setFilterClicked] = useState({
-		type: false,
-		year: false,
-		tags: false,
-	});
-	const [selectedTag, setSelectedTag] = useState({
-		eeg: false,
-		mri: true,
-		etc: false,
-	});
+	const [selectedType,setSelectedType] = useState([]);
+	const [years,setyears] = useState(rangeYear)
 	const [t] = useTranslation('content');
-	const handleChange = (event) => {
-		setSelectedValue(event.target.value);
-	};
+
+	const handlechange = (_,newvalue)=>setyears(newvalue);
 	
 	return (
 		<Box className={classes.section}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
 			{/*Type*/}
-			<Box className={classes.filterBox}>
-				<Box className={classes.filterTitle}
-				     onClick={() => {
-					     setFilterClicked({ ...filterClicked, type: !filterClicked.type });
-				     }}
-				>
-					<Typography variant="p" color="textPrimary">{t('type')}</Typography>
-					<FontAwesomeIcon icon={filterClicked.type ? faMinus : faPlus}
-					                 className={classes.plusIcon}
-					/>
-				</Box>
-				<Box className={classes.subTitle} style={{ display: filterClicked.type ? null : 'none' }}>
-					{types.map((type) => {
+			<FilterBox text="type">
+			{types.map((type) => {
 						return (
-							<Box display="flex" alignItems="center">
-								<CustomCheckbox />
-								<Typography variant="p"
-								            color="textPrimary"
-								>{t(type)}</Typography>
+							<Box display="flex" className={classes.hoverBox} 
+							onClick={selectedType.includes(type) ? ()=>setSelectedType(selectedType.filter(item=>item!==type)) : ()=>setSelectedType([...selectedType,type])} 
+							alignItems="center">
+								<CustomCheckbox  checked={selectedType.includes(type)} />
+								<Typography variant="p" color="textPrimary">{t(type)}</Typography>
 							</Box>
 						);
 					})}
-				</Box>
-			</Box>
+			</FilterBox>
+
+
+
+
 			{/*Publish year*/}
-			<Box className={classes.filterBox}>
-				<Box className={classes.filterTitle}
-				     onClick={() => {
-					     setFilterClicked({ ...filterClicked, year: !filterClicked.year });
-				     }}
-				>
-					<Typography variant="p" color="textPrimary">{t('publish-year')}</Typography>
-					<FontAwesomeIcon icon={filterClicked.year ? faMinus : faPlus}
-					                 className={classes.plusIcon}
-					/>
-				</Box>
-				<Box className={classes.subTitle} style={{ display: filterClicked.year ? null : 'none' }}>
-					{year.map((year) => {
-						return (
-							<Box display="flex" alignItems="center">
-								<CustomRadio checked={selectedValue === year} onChange={handleChange} value={year} />
-								<Typography variant="p"
-								            color="textPrimary"
-								>{year}</Typography>
-							</Box>
-						);
-					})}
-				</Box>
-			</Box>
-			{/*tag*/}
-			<Box className={classes.filterBox}>
-				<Box className={classes.filterTitle}
-				     onClick={() => {
-					     setFilterClicked({ ...filterClicked, tags: !filterClicked.tags });
-				     }}
-				>
-					<Typography variant="p" color="textPrimary">{t('tag')}</Typography>
-					<FontAwesomeIcon icon={filterClicked.tags ? faMinus : faPlus}
-					                 className={classes.plusIcon}
-					/>
-				</Box>
-				<Box className={classes.subTitle}
-				     alignItems="center"
-				     style={{ display: filterClicked.tags ? null : 'none' }}
-				>
-					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.eeg ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
-					     onClick={() => {
-						     setSelectedTag({ ...selectedTag, eeg: !selectedTag.eeg });
-					     }}
-					>
-						<FontAwesomeIcon icon={faHashtag}
-						                 color={theme.palette.text.primary}
-						/>
-						<Typography variant="p"
-						            color="textPrimary"
-						            className={classes.tagsTitle}
-						>EEG</Typography>
-					</Box>
-					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.mri ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
-					     onClick={() => {
-						     setSelectedTag({ ...selectedTag, mri: !selectedTag.mri });
-					     }}
-					>
-						<FontAwesomeIcon icon={faHashtag} color={theme.palette.text.primary} />
-						<Typography variant="p"
-						            color="textPrimary"
-						            className={classes.tagsTitle}
-						>MRI</Typography>
-					</Box>
-					<Box className={classes.tagBox}
-					     bgcolor={selectedTag.etc ? theme.selectedColor.selected : (theme.palette.mode === 'dark' ? theme.selectedColor.tag.darkTag : theme.selectedColor.tag.lightTag)}
-					     onClick={() => {
-						     setSelectedTag({ ...selectedTag, etc: !selectedTag.etc });
-					     }}
-					>
-						<FontAwesomeIcon icon={faHashtag} color={theme.palette.text.primary} />
-						<Typography variant="p"
-						            color="textPrimary"
-						            className={classes.tagsTitle}
-						>etc.</Typography>
-					</Box>
-				</Box>
-			</Box>
+			<FilterBox text="publish-year">
+			<Slider step={1} valueLabelDisplay="auto" value={years} max={rangeYear[1]} min={rangeYear[0]} onChange={handlechange} marks={[{value:rangeYear[0],label:rangeYear[0]},{value:rangeYear[1],label:rangeYear[1]}]} ></Slider>
+			</FilterBox>
+			{/*technology*/}
+			<FilterBox text="technology">
+			<Stack direction="row" gap={2} justifyContent="space-between" spacing={2} flexWrap="wrap" >
+			{['EEG', 'MRI', 'fNIR' , 'Eye tracking', 'Psychophysics', 'Physiology', 'Behavioral methods', 'Brain stimulation', 'Computational models', 'Human Computer Ineteraction', 'Machine learning'].map(item=><TagChip key={item} name={item}/>)}
+			</Stack>
+			</FilterBox>
+
+			{/* theme */}
+			<FilterBox text="theme">
+			<Stack direction="row" gap={2} justifyContent="space-between" spacing={2} flexWrap="wrap" >
+			{['Cognitive Neuroscience', 'Developmental Neuroscience','Computational Neuroscience','Clinical Neuroscience', 'Neurobiology', 'Neuroeconmics'].map(item=><TagChip key={item} name={item}/>)}
+			</Stack>
+			</FilterBox>
+
+			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} rounded>Search</Button>
+
 		</Box>
 	);
 };
@@ -212,6 +131,11 @@ const useStyles = makeStyles((theme) => ({
 			width: 150,
 		},
 	},
+	hoverBox: {
+		'&:hover':{
+			cursor:"pointer"
+		}
+	}
 }));
 
 export default FilterContent;
