@@ -18,7 +18,7 @@ const Content = () => {
 				     width="100%"
 				     flexDirection={{ xs: 'column', md: 'row' }}
 				>
-					<Box flex="1">
+					<Box flex="1" overflow="hidden" marginBottom={10} >
 						<FilterContent />
 					</Box>
 					<Box flex="4">

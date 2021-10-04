@@ -33,13 +33,17 @@ const CustomCheckbox = withStyles({
 const FilterContent = () => {
 	const classes = useStyles();
 	// const theme = useTheme();
-	// const [selectedValue, setSelectedValue] = React.useState('2020');
 	const [selectedType,setSelectedType] = useState([]);
 	const [years,setyears] = useState(rangeYear)
+	const [technology,settechnology] = useState([]);
+	const [theme,settheme] = useState([]);
 	const [t] = useTranslation('content');
 
 	const handlechange = (_,newvalue)=>setyears(newvalue);
-	
+	const submit = ()=>{
+		const data = {types:selectedType,year:years,technology,theme}
+		console.log(data)
+	}
 	return (
 		<Box className={classes.section}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
@@ -47,7 +51,7 @@ const FilterContent = () => {
 			<FilterBox text="type">
 			{types.map((type) => {
 						return (
-							<Box display="flex" className={classes.hoverBox} 
+							<Box display="flex" className={classes.hoverBox}  key={type}
 							onClick={selectedType.includes(type) ? ()=>setSelectedType(selectedType.filter(item=>item!==type)) : ()=>setSelectedType([...selectedType,type])} 
 							alignItems="center">
 								<CustomCheckbox  checked={selectedType.includes(type)} />
@@ -65,20 +69,24 @@ const FilterContent = () => {
 			<Slider step={1} valueLabelDisplay="auto" value={years} max={rangeYear[1]} min={rangeYear[0]} onChange={handlechange} marks={[{value:rangeYear[0],label:rangeYear[0]},{value:rangeYear[1],label:rangeYear[1]}]} ></Slider>
 			</FilterBox>
 			{/*technology*/}
+
+
 			<FilterBox text="technology">
-			<Stack direction="row" gap={2} justifyContent="space-between" spacing={2} flexWrap="wrap" >
-			{['EEG', 'MRI', 'fNIR' , 'Eye tracking', 'Psychophysics', 'Physiology', 'Behavioral methods', 'Brain stimulation', 'Computational models', 'Human Computer Ineteraction', 'Machine learning'].map(item=><TagChip key={item} name={item}/>)}
+			<Stack direction="row" gap={1} justifyContent="flex-start"  flexWrap="wrap"  >
+			{['EEG', 'MRI', 'fNIR' , 'Eye tracking', 'Psychophysics', 'Physiology', 'Behavioral methods', 'Brain stimulation', 'Computational models', 'Human Computer Ineteraction', 'Machine learning']
+			.map(item=><TagChip key={item} name={item} value={technology} setvalue={settechnology}  />)}
 			</Stack>
 			</FilterBox>
 
 			{/* theme */}
 			<FilterBox text="theme">
-			<Stack direction="row" gap={2} justifyContent="space-between" spacing={2} flexWrap="wrap" >
-			{['Cognitive Neuroscience', 'Developmental Neuroscience','Computational Neuroscience','Clinical Neuroscience', 'Neurobiology', 'Neuroeconmics'].map(item=><TagChip key={item} name={item}/>)}
+			<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap" >
+			{['Cognitive Neuroscience', 'Developmental Neuroscience','Computational Neuroscience','Clinical Neuroscience', 'Neurobiology', 'Neuroeconmics']
+			.map(item=><TagChip key={item} value={theme} setvalue={settheme} name={item}/>)}
 			</Stack>
 			</FilterBox>
 
-			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} rounded>Search</Button>
+			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} onClick={submit} >Search</Button>
 
 		</Box>
 	);
