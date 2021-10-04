@@ -14,6 +14,7 @@ import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
+import Post from './_post/Post';
 
 const App = () => {
 	return (
@@ -32,8 +33,11 @@ const App = () => {
 							<Route path="/event">
 								<Event />
 							</Route>
-							<Route path="/content">
+							<Route exact path="/content">
 								<Content />
+							</Route>
+							<Route path="/content/post">
+								<Post />
 							</Route>
 						</Switch>
 						<Footer />
