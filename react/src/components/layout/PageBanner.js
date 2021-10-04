@@ -36,7 +36,7 @@ const PageBanner = ({ title, breadcrumbs }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-	root: (props) => ({
+	root: {
 		paddingTop: 64,
 		width: '100%',
 		height: 128,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-	}),
+	},
 }));
 
 PageBanner.propTypes = {
