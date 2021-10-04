@@ -7,7 +7,7 @@ const Post = ()=>{
     return(
         <Box display="flex" flexDirection="column" alignItems="center" bgcolor="background.default">
             <Box paddingTop={30} paddingBottom={30}>
-                <Typography variant="h2" color="white" >Post</Typography>
+                <Typography variant="h2" color="text.primary" >Post</Typography>
             </Box>
 
         <Container maxWidth="lg">

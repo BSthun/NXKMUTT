@@ -9,8 +9,8 @@ const SideBar = ()=>{
             <Typography variant="p" color="textPrimary" >{t('detail').substring(0,1).toUpperCase() + t('detail').substring(1)}</Typography>
             <Box marginLeft={5}>
             
-            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="white" height="fit-contents" >{t("author")} : </Typography> <Chip label="Tine" /> </Stack>
-            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="white" height="fit-contents" >{t("date")} : </Typography> <Chip label="12/02/2021" /> </Stack>
+            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="text.primary" height="fit-contents" >{t("author")} : </Typography> <Chip label="Tine" /> </Stack>
+            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="text.primary" height="fit-contents" >{t("date")} : </Typography> <Chip label="12/02/2021" /> </Stack>
             
             </Box>
 
