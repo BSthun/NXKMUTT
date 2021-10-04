@@ -12,6 +12,8 @@
 	"publications": "เอกสารเผยแพร่",
 	"technology":"เทคโนโลยี",
 	"theme":"ธีม",
-	"detail":"ข้อมูล"
+	"detail":"ข้อมูล",
+	"author":"ผู้เขียน",
+	"date":"วันที่"
 
 }

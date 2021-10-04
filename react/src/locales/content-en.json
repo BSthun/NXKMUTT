@@ -12,5 +12,7 @@
 	"publications": "Publications",
 	"technology":"technology",
 	"theme":"theme",
-	"detail":"detail"
+	"detail":"detail",
+	"author":"Author",
+	"date":"Date"
 }

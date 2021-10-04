@@ -86,7 +86,7 @@ const FilterContent = () => {
 			</Stack>
 			</FilterBox>
 
-			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} onClick={submit} >Search</Button>
+			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} onClick={submit} >{t('search')}</Button>
 
 		</Box>
 	);
