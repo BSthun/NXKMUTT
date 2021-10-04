@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "papers",
+  "info": {
+    "name": "Papers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "string",
+      "required": true
+    },
+    "publish": {
+      "type": "date",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "attachment.link"
+    },
+    "files": {
+      "type": "component",
+      "repeatable": true,
+      "component": "attachment.file"
+    },
+    "authors": {
+      "collection": "members"
+    },
+    "tags": {
+      "collection": "tags"
+    }
+  }
+}
