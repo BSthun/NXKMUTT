@@ -1,23 +1,38 @@
-import { Box, Chip, Stack, Typography } from "@mui/material"
+import {  Box, Chip, Stack, Typography, Card, CardContent } from "@mui/material"
 import { useTranslation } from "react-i18next";
+import AuthorAvatar from "./AuthorAvatar";
 
 const SideBar = ()=>{
     const [t] = useTranslation('content');
 
+
     return(
-        <Box borderRight="1px solid white">
-            <Typography variant="p" color="textPrimary" >{t('detail').substring(0,1).toUpperCase() + t('detail').substring(1)}</Typography>
-            <Box marginLeft={5}>
-            
-            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="text.primary" height="fit-contents" >{t("author")} : </Typography> <Chip label="Tine" /> </Stack>
-            <Stack marginTop={3} direction="row" gap={2} alignitems="center"> <Typography color="text.primary" height="fit-contents" >{t("date")} : </Typography> <Chip label="12/02/2021" /> </Stack>
-            
+        <Box >
+            <Stack gap={3}>
+            {/* Author */}
+            <Typography variant="p" color="textPrimary" >{t("author")}</Typography>
+            <Box marginLeft={5} >
+            {["tine","Gun","G"].map(item=><AuthorAvatar name={item} subject={"bio"} key={item}/>)}
             </Box>
 
+            {/* Tag */}
             <Typography variant="p" color="textPrimary" >{t('tag')}</Typography>
                 <Stack direction="row" gap={1} flexWrap="wrap" marginTop={5} >
-                {["asd","asdwasd","asd","asdwasd","asd","asdwasd"].map(item=><Chip label={item} key={item} />)}
+                {["asd","asdwasd","asd","d","asd","as"].map((item,id)=><Chip label={item} key={id} />)}
                 </Stack>
+
+            {/* Related */}
+            <Typography mt={3} variant="p" color="textPrimary" >{t('related')}</Typography>
+            
+            <Stack gap={2} boxSizing="border-box"  mr={3}>
+            {[1,2,3].map(item=><Card key={item}>
+                <CardContent>
+                    <Box minHeight="100px"></Box>
+                </CardContent>
+            </Card>)}
+            </Stack>
+            </Stack>
+            
         </Box>
     )
 }

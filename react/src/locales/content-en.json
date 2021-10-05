@@ -14,5 +14,6 @@
 	"theme":"theme",
 	"detail":"detail",
 	"author":"Author",
-	"date":"Date"
+	"date":"Date",
+	"related":"Related"
 }

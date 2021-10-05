@@ -14,7 +14,7 @@ const Post = ()=>{
             <Box display="flex"
                  justifyContent="space-between"
                  width="100%"
-                 flexDirection={{ xs: 'column', md: 'row' }}>
+                 flexDirection={{ xs: "column-reverse", md: 'row' }}>
                 <Box flex="1" overflow="hidden" marginBottom={10} >
                     <SideBar/>
                 </Box>
