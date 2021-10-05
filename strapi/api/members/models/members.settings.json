@@ -94,6 +94,19 @@
         }
       },
       "component": "attachment.link"
+    },
+    "attrs": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "component": "profile.attribute"
+    },
+    "affiliation": {
+      "model": "affiliations"
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "affiliations",
+  "info": {
+    "name": "Affiliations"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

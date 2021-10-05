@@ -1,0 +1,26 @@
+{
+  "collectionName": "attributes",
+  "info": {
+    "name": "Attribute",
+    "icon": "atlas"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "degree",
+        "expertise"
+      ],
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
