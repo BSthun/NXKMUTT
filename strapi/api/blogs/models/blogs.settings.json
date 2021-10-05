@@ -3,52 +3,54 @@
   "collectionName": "blogs",
   "info": {
     "name": "Blogs",
-    "description": ""
+    "description": "Blog post and its contents."
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "type": "string",
-      "unique": true
+      "unique": true,
+      "regex": "^[a-z0-9_-]*$",
+      "required": true,
+      "minLength": 4,
+      "maxLength": 64
     },
-    "title": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "title_en": {
+      "pluginOptions": {},
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4
     },
-    "desc": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "title_th": {
+      "pluginOptions": {},
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 4,
+      "maxLength": 64
+    },
+    "desc_en": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "maxLength": 512,
+      "minLength": 4
+    },
+    "desc_th": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "maxLength": 512,
+      "minLength": 4
     },
     "type": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "enumeration",
       "enum": [
         "blog",
@@ -58,11 +60,7 @@
       "default": "blog"
     },
     "publish": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "date",
       "required": true
     },
@@ -74,23 +72,15 @@
       ],
       "plugin": "upload",
       "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "pluginOptions": {}
     },
     "content": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "richtext",
       "required": true
     },
     "author": {
-      "model": "blogs"
+      "model": "members"
     },
     "tags": {
       "collection": "tags"

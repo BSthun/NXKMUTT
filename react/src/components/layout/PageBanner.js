@@ -22,7 +22,7 @@ const PageBanner = ({ title, breadcrumbs }) => {
 					<Breadcrumbs>
 						{
 							breadcrumbs.map((el) => (
-								<Link to={el.href}>
+								<Link key={el.href} to={el.href}>
 									{el.text}
 								</Link>
 							))

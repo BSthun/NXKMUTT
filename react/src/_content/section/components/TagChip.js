@@ -1,23 +1,26 @@
 import { Chip } from '@mui/material';
 import { useState } from 'react';
 
-const TagChip = ({ name, value, setValue }) => {
-	const [active, setActive] = useState(value.includes(name));
+const TagChip = ({ item, setSelected }) => {
+	const [active, setActive] = useState(false);
 	
-	const handle = () => {
-		setActive(!active);
-		if (value.includes(name)) {
-			setValue(value.filter(item => name !== item));
+	const handleClick = () => {
+		if (active) {
+			setSelected((selected) => {
+				const slugs = selected.map((el) => el.slug);
+				return selected.filter((el) => !slugs.includes(el.slug));
+			});
 		} else {
-			setValue([...value, name]);
+			setSelected((selected) => [...selected, item]);
 		}
+		setActive(!active);
 	};
 	
 	return (
 		<Chip style={{ marginLeft: 0 }}
-		      label={name}
+		      label={item.name}
 		      color={active ? 'secondary' : 'default'}
-		      onClick={handle}
+		      onClick={handleClick}
 		      variant={active ? 'filled' : 'outlined'}
 		/>
 	);

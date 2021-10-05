@@ -3,7 +3,7 @@
   "collectionName": "papers",
   "info": {
     "name": "Papers",
-    "description": ""
+    "description": "Research papers and publications"
   },
   "options": {
     "increments": true,
@@ -14,11 +14,16 @@
   "attributes": {
     "slug": {
       "type": "string",
-      "unique": true
+      "unique": true,
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4
     },
     "desc": {
       "type": "string",

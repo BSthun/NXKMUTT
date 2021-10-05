@@ -3,7 +3,7 @@
   "collectionName": "tags",
   "info": {
     "name": "Tags",
-    "description": ""
+    "description": "Content tags, categorized as technique and theme."
   },
   "options": {
     "increments": true,
@@ -12,17 +12,24 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "slug": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true,
+      "maxLength": 64,
+      "minLength": 1,
+      "regex": "^[a-z0-9_-]*$"
     },
-    "type": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 64,
+      "minLength": 1
+    },
+    "category": {
       "type": "enumeration",
       "enum": [
+        "type",
         "technique",
         "theme"
       ],

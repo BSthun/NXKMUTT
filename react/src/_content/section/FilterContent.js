@@ -9,15 +9,17 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, {
-	useRef,
+	useContext,
+	useEffect,
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FloatingContext } from '../../contexts/FloatingContext';
+import axios from '../../utils/axios';
 import FilterBox from './components/FilterBox';
 import TagChip from './components/TagChip';
 
-const types = ['Preprints', 'Peer-reviewed publications', 'Conference papers', 'Invited talks', 'Poster presentations'];
-const rangeYear = [new Date().getFullYear(), 2010];
+const rangeYear = [2010, new Date().getFullYear()];
 
 const CustomCheckbox = withStyles({
 	root: {
@@ -33,41 +35,39 @@ const CustomCheckbox = withStyles({
 
 const FilterContent = () => {
 	const classes = useStyles();
-	const [selectedTypes, setSelectedTypes] = useState([]);
-	const [years, setyears] = useState(rangeYear);
-	const [technology, settechnology] = useState([]);
-	const [theme, settheme] = useState([]);
 	const [t] = useTranslation('content');
-	const ref = useRef();
+	const { openSnackBar } = useContext(FloatingContext);
+	const [tags, setTags] = useState({
+		types: [],
+		techniques: [],
+		theme: [],
+	});
 	
-	const handlechange = (_, newvalue) => setyears(newvalue);
-	const submit = () => {
-		const data = { types: selectedTypes, year: years, technology, theme };
-		console.log(data);
+	const [selectedYears, setSelectedYears] = useState(rangeYear);
+	const [selectedTypes, setSelectedTypes] = useState([]);
+	const [selectedTechniques, setSelectedTechniques] = useState([]);
+	const [selectedThemes, setSelectedThemes] = useState([]);
+	
+	// Load tags
+	useEffect(() => {
+		axios
+			.get('/tags')
+			.then((response) => {
+				setTags({
+					types: response.data.filter((el) => el.category === 'type'),
+					techniques: response.data.filter((el) => el.category === 'technique'),
+					theme: response.data.filter((el) => el.category === 'theme'),
+				});
+			})
+			.catch((error) => openSnackBar(error.message));
+	}, [openSnackBar]);
+	
+	const search = () => {
+		console.log(selectedYears, selectedTypes, selectedTechniques, selectedThemes);
 	};
-	
 	return (
-		<Box className={classes.section} ref={ref}>
+		<Box className={classes.section}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
-			
-			{/* Type */}
-			<FilterBox text="type">
-				{types.map((type) => {
-					return (
-						<Box display="flex" className={classes.hoverBox} key={type}
-						     onClick={
-							     selectedTypes.includes(type) ?
-								     () => setSelectedTypes(selectedTypes.filter(item => item !== type)) :
-								     () => setSelectedTypes([...selectedTypes, type])
-						     }
-						     alignItems="center"
-						>
-							<CustomCheckbox checked={selectedTypes.includes(type)} />
-							<Typography variant="p" color="textPrimary">{t(type)}</Typography>
-						</Box>
-					);
-				})}
-			</FilterBox>
 			
 			{/* Publish year */}
 			<FilterBox text="publish-year">
@@ -78,12 +78,12 @@ const FilterContent = () => {
 					mt={5}
 				>
 					<Slider step={1}
-					        value={years}
-					        max={rangeYear[0]}
-					        min={rangeYear[1]}
+					        value={selectedYears}
+					        min={rangeYear[0]}
+					        max={rangeYear[1]}
 					        size="small"
 					        valueLabelDisplay="on"
-					        onChange={handlechange}
+					        onChange={(_, value) => setSelectedYears(value)}
 					        marks={[
 						        { value: rangeYear[0], label: rangeYear[0] },
 						        { value: rangeYear[1], label: rangeYear[1] },
@@ -93,45 +93,61 @@ const FilterContent = () => {
 				</Box>
 			</FilterBox>
 			
+			{/* Type */}
+			<FilterBox text="type">
+				{tags.types.map((type) => {
+					return (
+						<Box display="flex"
+						     className={classes.hoverBox}
+						     key={type}
+						     alignItems="center"
+						     onClick={
+							     selectedTypes.includes(type) ?
+								     () => setSelectedTypes(selectedTypes.filter(item => item !== type)) :
+								     () => setSelectedTypes([...selectedTypes, type])
+						     }
+						>
+							<CustomCheckbox checked={selectedTypes.includes(type)} />
+							<Typography variant="p" color="textPrimary">{t(type)}</Typography>
+						</Box>
+					);
+				})}
+			</FilterBox>
+			
 			{/* Technology */}
 			<FilterBox text="technology">
 				<Stack direction="row" gap={1} justifyContent="flex-start" flexWrap="wrap">
-					{[
-						'EEG',
-						'MRI',
-						'fNIR',
-						'Eye tracking',
-						'Psychophysics',
-						'Physiology',
-						'Behavioral methods',
-						'Brain stimulation',
-						'Computational models',
-						'Human Computer Ineteraction',
-						'Machine learning',
-					]
-						.map(item => <TagChip key={item} name={item} value={technology} setvalue={settechnology} />)}
+					{
+						tags.techniques.map((item) =>
+							<TagChip
+								key={item.slug}
+								item={item}
+								setSelected={setSelectedTechniques}
+							/>,
+						)
+					}
 				</Stack>
 			</FilterBox>
 			
 			{/* Theme */}
 			<FilterBox text="theme">
 				<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap">
-					{[
-						'Cognitive Neuroscience',
-						'Developmental Neuroscience',
-						'Computational Neuroscience',
-						'Clinical Neuroscience',
-						'Neurobiology',
-						'Neuroeconmics',
-					]
-						.map(item => <TagChip key={item} value={theme} setValue={settheme} name={item} />)}
+					{
+						tags.theme.map((item) =>
+							<TagChip
+								key={item.slug}
+								item={item}
+								setSelected={setSelectedThemes}
+							/>,
+						)
+					}
 				</Stack>
 			</FilterBox>
 			
 			<Button variant="contained"
 			        color="secondary"
 			        style={{ marginTop: 20, borderRadius: '30px' }}
-			        onClick={submit}
+			        onClick={search}
 			>
 				{t('search')}
 			</Button>

@@ -3,34 +3,26 @@
   "collectionName": "events",
   "info": {
     "name": "Events",
-    "description": ""
+    "description": "Event schedule and its content."
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "slug": {
       "type": "string",
       "unique": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "pluginOptions": {},
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4,
+      "regex": "^[a-z0-9_-]*$"
     },
     "type": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "enumeration",
       "enum": [
         "conference",
@@ -40,68 +32,56 @@
       "required": true
     },
     "multidays": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "boolean",
       "default": false,
       "required": true
     },
     "date_start": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "datetime",
       "required": true
     },
     "date_end": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "type": "datetime",
       "required": true
     },
-    "name": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "name_en": {
+      "pluginOptions": {},
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4
     },
-    "desc": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+    "name_th": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "maxLength": 64,
+      "minLength": 4
+    },
+    "desc_en": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "maxLength": 512,
+      "minLength": 4
+    },
+    "desc_th": {
+      "pluginOptions": {},
       "type": "string",
       "required": true
     },
     "content": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
+      "pluginOptions": {},
       "type": "richtext",
       "required": true
     },
     "links": {
       "type": "component",
       "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+      "pluginOptions": {},
       "component": "attachment.link"
     },
     "organizers": {
