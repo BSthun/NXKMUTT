@@ -1,14 +1,23 @@
-
-import { Box, Checkbox, Typography,Stack, Slider, Button } from '@mui/material';
+import {
+	Box,
+	Button,
+	Checkbox,
+	Slider,
+	Stack,
+	Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+	useRef,
+	useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import TagChip from './components/TagChip';
 import FilterBox from './components/FilterBox';
+import TagChip from './components/TagChip';
 
-const types = ['Preprints', 'Peer-reviewed publications', 'Conference papers','Invited talks','Poster presentations'];
-const rangeYear = [2020,2025];
+const types = ['Preprints', 'Peer-reviewed publications', 'Conference papers', 'Invited talks', 'Poster presentations'];
+const rangeYear = [new Date().getFullYear(), 2010];
 
 const CustomCheckbox = withStyles({
 	root: {
@@ -17,105 +26,110 @@ const CustomCheckbox = withStyles({
 			color: '#FFB740',
 		},
 	},
-	checked: {},
-})((props) => <Checkbox color="default" {...props} />);
-
-// const CustomRadio = withStyles({
-// 	root: {
-// 		color: '#FFB740',
-// 		'&$checked': {
-// 			color: '#FFB740',
-// 		},
-// 	},
-// 	checked: {},
-// })((props) => <Radio color="default" {...props} />);
+	checked: {
+		color: '#FFB740',
+	},
+})((props) => <Checkbox {...props} />);
 
 const FilterContent = () => {
 	const classes = useStyles();
-	// const theme = useTheme();
-	const [selectedType,setSelectedType] = useState([]);
-	const [years,setyears] = useState(rangeYear)
-	const [technology,settechnology] = useState([]);
-	const [theme,settheme] = useState([]);
+	const [selectedTypes, setSelectedTypes] = useState([]);
+	const [years, setyears] = useState(rangeYear);
+	const [technology, settechnology] = useState([]);
+	const [theme, settheme] = useState([]);
 	const [t] = useTranslation('content');
-	const ref = useRef()
-
-	const handlechange = (_,newvalue)=>setyears(newvalue);
-	const submit = ()=>{
-		const data = {types:selectedType,year:years,technology,theme}
-		console.log(data)
-	}
-	const [yearWidth,setyearWidth] = useState(0)
-	useEffect(()=>{
-		setyearWidth(ref.current.offsetWidth-30)
-
-	},[])
-	useEffect(()=>{
-		const changeHight = ()=>{
-			setTimeout(() => {
-			setyearWidth(ref.current.offsetWidth-30)
-				
-			}, 100);
-		}
-		window.addEventListener('resize',changeHight)
-		return ()=>window.addEventListener('resize',changeHight)
-	},[])
+	const ref = useRef();
+	
+	const handlechange = (_, newvalue) => setyears(newvalue);
+	const submit = () => {
+		const data = { types: selectedTypes, year: years, technology, theme };
+		console.log(data);
+	};
+	
 	return (
 		<Box className={classes.section} ref={ref}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
-			{/*Type*/}
+			
+			{/* Type */}
 			<FilterBox text="type">
-			{types.map((type) => {
-						return (
-							<Box display="flex" className={classes.hoverBox}  key={type}
-							onClick={selectedType.includes(type) ? ()=>setSelectedType(selectedType.filter(item=>item!==type)) : ()=>setSelectedType([...selectedType,type])} 
-							alignItems="center">
-								<CustomCheckbox  checked={selectedType.includes(type)} />
-								<Typography variant="p" color="textPrimary">{t(type)}</Typography>
-							</Box>
-						);
-					})}
+				{types.map((type) => {
+					return (
+						<Box display="flex" className={classes.hoverBox} key={type}
+						     onClick={
+							     selectedTypes.includes(type) ?
+								     () => setSelectedTypes(selectedTypes.filter(item => item !== type)) :
+								     () => setSelectedTypes([...selectedTypes, type])
+						     }
+						     alignItems="center"
+						>
+							<CustomCheckbox checked={selectedTypes.includes(type)} />
+							<Typography variant="p" color="textPrimary">{t(type)}</Typography>
+						</Box>
+					);
+				})}
 			</FilterBox>
-
-
-
-
-			{/*Publish year*/}
-			<Box>
+			
+			{/* Publish year */}
 			<FilterBox text="publish-year">
-				<Box width={yearWidth} height="100px" boxSizing="border-box" p={5} mt={5}>
-			<Slider step={1} 
-			value={years} 
-			max={rangeYear[1]} 
-			min={rangeYear[0]} 
-			valueLabelDisplay="on" 
-			onChange={handlechange} 
-			marks={[{value:rangeYear[0],label:rangeYear[0]},{value:rangeYear[1],label:rangeYear[1]}]}
-			width="100%"
-			></Slider>
-			</Box>
+				<Box width={160} height={100} boxSizing="border-box" p={5} mt={5}>
+					<Slider step={1}
+					        value={years}
+					        max={rangeYear[0]}
+					        min={rangeYear[1]}
+					        size="small"
+					        valueLabelDisplay="on"
+					        onChange={handlechange}
+					        marks={[
+						        { value: rangeYear[0], label: rangeYear[0] },
+						        { value: rangeYear[1], label: rangeYear[1] },
+					        ]}
+					        width="100%"
+					/>
+				</Box>
 			</FilterBox>
-			</Box>
-			{/*technology*/}
-
-
+			
+			{/* Technology */}
 			<FilterBox text="technology">
-			<Stack direction="row" gap={1} justifyContent="flex-start"  flexWrap="wrap"  >
-			{['EEG', 'MRI', 'fNIR' , 'Eye tracking', 'Psychophysics', 'Physiology', 'Behavioral methods', 'Brain stimulation', 'Computational models', 'Human Computer Ineteraction', 'Machine learning']
-			.map(item=><TagChip key={item} name={item} value={technology} setvalue={settechnology}  />)}
-			</Stack>
+				<Stack direction="row" gap={1} justifyContent="flex-start" flexWrap="wrap">
+					{[
+						'EEG',
+						'MRI',
+						'fNIR',
+						'Eye tracking',
+						'Psychophysics',
+						'Physiology',
+						'Behavioral methods',
+						'Brain stimulation',
+						'Computational models',
+						'Human Computer Ineteraction',
+						'Machine learning',
+					]
+						.map(item => <TagChip key={item} name={item} value={technology} setvalue={settechnology} />)}
+				</Stack>
 			</FilterBox>
-
-			{/* theme */}
+			
+			{/* Theme */}
 			<FilterBox text="theme">
-			<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap" >
-			{['Cognitive Neuroscience', 'Developmental Neuroscience','Computational Neuroscience','Clinical Neuroscience', 'Neurobiology', 'Neuroeconmics']
-			.map(item=><TagChip key={item} value={theme} setvalue={settheme} name={item}/>)}
-			</Stack>
+				<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap">
+					{[
+						'Cognitive Neuroscience',
+						'Developmental Neuroscience',
+						'Computational Neuroscience',
+						'Clinical Neuroscience',
+						'Neurobiology',
+						'Neuroeconmics',
+					]
+						.map(item => <TagChip key={item} value={theme} setValue={settheme} name={item} />)}
+				</Stack>
 			</FilterBox>
-
-			<Button variant="contained" color="secondary" style={{marginTop:20,borderRadius:"30px"}} onClick={submit} >{t('search')}</Button>
-
+			
+			<Button variant="contained"
+			        color="secondary"
+			        style={{ marginTop: 20, borderRadius: '30px' }}
+			        onClick={submit}
+			>
+				{t('search')}
+			</Button>
 		</Box>
 	);
 };
@@ -168,10 +182,10 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	hoverBox: {
-		'&:hover':{
-			cursor:"pointer"
-		}
-	}
+		'&:hover': {
+			cursor: 'pointer',
+		},
+	},
 }));
 
 export default FilterContent;

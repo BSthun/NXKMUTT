@@ -1,4 +1,7 @@
-import { Box, Paper } from '@mui/material';
+import {
+	Box,
+	Paper,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 
@@ -15,8 +18,7 @@ const FeaturedSection = () => {
 				</Box>
 			</Box>
 		</Box>
-	)
-		;
+	);
 };
 
 const useStyles = makeStyles((theme) => ({

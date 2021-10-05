@@ -22,7 +22,11 @@ const Event = () => {
 						<TimelineItem position={1} name="Hello World" date="2021/05/21" desc="This is a dummy text" />
 						<TimelineItem position={0} name="Hello World" date="2021/05/21" desc="This is a dummy text" />
 						<TimelineItem position={-1} name="Hello World" date="2021/05/21" desc="This is a dummy text" />
-						<SectionTitle title="All events" />
+					</Grid>
+				</Grid>
+				<SectionTitle title="All events" />
+				<Grid container>
+					<Grid item xs={4} md={12}>
 					</Grid>
 				</Grid>
 			</Container>

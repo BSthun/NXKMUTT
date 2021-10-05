@@ -1,21 +1,26 @@
-import { Chip } from "@mui/material"
-import { useState } from "react";
+import { Chip } from '@mui/material';
+import { useState } from 'react';
 
-
-const TagChip = ({name,value,setvalue})=>{
-    const [ison , setison] = useState(value.includes(name));
-    const handle = ()=>{
-        setison(!ison)
-        if(value.includes(name)){
-            setvalue(value.filter(item=>name!==item))
-        }else{
-            setvalue([...value,name])
-        }
-    }
-    return(
-        <Chip style={{marginLeft:0}}  label={name} color={ison ? "secondary" : "default"} onClick={handle} variant={ison ? "filled" :"outlined"} />
-    )
-}
-
+const TagChip = ({ name, value, setValue }) => {
+	const [active, setActive] = useState(value.includes(name));
+	
+	const handle = () => {
+		setActive(!active);
+		if (value.includes(name)) {
+			setValue(value.filter(item => name !== item));
+		} else {
+			setValue([...value, name]);
+		}
+	};
+	
+	return (
+		<Chip style={{ marginLeft: 0 }}
+		      label={name}
+		      color={active ? 'secondary' : 'default'}
+		      onClick={handle}
+		      variant={active ? 'filled' : 'outlined'}
+		/>
+	);
+};
 
 export default TagChip;

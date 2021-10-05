@@ -8,13 +8,13 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import Content from './_content/Content';
 import Event from './_event/Event';
 import Home from './_home/Home';
+import Post from './_post/Post';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
-import Post from './_post/Post';
 
 const App = () => {
 	return (

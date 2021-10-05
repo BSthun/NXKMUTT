@@ -1,6 +1,13 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, FormControl, Input, InputAdornment, InputLabel, Typography } from '@mui/material';
+import {
+	Box,
+	FormControl,
+	Input,
+	InputAdornment,
+	InputLabel,
+	Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { useTranslation } from 'react-i18next';

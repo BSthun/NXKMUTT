@@ -26,4 +26,6 @@ i18n.use(initReactI18next).init({
 	interpolation: {
 		escapeValue: false,
 	},
+}).then((r) => {
+	// Do nothing
 });

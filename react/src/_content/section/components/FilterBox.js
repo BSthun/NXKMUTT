@@ -1,42 +1,48 @@
-import {Box,Typography,Button} from "@mui/material"
-import makeStyles from '@mui/styles/makeStyles';
-
-import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faMinus,
 	faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import React,{useState,useRef} from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	Box,
+	Button,
+	Typography,
+} from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import React, {
+	useRef,
+	useState,
+} from 'react';
 
-const FilterBox = ({children,text})=>{
-    const [t] = useTranslation('content');
+import { useTranslation } from 'react-i18next';
+
+const FilterBox = ({ children, text }) => {
+	const [t] = useTranslation('content');
 	const classes = useStyles();
-
-    const [ison,setison] = useState(false);
+	
+	const [ison, setison] = useState(false);
 	const ref = useRef();
-
-    return(
-    
-        <Box className={classes.filterBox}>
-        <Button style={{padding:15,width:"100%"}} onClick={() => setison(!ison)}>
-        <Box className={classes.filterTitle} >
-            <Typography variant="p" color="textPrimary">{t(text)}</Typography>
-            <FontAwesomeIcon icon={ison ? faMinus : faPlus} className={classes.plusIcon}/>
-        </Box>
-        </Button>
-		<Box height={ison ? ref.current.offsetHeight : 0} style={{transition:"0.25s all",marginTop:10}} overflow="hidden" width="fit-content">
-            <Box className={classes.subTitle} ref={ref}>
-                {children}
-            </Box>
+	
+	return (
+		<Box className={classes.filterBox}>
+			<Button style={{ padding: 15, width: '100%' }} onClick={() => setison(!ison)}>
+				<Box className={classes.filterTitle}>
+					<Typography variant="p" color="textPrimary">{t(text)}</Typography>
+					<FontAwesomeIcon icon={ison ? faMinus : faPlus} className={classes.plusIcon} />
+				</Box>
+			</Button>
+			<Box height={ison ? ref.current.offsetHeight : 0}
+			     style={{ transition: '0.25s all', marginTop: 10 }}
+			     overflow="hidden"
+			     width="fit-content"
+			>
+				<Box className={classes.subTitle} ref={ref}>
+					{children}
+				</Box>
+			</Box>
 		</Box>
-        </Box>
-
-    )
-}
-
-
-
+	);
+};
 
 const useStyles = makeStyles((theme) => ({
 	section: {
@@ -52,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 	filterBox: {
 		
 		height: 'auto',
-        width: '100%'
+		width: '100%',
 	},
 	filterTitle: {
 		display: 'flex',
@@ -62,9 +68,8 @@ const useStyles = makeStyles((theme) => ({
 		cursor: 'pointer',
 	},
 	subTitle: {
-		display: "flex",
+		display: 'flex',
 		flexDirection: 'column',
-
 	},
 	plusIcon: {
 		color: theme.palette.text.primary,
@@ -88,4 +93,4 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default FilterBox
+export default FilterBox;
