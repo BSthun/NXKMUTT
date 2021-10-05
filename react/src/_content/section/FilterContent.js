@@ -71,7 +71,12 @@ const FilterContent = () => {
 			
 			{/* Publish year */}
 			<FilterBox text="publish-year">
-				<Box width={160} height={100} boxSizing="border-box" p={5} mt={5}>
+				<Box
+					width={{ xs: 'calc(100vw - 120px)', md: 160 }}
+					height={100} boxSizing="border-box"
+					p={5}
+					mt={5}
+				>
 					<Slider step={1}
 					        value={years}
 					        max={rangeYear[0]}
