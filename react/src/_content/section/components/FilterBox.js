@@ -7,13 +7,14 @@ import {
 	faMinus,
 	faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 
 const FilterBox = ({children,text})=>{
     const [t] = useTranslation('content');
 	const classes = useStyles();
 
     const [ison,setison] = useState(false);
+	const ref = useRef();
 
     return(
     
@@ -24,10 +25,11 @@ const FilterBox = ({children,text})=>{
             <FontAwesomeIcon icon={ison ? faMinus : faPlus} className={classes.plusIcon}/>
         </Box>
         </Button>
-            <Box className={classes.subTitle} style={{ display: ison ? null : 'none' }}>
+		<Box height={ison ? ref.current.offsetHeight : 0} style={{transition:"0.25s all",marginTop:10}} overflow="hidden" width="fit-content">
+            <Box className={classes.subTitle} ref={ref}>
                 {children}
             </Box>
-
+		</Box>
         </Box>
 
     )
@@ -60,9 +62,9 @@ const useStyles = makeStyles((theme) => ({
 		cursor: 'pointer',
 	},
 	subTitle: {
-		display: 'flex',
+		display: "flex",
 		flexDirection: 'column',
-        marginTop:10
+
 	},
 	plusIcon: {
 		color: theme.palette.text.primary,

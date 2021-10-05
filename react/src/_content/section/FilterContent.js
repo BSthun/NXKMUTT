@@ -2,7 +2,7 @@
 import { Box, Checkbox, Typography,Stack, Slider, Button } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import TagChip from './components/TagChip';
 import FilterBox from './components/FilterBox';
@@ -38,14 +38,30 @@ const FilterContent = () => {
 	const [technology,settechnology] = useState([]);
 	const [theme,settheme] = useState([]);
 	const [t] = useTranslation('content');
+	const ref = useRef()
 
 	const handlechange = (_,newvalue)=>setyears(newvalue);
 	const submit = ()=>{
 		const data = {types:selectedType,year:years,technology,theme}
 		console.log(data)
 	}
+	const [yearWidth,setyearWidth] = useState(0)
+	useEffect(()=>{
+		setyearWidth(ref.current.offsetWidth-30)
+
+	},[])
+	useEffect(()=>{
+		const changeHight = ()=>{
+			setTimeout(() => {
+			setyearWidth(ref.current.offsetWidth-30)
+				
+			}, 100);
+		}
+		window.addEventListener('resize',changeHight)
+		return ()=>window.addEventListener('resize',changeHight)
+	},[])
 	return (
-		<Box className={classes.section}>
+		<Box className={classes.section} ref={ref}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
 			{/*Type*/}
 			<FilterBox text="type">
@@ -65,9 +81,21 @@ const FilterContent = () => {
 
 
 			{/*Publish year*/}
+			<Box>
 			<FilterBox text="publish-year">
-			<Slider step={1} valueLabelDisplay="auto" value={years} max={rangeYear[1]} min={rangeYear[0]} onChange={handlechange} marks={[{value:rangeYear[0],label:rangeYear[0]},{value:rangeYear[1],label:rangeYear[1]}]} ></Slider>
+				<Box width={yearWidth} height="100px" boxSizing="border-box" p={5} mt={5}>
+			<Slider step={1} 
+			value={years} 
+			max={rangeYear[1]} 
+			min={rangeYear[0]} 
+			valueLabelDisplay="on" 
+			onChange={handlechange} 
+			marks={[{value:rangeYear[0],label:rangeYear[0]},{value:rangeYear[1],label:rangeYear[1]}]}
+			width="100%"
+			></Slider>
+			</Box>
 			</FilterBox>
+			</Box>
 			{/*technology*/}
 
 
