@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	Box,
 	Button,
+	Stack,
 	Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
@@ -14,29 +15,30 @@ import React, {
 	useState,
 } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 const FilterBox = ({ children, text }) => {
-	const [t] = useTranslation('content');
 	const classes = useStyles();
 	
-	const [ison, setison] = useState(false);
-	const ref = useRef();
+	const [opened, setOpened] = useState(true);
+	const contentRef = useRef();
 	
 	return (
 		<Box className={classes.filterBox}>
-			<Button style={{ padding: 15, width: '100%' }} onClick={() => setison(!ison)}>
-				<Box className={classes.filterTitle}>
-					<Typography variant="p" color="textPrimary">{t(text)}</Typography>
-					<FontAwesomeIcon icon={ison ? faMinus : faPlus} className={classes.plusIcon} />
-				</Box>
-			</Button>
-			<Box height={ison ? ref.current.offsetHeight : 0}
+			<Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ marginY: 2 }}>
+				<Typography variant="p" color="textPrimary">{text}</Typography>
+				<Button
+					sx={{ minWidth: 0, paddingX: 2, paddingY: 1.5 }}
+					variant="outlined"
+					onClick={() => setOpened(!opened)}
+				>
+					<FontAwesomeIcon icon={opened ? faMinus : faPlus} />
+				</Button>
+			</Stack>
+			<Box height={opened ? contentRef.current?.offsetHeight : 0}
 			     style={{ transition: '0.25s all', marginTop: 10 }}
 			     overflow="hidden"
 			     width="fit-content"
 			>
-				<Box className={classes.subTitle} ref={ref}>
+				<Box className={classes.subTitle} ref={contentRef}>
 					{children}
 				</Box>
 			</Box>
@@ -70,9 +72,6 @@ const useStyles = makeStyles((theme) => ({
 	subTitle: {
 		display: 'flex',
 		flexDirection: 'column',
-	},
-	plusIcon: {
-		color: theme.palette.text.primary,
 	},
 	tagsTitle: {
 		marginLeft: '10px',

@@ -17,7 +17,7 @@ const PageBanner = ({ title, breadcrumbs }) => {
 	return (
 		<div className={classes.root}>
 			<Container maxWidth="lg">
-				<Box display="flex" flexDirection="column">
+				<Box display="flex" flexDirection="column" marginLeft={{ xs: 10, md: 0 }}>
 					<Typography color="text.primary" variant="h4">{title}</Typography>
 					<Breadcrumbs>
 						{

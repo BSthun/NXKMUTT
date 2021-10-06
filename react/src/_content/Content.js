@@ -5,8 +5,8 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PageBanner from '../components/layout/PageBanner';
-import FilterContent from './section/FilterContent';
-import NewsSection from './section/NewsSection';
+import FilterBar from './sections/FilterBar';
+import NewsSection from './sections/NewsSection';
 
 const Content = () => {
 	const [t] = useTranslation('content');
@@ -18,12 +18,12 @@ const Content = () => {
 				<Box display="flex"
 				     justifyContent="space-between"
 				     width="100%"
-				     flexDirection={{ xs: 'column', md: 'row' }}
+				     flexDirection={{ xs: 'column-reverse', md: 'row' }}
 				>
-					<Box flex="1" overflow="hidden" marginBottom={10}>
-						<FilterContent />
+					<Box width={{ xs: '100%', md: 300 }} overflow="hidden">
+						<FilterBar />
 					</Box>
-					<Box flex="4">
+					<Box flex={1}>
 						<NewsSection />
 					</Box>
 				</Box>

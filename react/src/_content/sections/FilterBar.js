@@ -2,10 +2,12 @@ import {
 	Box,
 	Button,
 	Checkbox,
+	CircularProgress,
 	Slider,
 	Stack,
 	Typography,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, {
@@ -16,8 +18,8 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { FloatingContext } from '../../contexts/FloatingContext';
 import axios from '../../utils/axios';
-import FilterBox from './components/FilterBox';
-import TagChip from './components/TagChip';
+import FilterBox from '../components/FilterBox';
+import TagChip from '../components/TagChip';
 
 const rangeYear = [2010, new Date().getFullYear()];
 
@@ -33,15 +35,12 @@ const CustomCheckbox = withStyles({
 	},
 })((props) => <Checkbox {...props} />);
 
-const FilterContent = () => {
+const FilterBar = () => {
 	const classes = useStyles();
 	const [t] = useTranslation('content');
 	const { openSnackBar } = useContext(FloatingContext);
-	const [tags, setTags] = useState({
-		types: [],
-		techniques: [],
-		theme: [],
-	});
+	
+	const [tags, setTags] = useState(null);
 	
 	const [selectedYears, setSelectedYears] = useState(rangeYear);
 	const [selectedTypes, setSelectedTypes] = useState([]);
@@ -60,19 +59,19 @@ const FilterContent = () => {
 				});
 			})
 			.catch((error) => openSnackBar(error.message));
-	}, [openSnackBar]);
+	}, []);
 	
 	const search = () => {
 		console.log(selectedYears, selectedTypes, selectedTechniques, selectedThemes);
 	};
 	return (
-		<Box className={classes.section}>
+		<div className={classes.root}>
 			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
 			
 			{/* Publish year */}
-			<FilterBox text="publish-year">
+			<FilterBox text={t('publishyear')}>
 				<Box
-					width={{ xs: 'calc(100vw - 120px)', md: 160 }}
+					width={{ xs: 'calc(100vw - 120px)', md: 259 }}
 					height={100} boxSizing="border-box"
 					p={5}
 					mt={5}
@@ -93,77 +92,83 @@ const FilterContent = () => {
 				</Box>
 			</FilterBox>
 			
-			{/* Type */}
-			<FilterBox text="type">
-				{tags.types.map((type) => {
-					return (
-						<Box display="flex"
-						     className={classes.hoverBox}
-						     key={type}
-						     alignItems="center"
-						     onClick={
-							     selectedTypes.includes(type) ?
-								     () => setSelectedTypes(selectedTypes.filter(item => item !== type)) :
-								     () => setSelectedTypes([...selectedTypes, type])
-						     }
-						>
-							<CustomCheckbox checked={selectedTypes.includes(type)} />
-							<Typography variant="p" color="textPrimary">{t(type)}</Typography>
-						</Box>
-					);
-				})}
-			</FilterBox>
-			
-			{/* Technology */}
-			<FilterBox text="technology">
-				<Stack direction="row" gap={1} justifyContent="flex-start" flexWrap="wrap">
-					{
-						tags.techniques.map((item) =>
-							<TagChip
-								key={item.slug}
-								item={item}
-								setSelected={setSelectedTechniques}
-							/>,
-						)
-					}
-				</Stack>
-			</FilterBox>
-			
-			{/* Theme */}
-			<FilterBox text="theme">
-				<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap">
-					{
-						tags.theme.map((item) =>
-							<TagChip
-								key={item.slug}
-								item={item}
-								setSelected={setSelectedThemes}
-							/>,
-						)
-					}
-				</Stack>
-			</FilterBox>
+			{
+				tags ?
+					<>
+						<FilterBox text={t('type')}>
+							{tags.types.map((type) => {
+								return (
+									<Box display="flex"
+									     className={classes.hoverBox}
+									     key={type}
+									     alignItems="center"
+									     onClick={
+										     selectedTypes.includes(type) ?
+											     () => setSelectedTypes(selectedTypes.filter(item => item !== type)) :
+											     () => setSelectedTypes([...selectedTypes, type])
+									     }
+									>
+										<CustomCheckbox checked={selectedTypes.includes(type)} />
+										<Typography variant="p" color="textPrimary">{type.name}</Typography>
+									</Box>
+								);
+							})}
+						</FilterBox>
+						
+						{/* Technology */}
+						<FilterBox text={t('technique')}>
+							<Stack direction="row" gap={1} justifyContent="flex-start" flexWrap="wrap">
+								{
+									tags.techniques.map((item) =>
+										<TagChip
+											key={item.slug}
+											item={item}
+											setSelected={setSelectedTechniques}
+										/>,
+									)
+								}
+							</Stack>
+						</FilterBox>
+						
+						{/* Theme */}
+						<FilterBox text={t('theme')}>
+							<Stack direction="row" gap={1} justifyContent="flex-start" spacing={2} flexWrap="wrap">
+								{
+									tags.theme.map((item) =>
+										<TagChip
+											key={item.slug}
+											item={item}
+											setSelected={setSelectedThemes}
+										/>,
+									)
+								}
+							</Stack>
+						</FilterBox>
+					</> :
+					<Box display="flex" justifyContent="center" paddingTop="20px">
+						<CircularProgress />
+					</Box>
+			}
 			
 			<Button variant="contained"
-			        color="secondary"
 			        style={{ marginTop: 20, borderRadius: '30px' }}
 			        onClick={search}
 			>
 				{t('search')}
 			</Button>
-		</Box>
+		</div>
 	);
 };
 
 const useStyles = makeStyles((theme) => ({
-	section: {
+	root: {
 		display: 'flex',
 		flexDirection: 'column',
-		margin: '50px 10px 0 20px',
-		padding: '0 40px 0 0',
-		height: 'auto',
-		[theme.breakpoints.up('lg')]: {
-			borderRight: `2px ${theme.palette.text.primary} solid`,
+		padding: '50px 20px 0 20px',
+		height: '100%',
+		minHeight: '100vh',
+		[theme.breakpoints.up('md')]: {
+			borderRight: `1px ${alpha(theme.palette.text.secondary, 0.24)} solid`,
 		},
 	},
 	filterBox: {
@@ -209,4 +214,4 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default FilterContent;
+export default FilterBar;

@@ -4,17 +4,16 @@
 	"filter": "กรองหมวดหมู่",
 	"type": "ประเภท",
 	"tag": "แท็ก",
-	"publish-year": "ปีที่เผยแพร่",
+	"publishyear": "ปีที่เผยแพร่",
 	"blog": "บล็อก",
 	"paper": "งานวิจัย",
 	"publication": "เอกสารเผยแพร่",
-	"featured": "จุดเด่น",
+	"featured": "ที่น่าสนใจ",
 	"publications": "เอกสารเผยแพร่",
-	"technology":"เทคโนโลยี",
-	"theme":"ธีม",
-	"detail":"ข้อมูล",
-	"author":"ผู้เขียน",
-	"date":"วันที่",
-	"related":"เกี่ยวข้อง"
-
+	"technique": "เทคนิค",
+	"theme": "ธีม",
+	"detail": "ข้อมูล",
+	"author": "ผู้เขียน",
+	"date": "วันที่",
+	"related": "เกี่ยวข้อง"
 }

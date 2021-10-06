@@ -1,19 +1,19 @@
 {
 	"content": "Content",
 	"search": "Search",
-	"filter": "Filter by",
+	"filter": "Filter",
 	"type": "Type",
 	"tag": "Tags",
-	"publish-year": "Publish year",
+	"publishyear": "Publish year",
 	"blog": "Blog",
 	"paper": "Paper",
 	"publication": "Publication",
 	"featured": "Featured",
 	"publications": "Publications",
-	"technology":"technology",
-	"theme":"theme",
-	"detail":"detail",
-	"author":"Author",
-	"date":"Date",
-	"related":"Related"
+	"technique": "Technique",
+	"theme": "Theme",
+	"detail": "Detail",
+	"author": "Author",
+	"date": "Date",
+	"related": "Related"
 }

@@ -19,7 +19,7 @@ const TagChip = ({ item, setSelected }) => {
 	return (
 		<Chip style={{ marginLeft: 0 }}
 		      label={item.name}
-		      color={active ? 'secondary' : 'default'}
+		      color={active ? 'primary' : 'default'}
 		      onClick={handleClick}
 		      variant={active ? 'filled' : 'outlined'}
 		/>
