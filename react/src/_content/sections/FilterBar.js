@@ -11,6 +11,7 @@ import { alpha } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, {
+	useCallback,
 	useContext,
 	useEffect,
 	useState,
@@ -46,20 +47,22 @@ const FilterBar = () => {
 	const [selectedTypes, setSelectedTypes] = useState([]);
 	const [selectedTechniques, setSelectedTechniques] = useState([]);
 	const [selectedThemes, setSelectedThemes] = useState([]);
-	
+	const getdata = useCallback(()=>{
+		axios
+				.get('/tags')
+				.then((response) => {
+					setTags({
+						types: response.data.filter((el) => el.category === 'type'),
+						techniques: response.data.filter((el) => el.category === 'technique'),
+						theme: response.data.filter((el) => el.category === 'theme'),
+					});
+				})
+				.catch((error) => {openSnackBar(error.message)});
+	},[openSnackBar])
 	// Load tags
 	useEffect(() => {
-		axios
-			.get('/tags')
-			.then((response) => {
-				setTags({
-					types: response.data.filter((el) => el.category === 'type'),
-					techniques: response.data.filter((el) => el.category === 'technique'),
-					theme: response.data.filter((el) => el.category === 'theme'),
-				});
-			})
-			.catch((error) => openSnackBar(error.message));
-	}, []);
+			getdata()
+	}, [getdata]);
 	
 	const search = () => {
 		console.log(selectedYears, selectedTypes, selectedTechniques, selectedThemes);
@@ -100,7 +103,7 @@ const FilterBar = () => {
 								return (
 									<Box display="flex"
 									     className={classes.hoverBox}
-									     key={type}
+									     key={type.id}
 									     alignItems="center"
 									     onClick={
 										     selectedTypes.includes(type) ?
