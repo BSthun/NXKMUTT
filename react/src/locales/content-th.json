@@ -1,10 +1,11 @@
 {
 	"content": "เนื้อหา",
 	"search": "ค้นหา",
+	"search-result": "ผลลัพธ์การค้นหา",
 	"filter": "กรองหมวดหมู่",
 	"type": "ประเภท",
 	"tag": "แท็ก",
-	"publishyear": "ปีที่เผยแพร่",
+	"publish-year": "ปีที่เผยแพร่",
 	"blog": "บล็อก",
 	"paper": "งานวิจัย",
 	"publication": "เอกสารเผยแพร่",

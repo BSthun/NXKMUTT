@@ -1,27 +1,30 @@
 import {
 	Box,
 	Container,
-	Typography,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import PageBanner from '../components/layout/PageBanner';
 import BlogSection from './components/BlogSection';
 import SideBar from './components/SideBar';
 
 const Post = () => {
+	const [t] = useTranslation('content');
+	
 	return (
 		<Box display="flex" flexDirection="column" alignItems="center" bgcolor="background.default">
-			<Box paddingTop={30} paddingBottom={30}>
-				<Typography variant="h2" color="text.primary">Post</Typography>
-			</Box>
-			
+			<PageBanner
+				title={'Post'}
+				breadcrumbs={[
+					{ href: '/', text: 'Home' },
+					{ href: '/content', text: t('content') },
+				]}
+			/>
 			<Container maxWidth="lg">
 				<Box display="flex"
-				     justifyContent="space-between"
 				     width="100%"
 				     flexDirection={{ xs: 'column-reverse', md: 'row' }}
 				>
-					<Box flex="1" overflow="hidden" marginBottom={10}>
-						<SideBar />
-					</Box>
+					<SideBar />
 					<Box flex="4">
 						<BlogSection />
 					</Box>

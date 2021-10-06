@@ -18,7 +18,7 @@ import React, {
 const FilterBox = ({ children, text }) => {
 	const classes = useStyles();
 	
-	const [opened, setOpened] = useState(true);
+	const [opened, setOpened] = useState(false);
 	const contentRef = useRef();
 	
 	return (

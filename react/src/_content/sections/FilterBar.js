@@ -1,3 +1,5 @@
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	Box,
 	Button,
@@ -5,19 +7,17 @@ import {
 	CircularProgress,
 	Slider,
 	Stack,
+	TextField,
 	Typography,
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, {
-	useCallback,
-	useContext,
 	useEffect,
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FloatingContext } from '../../contexts/FloatingContext';
+import SectionTitle from '../../components/layout/SectionTitle';
 import axios from '../../utils/axios';
 import FilterBox from '../components/FilterBox';
 import TagChip from '../components/TagChip';
@@ -39,7 +39,6 @@ const CustomCheckbox = withStyles({
 const FilterBar = () => {
 	const classes = useStyles();
 	const [t] = useTranslation('content');
-	const { openSnackBar } = useContext(FloatingContext);
 	
 	const [tags, setTags] = useState(null);
 	
@@ -47,57 +46,67 @@ const FilterBar = () => {
 	const [selectedTypes, setSelectedTypes] = useState([]);
 	const [selectedTechniques, setSelectedTechniques] = useState([]);
 	const [selectedThemes, setSelectedThemes] = useState([]);
-	const getdata = useCallback(()=>{
-		axios
-				.get('/tags')
-				.then((response) => {
-					setTags({
-						types: response.data.filter((el) => el.category === 'type'),
-						techniques: response.data.filter((el) => el.category === 'technique'),
-						theme: response.data.filter((el) => el.category === 'theme'),
-					});
-				})
-				.catch((error) => {openSnackBar(error.message)});
-	},[openSnackBar])
-	// Load tags
+	
 	useEffect(() => {
-			getdata()
-	}, [getdata]);
+		axios
+			.get('/tags')
+			.then((response) => {
+				setTags({
+					types: response.data.filter((el) => el.category === 'type'),
+					techniques: response.data.filter((el) => el.category === 'technique'),
+					theme: response.data.filter((el) => el.category === 'theme'),
+				});
+			})
+			.catch((error) => {
+				// TODO: Use `openSnackBar(error.message);`
+				console.log(error.message);
+			});
+	}, []);
 	
 	const search = () => {
 		console.log(selectedYears, selectedTypes, selectedTechniques, selectedThemes);
 	};
 	return (
 		<div className={classes.root}>
-			<Typography variant="h6" color="textPrimary">{t('filter')}</Typography>
+			<SectionTitle title={t('filter')} />
 			
-			{/* Publish year */}
-			<FilterBox text={t('publishyear')}>
-				<Box
-					width={{ xs: 'calc(100vw - 120px)', md: 259 }}
-					height={100} boxSizing="border-box"
-					p={5}
-					mt={5}
-				>
-					<Slider step={1}
-					        value={selectedYears}
-					        min={rangeYear[0]}
-					        max={rangeYear[1]}
-					        size="small"
-					        valueLabelDisplay="on"
-					        onChange={(_, value) => setSelectedYears(value)}
-					        marks={[
-						        { value: rangeYear[0], label: rangeYear[0] },
-						        { value: rangeYear[1], label: rangeYear[1] },
-					        ]}
-					        width="100%"
-					/>
-				</Box>
-			</FilterBox>
+			<TextField
+				label={t('search')}
+				size="small"
+				sx={{ marginBottom: 4 }}
+				InputProps={{
+					endAdornment: <FontAwesomeIcon icon={faSearch} />,
+				}}
+			/>
 			
 			{
 				tags ?
 					<>
+						{/* Publish year */}
+						<FilterBox text={t('publish-year')}>
+							<Box
+								width={{ xs: 'calc(100vw - 64px)', md: 259 }}
+								height={100} boxSizing="border-box"
+								p={5}
+								mt={5}
+							>
+								<Slider step={1}
+								        value={selectedYears}
+								        min={rangeYear[0]}
+								        max={rangeYear[1]}
+								        size="small"
+								        valueLabelDisplay="on"
+								        onChange={(_, value) => setSelectedYears(value)}
+								        marks={[
+									        { value: rangeYear[0], label: rangeYear[0] },
+									        { value: rangeYear[1], label: rangeYear[1] },
+								        ]}
+								        width="100%"
+								/>
+							</Box>
+						</FilterBox>
+						
+						{/* Type */}
 						<FilterBox text={t('type')}>
 							{tags.types.map((type) => {
 								return (
@@ -154,7 +163,7 @@ const FilterBar = () => {
 			}
 			
 			<Button variant="contained"
-			        style={{ marginTop: 20, borderRadius: '30px' }}
+			        sx={{ marginTop: 5, borderRadius: '30px' }}
 			        onClick={search}
 			>
 				{t('search')}
@@ -167,11 +176,11 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		display: 'flex',
 		flexDirection: 'column',
-		padding: '50px 20px 0 20px',
+		padding: '50px 20px',
 		height: '100%',
-		minHeight: '100vh',
-		[theme.breakpoints.up('md')]: {
-			borderRight: `1px ${alpha(theme.palette.text.secondary, 0.24)} solid`,
+		width: 260,
+		[theme.breakpoints.down('md')]: {
+			width: 'calc(100% - 36px)',
 		},
 	},
 	filterBox: {

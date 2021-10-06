@@ -5,18 +5,18 @@ import {
 	Switch,
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import Contact from './_about/Contact';
 import Content from './_content/Content';
 import Event from './_event/Event';
 import Home from './_home/Home';
 import Post from './_post/Post';
+import Profile from './_profile/Profile';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
-import Profile from './_profile/Profile';
-import Contact from './_contact/Contact';
 
 const App = () => {
 	return (
@@ -42,10 +42,10 @@ const App = () => {
 								<Post />
 							</Route>
 							<Route path="/profile">
-								<Profile/>
+								<Profile />
 							</Route>
 							<Route path="/contact">
-								<Contact/>
+								<Contact />
 							</Route>
 						</Switch>
 						<Footer />

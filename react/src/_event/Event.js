@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import PageBanner from '../components/layout/PageBanner';
-import SectionTitle from './components/SectionTitle';
+import SectionTitle from '../components/layout/SectionTitle';
 import TimelineItem from './components/TimelineItem';
 
 const Event = () => {
