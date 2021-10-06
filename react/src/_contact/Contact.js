@@ -1,5 +1,4 @@
 import { Stack } from "@mui/material"
-import { Box } from "@mui/system"
 import ContactSection from "../_home/sections/ContactSection"
 
 const Contact = ()=>{

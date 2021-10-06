@@ -2,7 +2,7 @@ import {
     faAt,
     faPhone
 } from '@fortawesome/free-solid-svg-icons';
-import {Box, Chip, Grid, Paper, Stack, Typography} from '@mui/material'
+import {Box, Grid, Stack, Typography} from '@mui/material'
 import ContentChip from './ContentChip'
 import ContactIcon from './ContactIcon';
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';

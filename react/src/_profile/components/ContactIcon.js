@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {Box, Chip, Grid, Stack, Typography} from '@mui/material'
+import {Grid, Stack, Typography} from '@mui/material'
 
 const ContactIcon = ({icon,children})=>{
     return(

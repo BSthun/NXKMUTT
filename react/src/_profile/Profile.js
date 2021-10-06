@@ -1,12 +1,10 @@
 import {Box,Stack,Container} from '@mui/material'
-import { useTranslation } from 'react-i18next'
 import PageBanner from '../components/layout/PageBanner'
 import ProfileBody from './components/ProfileBody'
 import ProfileSideBar from './components/ProfileSideBar'
 
 
 const Profile = ()=>{
-    const [t] = useTranslation('content')
     return(
         <Stack direction="column" alignItems="center" bgcolor="background.default">
 			<PageBanner title={"Firstname Lastname"} breadcrumbs={[{ href: '/member', text: 'Member' },{href: '/neurologis',text:"Neurologist"}]}/>
