@@ -80,7 +80,7 @@ const Navbar = () => {
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
 					<NavbarButton to="/event" fa={faCalendarAlt} text={t('event')} />
 					<NavbarButton to="/content" fa={faPenAlt} text={t('content')} />
-					<NavbarButton to="/contact" fa={faEnvelope} text={t('contact')} />
+					<NavbarButton to="/about" fa={faEnvelope} text={t('about')} />
 					<Box display="flex">
 						<NavbarToggle
 							fa={faAdjust}

@@ -5,12 +5,12 @@ import {
 	Switch,
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import Contact from './_about/Contact';
+import About from './_about/About';
 import Content from './_content/Content';
 import Event from './_event/Event';
 import Home from './_home/Home';
+import Member from './_member/Member';
 import Post from './_post/Post';
-import Profile from './_profile/Profile';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 import { FloatingContextProvider } from './contexts/FloatingContext';
@@ -29,23 +29,23 @@ const App = () => {
 							<Route exact path="/">
 								<Redirect to={{ pathname: '/home' }} />
 							</Route>
-							<Route path="/home">
+							<Route exact path="/home">
 								<Home />
 							</Route>
-							<Route path="/event">
+							<Route exact path="/event">
 								<Event />
 							</Route>
 							<Route exact path="/content">
 								<Content />
 							</Route>
-							<Route path="/content/post">
+							<Route exact path="/about">
+								<About />
+							</Route>
+							<Route path="/post">
 								<Post />
 							</Route>
-							<Route path="/profile">
-								<Profile />
-							</Route>
-							<Route path="/contact">
-								<Contact />
+							<Route path="/member/:id">
+								<Member />
 							</Route>
 						</Switch>
 						<Footer />
