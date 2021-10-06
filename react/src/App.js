@@ -15,6 +15,8 @@ import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
+import Profile from './_profile/Profile';
+import Contact from './_contact/Contact';
 
 const App = () => {
 	return (
@@ -38,6 +40,12 @@ const App = () => {
 							</Route>
 							<Route path="/content/post">
 								<Post />
+							</Route>
+							<Route path="/profile">
+								<Profile/>
+							</Route>
+							<Route path="/contact">
+								<Contact/>
 							</Route>
 						</Switch>
 						<Footer />

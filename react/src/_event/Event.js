@@ -13,7 +13,7 @@ const Event = () => {
 	const [t] = useTranslation('event');
 	
 	return (
-		<Box display="flex" flexDirection="column" bgcolor="background.default">
+		<Box display="flex" flexDirection="column" bgcolor="background.default" minHeight="100vh">
 			<PageBanner title={t('event')} breadcrumbs={[{ href: '/', text: 'Home' }]} />
 			<Container maxWidth="lg" sx={{ paddingTop: 4 }}>
 				<Grid container>
