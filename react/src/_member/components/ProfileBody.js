@@ -1,16 +1,16 @@
 import {
-    faFacebook,
-    faTwitter,
+	faFacebook,
+	faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-    faAt,
-    faPhone,
+	faAt,
+	faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import {
-    Box,
-    Grid,
-    Stack,
-    Typography,
+	Box,
+	Grid,
+	Stack,
+	Typography,
 } from '@mui/material';
 import React from 'react';
 import BlogItem from '../../_content/components/BlogItem';
@@ -21,7 +21,7 @@ const ProfileBody = ({ member }) => {
 	return (
 		<Box minHeight="80vh" flex={1}>
 			<Stack gap={5} mb={10}>
-				<ContentChip header="biology">
+				<ContentChip header="bio">
 					<Typography color="text.primary">
 						{member.bio}
 					</Typography>

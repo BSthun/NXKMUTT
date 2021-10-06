@@ -74,7 +74,7 @@ const Navbar = () => {
 				<Backdrop open={options.drawer} onClick={toggleDrawer} />
 				<Box display="flex" alignItems="center">
 					<img className={classes.logo} alt="NX KMUTT Logo" src={logoOrig} />
-					<Typography color="textPrimary" variant="h5">NX Center KMUTT</Typography>
+					<Typography color="textPrimary" variant="h5">NX Neurosci Center @ KMUTT</Typography>
 				</Box>
 				<div className={classes.drawer}>
 					<NavbarButton to="/home" fa={faHome} text={t('home')} />
@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	logo: {
-		width: theme.spacing(12),
+		width: theme.spacing(32),
 		marginRight: theme.spacing(2),
 		[theme.breakpoints.down('md')]: {
 			marginLeft: theme.spacing(6),

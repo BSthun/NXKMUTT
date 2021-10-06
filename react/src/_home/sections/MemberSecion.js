@@ -24,8 +24,10 @@ const MemberSection = () => {
 		axios
 			.get('/members')
 			.then((response) => {
-				response.data.sort((el1, el2) => (el1.id > el2.id));
-				setMembers(response.data);
+				const data = response.data;
+				data.sort((el1, el2) => (el1.id >= el2.id));
+				console.log(data);
+				setMembers(data);
 			})
 			.catch((error) => {
 				console.log(error.message);
@@ -35,7 +37,7 @@ const MemberSection = () => {
 	return (
 		<div className={classes.root}>
 			<Container maxWidth="lg">
-				<Title color="#89c934">TEAM MEMBERS</Title>
+				<Title color="#89c934">NX MEMBERS</Title>
 				{
 					members ?
 						<Grid container spacing={4}>
