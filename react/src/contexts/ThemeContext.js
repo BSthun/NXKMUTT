@@ -28,6 +28,7 @@ export const ThemeContextProvider = ({ children }) => {
 		spacing: 4,
 		typography: {
 			fontFamily: [
+				'Lato',
 				'NotoSans',
 				'NotoSansThai',
 				'Arial',

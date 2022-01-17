@@ -1,9 +1,13 @@
-import { Box, Container, Typography } from '@mui/material';
+import {
+	Box,
+	Container,
+	Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import BottomSlab from '../../components/decorate/BottomSlab';
-import BannerBgDark from '../../images/bannerbg-dark.jpg';
+import BannerBgDark from '../../images/bannerbg-brain.png';
 import BannerBgLight from '../../images/bannerbg-light.jpg';
 
 const BannerSection = () => {
