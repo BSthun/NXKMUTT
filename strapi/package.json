@@ -10,29 +10,20 @@
 		"strapi": "strapi"
 	},
 	"dependencies": {
-		"knex": "0.21.18",
-		"pg": "8.5.1",
-		"strapi": "3.6.8",
-		"strapi-admin": "3.6.8",
-		"strapi-connector-bookshelf": "3.6.8",
-		"strapi-plugin-content-manager": "3.6.8",
-		"strapi-plugin-content-type-builder": "3.6.8",
-		"strapi-plugin-email": "3.6.8",
-		"strapi-plugin-graphql": "^3.6.8",
-		"strapi-plugin-upload": "3.6.8",
-		"strapi-plugin-users-permissions": "3.6.8",
-		"strapi-provider-email-smtp": "^1.0.3",
-		"strapi-utils": "3.6.8"
+		"@strapi/plugin-i18n": "4.0.4",
+		"@strapi/strapi": "4.0.4",
+		"pg": "^8.7.1",
+		"strapi-provider-email-smtp": "^1.0.3"
 	},
 	"author": {
 		"name": "BSthun"
 	},
 	"strapi": {
-		"uuid": "7b205cc1-d8e8-4d92-95e1-7918ea939dad"
+		"uuid": "6365719a-1198-44f9-a495-5d1e1b1c45c8"
 	},
 	"engines": {
-		"node": ">=10.16.0 <=14.x.x",
-		"npm": "^6.0.0"
+		"node": ">=12.x.x <=16.x.x",
+		"npm": ">=8.0.0"
 	},
 	"license": "MIT"
 }
