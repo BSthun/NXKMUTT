@@ -18,7 +18,7 @@ const BlogItem = ({ title, description, date, background, to, height = false }) 
 		<Link to={to} className={classes.root}>
 			<div className={classes.overlay} />
 			<Stack padding={4} justifyContent="flex-end" zIndex={2}>
-				<Typography variant="h5" color="white">{title}</Typography>
+				<Typography variant="b" component="b" color="white" mb={2}>{title}</Typography>
 				<Typography variant="body1" color="white" gutterBottom>{description}</Typography>
 				<Typography variant="body2" color="white">
 					<FontAwesomeIcon icon={faCalendar} />&nbsp; {date}

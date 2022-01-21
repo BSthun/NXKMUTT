@@ -20,8 +20,9 @@ const Member = () => {
 	const [member, setMember] = useState(null);
 	
 	useEffect(() => {
+		// TODO: https://nxkmutt-strapi.bsthun.com/api/members/7?populate=emails,phones,socials,attrs,publications.banner
 		strapiAxios
-			.get(`/api/members/${id}?populate=*`)
+			.get(`/api/members/${id}?populate=photo,emails,phones,socials,attrs,publications.banner`)
 			.then((response) => {
 				setMember(response.data.data);
 			})

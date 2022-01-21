@@ -24,6 +24,7 @@ import ProfileSection from './ProfileSection';
 const ProfileBody = ({ member }) => {
 	const [, i18n] = useTranslation('home');
 	console.log("member",member)
+	const publications = member.attributes.publications.data;
 	return (
 		<Box minHeight="80vh" flex={1}>
 			<Grid spacing={5} container sx={{padding: '0rem 3rem'}}>
@@ -48,13 +49,14 @@ const ProfileBody = ({ member }) => {
 				</Grid>
 			</Grid>
 			<Grid spacing={5} container mt={5}>
-				{[1, 2, 3, 4, 5, 6].map(item => 
+				{publications.map(({attributes: item}) => 
 					<Grid key={item} item xs={4}>
-						<BlogItem title="Hello"
-							description="this is a dummy text for placeholder only. Egg is born before chicken?"
-							date="2021/10/6"
-							background="https://static.bangkokpost.com/media/content/20200620/c1_1938008_200620092012.jpg"
+						<BlogItem title={item.title}
+							description={item.desc}
+							date={item.published}
+							background={strapiAxios.baseURL + item.banner?.data.attributes.url}
 							height
+							to={`/publication/${item.slug}`}
 						/>
 					</Grid>
 				)}

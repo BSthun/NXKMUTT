@@ -20,6 +20,7 @@ const ProfileSection = ({ title="{{section_title}}", member, attributes=false}) 
         linkedin: faLinkedin,
         web: faGlobe
     };
+    
     return <Card  variant="outlined" sx={{height: '100%'}}>
         <CardContent>
             
