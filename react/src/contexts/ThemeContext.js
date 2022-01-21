@@ -7,6 +7,7 @@ import {
 import {
 	createContext,
 	useEffect,
+	useLayoutEffect,
 	useMemo,
 	useState,
 } from 'react';
@@ -20,6 +21,11 @@ export const ThemeContextProvider = ({ children }) => {
 	useEffect(() => {
 		setDark(prefersDarkMode);
 	}, [prefersDarkMode]);
+
+	useLayoutEffect(() => {
+		document.body.classList.remove('dark','light');
+		document.body.classList.add(dark ? 'dark' : 'light');
+	},[dark]);
 	
 	const theme = useMemo(() => createTheme({
 		palette: {

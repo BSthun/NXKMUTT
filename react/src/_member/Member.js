@@ -13,7 +13,6 @@ import { useParams } from 'react-router-dom';
 import PageBanner from '../components/layout/PageBanner';
 import { strapiAxios } from '../utils/axios';
 import ProfileBody from './components/ProfileBody';
-import ProfileSideBar from './components/ProfileSideBar';
 
 const Member = () => {
 	const { id } = useParams();
@@ -46,11 +45,7 @@ const Member = () => {
 				     flexDirection={{ xs: 'column-reverse', md: 'row' }}
 				>
 					{
-						member ?
-							<>
-								<ProfileSideBar member={member} />
-								<ProfileBody member={member} />
-							</> :
+						member ? <ProfileBody member={member} /> :
 							<Box display="flex" justifyContent="center" paddingTop="20px">
 								<CircularProgress />
 							</Box>
