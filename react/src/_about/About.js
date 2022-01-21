@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
 import ContactSection from '../_home/sections/ContactSection';
-import MemberSecion from '../_home/sections/MemberSecion';
+import MemberSecion from '../_home/sections/MemberSection';
 import PageBanner from '../components/layout/PageBanner';
 
 const About = () => {

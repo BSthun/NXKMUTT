@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../../utils/axios';
+import { strapiAxios } from '../../utils/axios';
 
 const MemberItems = ({ name, position, photo, link }) => {
 	const classes = useStyles({
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative',
 		width: '100%',
 		paddingTop: '127%',
-		backgroundImage: ({ photo }) => `url(${axios.baseURL + photo})`,
+		backgroundImage: ({ photo }) => `url(${strapiAxios.baseURL + photo})`,
 		backgroundPosition: 'center',
 		backgroundSize: 'cover',
 		borderRadius: theme.spacing(2),

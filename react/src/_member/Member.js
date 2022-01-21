@@ -11,7 +11,7 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import PageBanner from '../components/layout/PageBanner';
-import axios from '../utils/axios';
+import { strapiAxios } from '../utils/axios';
 import ProfileBody from './components/ProfileBody';
 import ProfileSideBar from './components/ProfileSideBar';
 
@@ -21,10 +21,10 @@ const Member = () => {
 	const [member, setMember] = useState(null);
 	
 	useEffect(() => {
-		axios
-			.get(`/members/${id}`)
+		strapiAxios
+			.get(`/api/members/${id}?populate=*`)
 			.then((response) => {
-				setMember(response.data);
+				setMember(response.data.data);
 			})
 			.catch((error) => {
 				console.log(error.message);
@@ -33,7 +33,7 @@ const Member = () => {
 	
 	return (
 		<Stack direction="column" alignItems="center" bgcolor="background.default">
-			<PageBanner title={member ? member[`name_${i18n.language}`] : 'Member profile'}
+			<PageBanner title={member ? member.attributes[`name_${i18n.language}`] : 'Member profile'}
 			            breadcrumbs={[
 				            { href: '/home', text: 'Home' },
 				            { href: '/about', text: 'Member' },
