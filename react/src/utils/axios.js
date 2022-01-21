@@ -15,5 +15,3 @@ export const backendAxios = instance.create({
 });
 
 backendAxios.baseURL = 'https://nxkmutt-backend.bsthun.com';
-
-export default { strapiAxios, backendAxios };

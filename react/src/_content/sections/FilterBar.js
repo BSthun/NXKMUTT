@@ -52,9 +52,9 @@ const FilterBar = () => {
 			.get('/api/tags')
 			.then((response) => {
 				setTags({
-					types: response.data.data.filter((el) => el.category === 'type'),
-					techniques: response.data.data.filter((el) => el.category === 'technique'),
-					theme: response.data.data.filter((el) => el.category === 'theme'),
+					types: response.data.data.filter((el) => el.attributes.category === 'type'),
+					techniques: response.data.data.filter((el) => el.attributes.category === 'technique'),
+					theme: response.data.data.filter((el) => el.attributes.category === 'theme'),
 				});
 			})
 			.catch((error) => {
@@ -121,7 +121,7 @@ const FilterBar = () => {
 									     }
 									>
 										<CustomCheckbox checked={selectedTypes.includes(type)} />
-										<Typography variant="p" color="textPrimary">{type.name}</Typography>
+										<Typography variant="p" color="textPrimary">{type.attributes.name}</Typography>
 									</Box>
 								);
 							})}
@@ -133,7 +133,7 @@ const FilterBar = () => {
 								{
 									tags.techniques.map((item) =>
 										<TagChip
-											key={item.slug}
+											key={item.id}
 											item={item}
 											setSelected={setSelectedTechniques}
 										/>,
@@ -148,7 +148,7 @@ const FilterBar = () => {
 								{
 									tags.theme.map((item) =>
 										<TagChip
-											key={item.slug}
+											key={item.id}
 											item={item}
 											setSelected={setSelectedThemes}
 										/>,

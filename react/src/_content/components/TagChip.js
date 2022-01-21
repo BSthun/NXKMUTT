@@ -7,8 +7,8 @@ const TagChip = ({ item, setSelected }) => {
 	const handleClick = () => {
 		if (active) {
 			setSelected((selected) => {
-				const slugs = selected.map((el) => el.slug);
-				return selected.filter((el) => !slugs.includes(el.slug));
+				const slugs = selected.map((el) => el.id);
+				return selected.filter((el) => !slugs.includes(el.id));
 			});
 		} else {
 			setSelected((selected) => [...selected, item]);
@@ -18,7 +18,7 @@ const TagChip = ({ item, setSelected }) => {
 	
 	return (
 		<Chip style={{ marginLeft: 0 }}
-		      label={item.name}
+		      label={item.attributes.name}
 		      color={active ? 'primary' : 'default'}
 		      onClick={handleClick}
 		      variant={active ? 'filled' : 'outlined'}
