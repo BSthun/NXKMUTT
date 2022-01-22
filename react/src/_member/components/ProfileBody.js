@@ -35,7 +35,7 @@ const ProfileBody = ({ member }) => {
 					<Box sx={{ width: '100%' }}>
 						<Typography variant="h3"
 						            color="textPrimary"
-						>{member.attributes[`name_${i18n.language}`]} {member.attributes[`surname_${i18n.language}`]}</Typography>
+						>{member.attributes[`prefix_${i18n.language}`]}{member.attributes[`name_${i18n.language}`]} {member.attributes[`surname_${i18n.language}`]}</Typography>
 						<Typography variant="h6"
 						            color="textPrimary"
 						            sx={{ fontWeight: '400' }}
