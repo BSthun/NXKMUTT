@@ -39,10 +39,10 @@ const Post = () => {
 			/>
 			<Container maxWidth="lg">
 				<Box display="flex" width="100%"flexDirection={{ xs: 'column-reverse', md: 'row' }}>
-					<Box md={4}>
+					<Box md={3}>
 						<SideBar post={post}/>
 					</Box>
-					<Box md={8}>
+					<Box md={9}>
 						<BlogSection post={post}/>
 					</Box>
 				</Box>
