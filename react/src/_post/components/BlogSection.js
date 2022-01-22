@@ -19,14 +19,16 @@ const BlogSection = ({ post }) => {
 		display: 'block',
 		'& img': {
 			width: '100%',
-			borderRadius: '5px',
+			borderRadius: '10px',
 		},
-		'& > h1': {
-			marginTop: '1.5rem',
+		'& h1,h2,h3,h4,h5,h6,p, blockquote': {
 			marginBottom: '1.5rem',
 		},
-		'& > p': {
-			marginTop: '1.5rem',
+		'& blockquote *': {
+			marginBottom: 0
+		},
+		'& ul, ol li': {
+			marginLeft: '16px'
 		},
 	};
 	
@@ -41,11 +43,11 @@ const BlogSection = ({ post }) => {
 		<Box color={theme.palette.text.primary} padding={5} sx={{[theme.breakpoints.up('md')]: {borderLeft: `1px ${alpha(theme.palette.text.secondary, 0.24)} solid`,}}}>
 			<Typography variant='h3'>{post?.attributes.title}</Typography>
 			<Typography variant='body1' mt={2} color="textSecondary" fontWeight={600}>
-				<FontAwesomeIcon icon={faCalendarAlt} style={{marginRight: '.5rem'}}/> {post?.attributes.published} • { calculateReadingTime(post?.attributes?.content) } mins read
+				<FontAwesomeIcon icon={faCalendarAlt} style={{marginRight: '.5rem'}}/> {post?.attributes.published} · { calculateReadingTime(post?.attributes?.content) } mins read
 			</Typography>
 
 			<Box mt={10} sx={markdownStyle}>
-				<Box sx={{overflow: 'hidden', width: '100%', position: 'relative'}}>
+				<Box className="thumnail" sx={{marginBottom: '1.5rem',overflow: 'hidden', width: '100%', position: 'relative', borderRadius: '10px',}}>
 					<img src={strapiAxios.baseURL + thumbnail}
 						style={{width: "100%", filter: 'blur(10px)', transform: 'scale(1.1)'}}
 						alt={post?.attributes.banner?.data?.attributes?.alternativeText}
@@ -58,7 +60,7 @@ const BlogSection = ({ post }) => {
 						alt={post?.attributes.banner?.data?.attributes?.alternativeText}
 					/>
 				</Box>
-				<Markdown>{ post?.attributes?.content}</Markdown>
+				<Markdown className="markdown">{ post?.attributes?.content}</Markdown>
 			</Box>
 		</Box>
 	);

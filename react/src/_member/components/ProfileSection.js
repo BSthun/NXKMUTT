@@ -66,8 +66,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 				            component="span"
 				            color="textPrimary"
 				            style={{ opacity: '.5' }}
-				>
-					• {title}
+				> · {title}
 				</Typography>
 			}
 		</Typography>;
@@ -82,8 +81,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 				            component="span"
 				            color="textPrimary"
 				            style={{ opacity: '.5' }}
-				>
-					• {title}
+				> · {title}
 				</Typography>}
 		</Typography>;
 	
@@ -102,8 +100,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 				            component="span"
 				            color="textPrimary"
 				            style={{ opacity: '.5', textTransform: 'capitalize' }}
-				>
-					• {type}
+				> · {type}
 				</Typography>
 			}
 		</Typography>;

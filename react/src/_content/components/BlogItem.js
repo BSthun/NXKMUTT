@@ -8,7 +8,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import React, { useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const BlogItem = ({ title, description, date, background, to, height = false, index=0 }) => {
+const BlogItem = ({ title, description, date, background, to, height = false, index = 0 }) => {
 	const [image, setImage] = useState("");
 	const [loaded, setLoaded] = useState(false);
 	const classes = useStyles({
@@ -17,15 +17,17 @@ const BlogItem = ({ title, description, date, background, to, height = false, in
 	});
 	
 	useLayoutEffect(() => {
+		if(!title)
+			return;
 		const img = new Image();
 		img.src = background;
 		img.onload = () => {
 			setTimeout(() => {
 				setLoaded(true);
 				setImage(background);
-			},index*100);
+			}, index * 100);
 		};
-	},[]);
+	}, [index, title, background]);
 
 	return (
 		<Link to={to} className={classes.root} style={{ opacity: loaded ? 1 : 0, transition: 'opacity 1s ease-in-out'}}>
