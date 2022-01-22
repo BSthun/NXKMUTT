@@ -1,19 +1,19 @@
+
+import { useState } from 'react';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import {
-	Box,
-	Typography,
-} from '@mui/material';
+import { alpha, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/styles';
-import ReactMarkdown from 'react-markdown';
 import { strapiAxios } from '../../utils/axios';
+import Markdown from '../../components/markdown/Markdown';
 
 const BlogSection = ({ post }) => {
 	const theme = useTheme();
-	
-	// const banner = post.attributes?.banner.data.attributes;
-	
+	const thumbnail     = post?.attributes?.banner?.data?.attributes?.formats?.thumbnail?.url;
+	const realThumbnail = post?.attributes?.banner?.data?.attributes?.url;
+	const [loaded, setLoaded] = useState(false);
+
 	const markdownStyle = {
 		width: '100%',
 		display: 'block',
@@ -34,24 +34,31 @@ const BlogSection = ({ post }) => {
 		const words = text.split(' ').length;
 		const minutes = Math.ceil(words / 200);
 		return minutes;
-	};
-	
+	}
+
+
 	return (
-		<Box color={theme.palette.text.primary} padding={5}>
-			<Typography variant="h3">{post?.attributes.title}</Typography>
-			<Typography variant="body1" mt={2} color="textSecondary" fontWeight={600}>
-				<FontAwesomeIcon icon={faCalendarAlt}
-				                 style={{ marginRight: '.5rem' }}
-				/> {post?.attributes.published} • {calculateReadingTime(post?.attributes?.content)} mins read
+		<Box color={theme.palette.text.primary} padding={5} sx={{[theme.breakpoints.up('md')]: {borderLeft: `1px ${alpha(theme.palette.text.secondary, 0.24)} solid`,}}}>
+			<Typography variant='h3'>{post?.attributes.title}</Typography>
+			<Typography variant='body1' mt={2} color="textSecondary" fontWeight={600}>
+				<FontAwesomeIcon icon={faCalendarAlt} style={{marginRight: '.5rem'}}/> {post?.attributes.published} • { calculateReadingTime(post?.attributes?.content) } mins read
 			</Typography>
-			
+
 			<Box mt={10} sx={markdownStyle}>
-				<img src={strapiAxios.baseURL + post?.attributes.banner?.data?.attributes?.url}
-				     alt={post?.attributes.banner?.data?.attributes?.alternativeText}
-				/>
-				<ReactMarkdown>
-					{post ? post.attributes.content : 'Loading...'}
-				</ReactMarkdown>
+				<Box sx={{overflow: 'hidden', width: '100%', position: 'relative'}}>
+					<img src={strapiAxios.baseURL + thumbnail}
+						style={{width: "100%", filter: 'blur(10px)', transform: 'scale(1.1)'}}
+						alt={post?.attributes.banner?.data?.attributes?.alternativeText}
+					/>
+					<img
+						loading="lazy"
+						src={strapiAxios.baseURL + realThumbnail}
+						onLoad={() => setLoaded(true)}
+						style={{position: 'absolute',top: 0, left: 0, width: '100%', height: '100%', opacity: loaded ? 1 : 0, transition: 'opacity 1s ease-in-out'}}
+						alt={post?.attributes.banner?.data?.attributes?.alternativeText}
+					/>
+				</Box>
+				<Markdown>{ post?.attributes?.content}</Markdown>
 			</Box>
 		</Box>
 	);
