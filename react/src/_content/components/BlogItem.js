@@ -5,19 +5,32 @@ import {
 	Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const BlogItem = ({ title, description, date, background, to, height = false }) => {
+const BlogItem = ({ title, description, date, background, to, height = false, index=0 }) => {
+	const [image, setImage] = useState("");
+	const [loaded, setLoaded] = useState(false);
 	const classes = useStyles({
-		background,
+		background: image,
 		height,
 	});
 	
+	useLayoutEffect(() => {
+		const img = new Image();
+		img.src = background;
+		img.onload = () => {
+			setTimeout(() => {
+				setLoaded(true);
+				setImage(background);
+			},index*100);
+		};
+	},[]);
+
 	return (
-		<Link to={to} className={classes.root}>
+		<Link to={to} className={classes.root} style={{ opacity: loaded ? 1 : 0, transition: 'opacity 1s ease-in-out'}}>
 			<div className={classes.overlay} />
-			<Stack padding={4} justifyContent="flex-end" zIndex={2}>
+			<Stack padding={4} justifyContent="flex-end" zIndex={2} >
 				<Typography variant="b" component="b" color="white" mb={2}>{title}</Typography>
 				<Typography variant="body1" color="white" gutterBottom>{description}</Typography>
 				<Typography variant="body2" color="white">
