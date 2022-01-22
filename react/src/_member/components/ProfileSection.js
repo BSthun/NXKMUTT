@@ -53,7 +53,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 								<Typography variant="body2"
 								            component="div"
 								            dangerouslySetInnerHTML={{ __html: value.split('\n').join('<br>') }}
-								></Typography>
+								/>
 							</Box>
 						</Typography>)}
 					</Stack>

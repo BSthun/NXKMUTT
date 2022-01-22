@@ -45,7 +45,7 @@ const ProfileBody = ({ member }) => {
 			</Grid>
 			<Grid container spacing={5} mt={1}>
 				<Grid item md={6}>
-					<ProfileSection title="sContact details" member={member} />
+					<ProfileSection title="Contact details" member={member} />
 				</Grid>
 				<Grid item md={6}>
 					<ProfileSection title="Attributes" member={member} attributes />

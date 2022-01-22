@@ -46,7 +46,7 @@ const MemberSection = () => {
 											<MemberItem
 												name={`${el.attributes[`prefix_${i18n.language}`] || ''} ${el.attributes[`name_${i18n.language}`]} ${el.attributes[`surname_${i18n.language}`]}`}
 												position={el.attributes.position}
-												photo={strapiAxios.baseURL + el.attributes.photo?.data?.attributes.url || "/"}
+												photo={el.attributes.photo?.data?.attributes.url || "/"}
 												link={`/member/${el.id}`}
 											/>
 										</Grid>
