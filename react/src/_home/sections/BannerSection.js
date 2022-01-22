@@ -7,7 +7,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
 import BottomSlab from '../../components/decorate/BottomSlab';
-import BannerBgDark from '../../images/bannerbg-brain.png';
+import BannerBgDark from '../../images/bannerbg-dark.jpg';
 import BannerBgLight from '../../images/bannerbg-light.jpg';
 
 const BannerSection = () => {

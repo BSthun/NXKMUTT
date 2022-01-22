@@ -26,7 +26,7 @@ const Post = () => {
 			.catch((error) => {
 				
 			});
-	}, []);
+	}, [slug]);
 
 	return (
 		<Box display="flex" flexDirection="column" alignItems="center" bgcolor="background.default">
