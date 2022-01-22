@@ -4,6 +4,7 @@ import (
 	"Project/loaders/database"
 	"github.com/gofiber/fiber/v2"
 	"strconv"
+	"strings"
 )
 
 func Handler(c *fiber.Ctx) error {
@@ -68,7 +69,17 @@ func Handler(c *fiber.Ctx) error {
 
 	//query
 	if req.Query != "" {
-		queryPublicationId += `AND (publications.slug LIKE '%` + req.Query + `%' OR publications.title LIKE '%` + req.Query + `%' OR publications.desc LIKE '%` + req.Query + `%') `
+		queryPublicationId += `AND (`
+		words := strings.Split(req.Query, " ")
+
+		for i, word := range words {
+			if i > 0 {
+				queryPublicationId += ` OR`
+			}
+			queryPublicationId += ` publications.slug LIKE '%` + word + `%' OR publications.title LIKE '%` + word + `%' OR publications.desc LIKE '%` + word + `%'  `
+		}
+
+		queryPublicationId += ` OR publications.slug LIKE '%` + req.Query + `%' OR publications.title LIKE '%` + req.Query + `%' OR publications.desc LIKE '%` + req.Query + `%') `
 	}
 
 	//year
