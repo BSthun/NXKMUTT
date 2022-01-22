@@ -24,7 +24,7 @@ const MemberSection = () => {
 		strapiAxios
 			.get('/api/members?populate=photo&_limit=-1')
 			.then((response) => {
-				const data = response.data.data
+				const data = response.data.data;
 				setMembers(data.sort((el1, el2) => (el1.attributes.order - el2.attributes.order)));
 			})
 			.catch((error) => {
@@ -46,8 +46,8 @@ const MemberSection = () => {
 											<MemberItem
 												name={`${el.attributes[`prefix_${i18n.language}`] || ''} ${el.attributes[`name_${i18n.language}`]} ${el.attributes[`surname_${i18n.language}`]}`}
 												position={el.attributes.position}
-												photo={el.attributes.photo?.data?.attributes.url || "/"}
-												link={`/member/${el.id}`}
+												photo={el.attributes.photo.data?.attributes.url || '/'}
+												link={`/member/${el.attributes.username}`}
 											/>
 										</Grid>
 									),

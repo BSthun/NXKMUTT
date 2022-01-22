@@ -44,7 +44,7 @@ const App = () => {
 							<Route path="/post">
 								<Post />
 							</Route>
-							<Route path="/member/:id">
+							<Route path="/member/:username">
 								<Member />
 							</Route>
 						</Switch>

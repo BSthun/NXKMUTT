@@ -15,21 +15,21 @@ import { strapiAxios } from '../utils/axios';
 import ProfileBody from './components/ProfileBody';
 
 const Member = () => {
-	const { id } = useParams();
+	const { username } = useParams();
 	const [, i18n] = useTranslation('home');
 	const [member, setMember] = useState(null);
 	
 	useEffect(() => {
 		// TODO: https://nxkmutt-strapi.bsthun.com/api/members/7?populate=emails,phones,socials,attrs,publications.banner
 		strapiAxios
-			.get(`/api/members/${id}?populate=photo,emails,phones,socials,attrs,publications.banner`)
+			.get(`/api/members?populate=photo,emails,phones,socials,attrs,publications.banner&filters[username][$eq]=${username}`)
 			.then((response) => {
-				setMember(response.data.data);
+				setMember(response.data.data[0]);
 			})
 			.catch((error) => {
 				console.log(error.message);
 			});
-	}, [id]);
+	}, [username]);
 	
 	return (
 		<Stack direction="column" alignItems="center" bgcolor="background.default">

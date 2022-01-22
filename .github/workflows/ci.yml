@@ -9,7 +9,7 @@ on:
 jobs:
   react-build:
     name: Build React.js Frontend
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     container: node:lts
     steps:
@@ -30,7 +30,7 @@ jobs:
 
   upload:
     name: Preview Server Uploading
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     timeout-minutes: 2
     container: alpine
     needs: [react-build]
@@ -48,4 +48,4 @@ jobs:
 
       - name: Upload artifacts to server
         run: |
-          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./react-build-artifact /mnt/nxkmutt; bye"
+          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./react-build-artifact /mnt/source/www; bye"
