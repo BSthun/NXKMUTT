@@ -45,12 +45,12 @@ const Navbar = () => {
 	});
 	
 	const onScroll = () => {
-		if (window.pageYOffset > 100 && !options.scrolled) {
+		if (window.pageYOffset > 10 && !options.scrolled) {
 			setOptions(options => ({
 				...options,
 				scrolled: true,
 			}));
-		} else if (window.pageYOffset <= 100 && options.scrolled) {
+		} else if (window.pageYOffset <= 10 && options.scrolled) {
 			setOptions(options => ({
 				...options,
 				scrolled: false,

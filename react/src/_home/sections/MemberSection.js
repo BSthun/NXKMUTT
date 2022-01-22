@@ -10,7 +10,7 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import axios from '../../utils/axios';
+import { strapiAxios } from '../../utils/axios';
 import MemberItem from '../components/MemberItem';
 import Title from '../components/Title';
 
@@ -21,13 +21,11 @@ const MemberSection = () => {
 	const [members, setMembers] = useState(null);
 	
 	useEffect(() => {
-		axios
-			.get('/members')
+		strapiAxios
+			.get('/api/members?populate=photo&_limit=-1')
 			.then((response) => {
-				const data = response.data;
-				data.sort((el1, el2) => (el1.id >= el2.id));
-				console.log(data);
-				setMembers(data);
+				const data = response.data.data
+				setMembers(data.sort((el1, el2) => (el1.attributes.order - el2.attributes.order)));
 			})
 			.catch((error) => {
 				console.log(error.message);
@@ -44,11 +42,11 @@ const MemberSection = () => {
 							{
 								members.map(
 									(el) => (
-										<Grid item xs={12} md={4} lg={3} key={el.username}>
+										<Grid item xs={12} md={4} lg={3} key={el.attributes.username}>
 											<MemberItem
-												name={el[`name_${i18n.language}`]}
-												position={el.position}
-												photo={el.photo.url}
+												name={`${el.attributes[`prefix_${i18n.language}`] || ''} ${el.attributes[`name_${i18n.language}`]} ${el.attributes[`surname_${i18n.language}`]}`}
+												position={el.attributes.position}
+												photo={strapiAxios.baseURL + el.attributes.photo?.data?.attributes.url || "/"}
 												link={`/member/${el.id}`}
 											/>
 										</Grid>

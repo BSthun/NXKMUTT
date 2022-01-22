@@ -1,16 +1,17 @@
 import instance from 'axios';
 
-const getBaseURL = () => {
-	return (!process.env.NODE_ENV || process.env.NODE_ENV === 'development')
-		? 'http://localhost:1337'
-		: 'https://dp-nxkmutt-strapi.bsthun.com';
-};
-
-const axios = instance.create({
-	baseURL: getBaseURL(),
+// Strapi Instance
+export const strapiAxios = instance.create({
+	baseURL: 'https://nxkmutt-strapi.bsthun.com',
 	withCredentials: true,
 });
 
-axios.baseURL = getBaseURL();
+strapiAxios.baseURL = 'https://nxkmutt-strapi.bsthun.com';
 
-export default axios;
+// Backend Instance
+export const backendAxios = instance.create({
+	baseURL: 'https://nxkmutt-backend.bsthun.com',
+	withCredentials: true,
+});
+
+backendAxios.baseURL = 'https://nxkmutt-backend.bsthun.com';
