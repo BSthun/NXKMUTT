@@ -23,8 +23,8 @@ export const ThemeContextProvider = ({ children }) => {
 	}, [prefersDarkMode]);
 
 	useLayoutEffect(() => {
-		document.body.classList.remove('dark','light');
-		document.body.classList.add(dark ? 'dark' : 'light');
+		document.body.classList.remove('theme-dark','theme-light');
+		document.body.classList.add(dark ? 'theme-dark' : 'theme-light');
 	},[dark]);
 	
 	const theme = useMemo(() => createTheme({

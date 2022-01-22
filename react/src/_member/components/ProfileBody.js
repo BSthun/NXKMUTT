@@ -59,7 +59,7 @@ const ProfileBody = ({ member }) => {
 						          date={item.published}
 						          background={strapiAxios.baseURL + item.banner?.data.attributes.url}
 						          height
-						          to={`/publication/${item.slug}`}
+						          to={`/post/${item.slug}`}
 						/>
 					</Grid>,
 				)}

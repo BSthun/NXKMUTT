@@ -41,7 +41,8 @@ const App = () => {
 							<Route exact path="/about">
 								<About />
 							</Route>
-							<Route path="/post">
+							<Redirect exact path='/post' to={{ pathname: '/home' }} />
+							<Route path="/post/:slug">
 								<Post />
 							</Route>
 							<Route path="/member/:username">

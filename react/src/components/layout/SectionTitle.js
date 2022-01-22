@@ -7,7 +7,7 @@ import React from 'react';
 const SectionTitle = ({ title }) => {
 	return (
 		<Box marginY={4}>
-			<Typography color="text.primary" variant="h6">{title}</Typography>
+			<Typography color="text.primary" variant="h6" fontWeight={550}>{title}</Typography>
 		</Box>
 	);
 };

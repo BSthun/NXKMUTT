@@ -1,6 +1,10 @@
-import {Stack,Avatar,Typography,Box} from '@mui/material'
+import {Stack,Avatar,Typography,Box, alpha} from '@mui/material'
+import { useTheme } from '@mui/styles';
+import { Link } from 'react-router-dom';
 
-const AuthorAvatar = ({name,subject})=>{
+const AuthorAvatar = ({name,subject,src,member})=>{
+    const theme = useTheme();
+    console.log(theme)
     function stringToColor() {
         let hash = 0;
         let i;
@@ -29,14 +33,15 @@ const AuthorAvatar = ({name,subject})=>{
           };
     }
     return(
-        <Stack marginTop={3} direction="row" gap={2} alignItems="center" >
-            <Avatar {...avatarfuc()}  /> 
+      <Link to={`/member/${member}`}>
+        <Stack marginTop={3} direction="row" gap={2} alignItems="center" padding={2} sx={{backgroundColor: `${alpha(theme.palette.action.active,.085)}`, borderRadius: '5px'}}>
+            <Avatar {...avatarfuc()}><img src={src} style={{width: '100%'}}/></Avatar> 
             <Box>
-            <Typography height="fit-content" color="text.primary">{name}</Typography>
+            <Typography height="fit-content" color="text.primary" fontWeight={550}>{name}</Typography>
             <Typography height="fit-content" fontWeight="light" color="GrayText">{subject}</Typography>
             </Box> 
         </Stack>
-    )
+    </Link>)
 
 }
 

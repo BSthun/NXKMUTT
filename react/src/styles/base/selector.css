@@ -1,9 +1,18 @@
-.light ::selection{
+body.theme-light {
+    background-color: #fff;
+}
+
+body.theme-dark {
+    background-color: #121212;
+}
+
+
+body.theme-light ::selection{
     background-color: black;
     color: white;
 }
 
-.dark ::selection{
+body.theme-dark ::selection{
     background-color: white;
     color: black;
 }
