@@ -2,32 +2,36 @@ import {
 	Box,
 	Container,
 } from '@mui/material';
-import { useLayoutEffect, useState } from 'react';
+import {
+	useContext,
+	useLayoutEffect,
+	useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import PageBanner from '../components/layout/PageBanner';
+import { FloatingContext } from '../contexts/FloatingContext';
 import { strapiAxios } from '../utils/axios';
-import BlogSection from './components/BlogSection';
-import SideBar from './components/SideBar';
+import ContentBody from './components/ContentBody';
+import ContentSidebar from './components/ContentSidebar';
 
 const Post = () => {
 	const [t] = useTranslation('content');
-	const { slug } = useParams();
 	const [post, setPost] = useState(null);
-
+	const { openSnackBar } = useContext(FloatingContext);
+	const { slug } = useParams();
+	
 	useLayoutEffect(() => {
-		// TODO: https://nxkmutt-strapi.bsthun.com/api/publications/?populate=banner&filters[slug][$eq]=${slug}
 		strapiAxios
-			.get(`/api/publications/?populate=banner,tags,authors.photo&filters[slug][$eq]=${slug}&_limit=-1`)
-			.then(({data}) => {
-				console.log(data)
+			.get(`/api/publications/?populate=banner,tags,authors.photo&filters[slug][$eq]=${slug}`)
+			.then(({ data }) => {
 				setPost(data.data[0]);
 			})
 			.catch((error) => {
-				
+				openSnackBar(error.toString());
 			});
 	}, [slug]);
-
+	
 	return (
 		<Box display="flex" flexDirection="column" alignItems="center" bgcolor="background.default">
 			<PageBanner
@@ -38,12 +42,12 @@ const Post = () => {
 				]}
 			/>
 			<Container maxWidth="lg">
-				<Box display="flex" width="100%"flexDirection={{ xs: 'column-reverse', md: 'row' }}>
+				<Box display="flex" width="100%" flexDirection={{ xs: 'column-reverse', md: 'row' }}>
 					<Box md={3}>
-						<SideBar post={post}/>
+						<ContentSidebar post={post} />
 					</Box>
 					<Box md={9}>
-						<BlogSection post={post}/>
+						<ContentBody post={post} />
 					</Box>
 				</Box>
 			</Container>
