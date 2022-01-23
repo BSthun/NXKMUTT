@@ -17,9 +17,8 @@ export const ThemeContext = createContext({});
 export const ThemeContextProvider = ({ children }) => {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 	const [dark, setDark] = useState(prefersDarkMode);
-	
 	useEffect(() => {
-		setDark(prefersDarkMode);
+		setDark(localStorage.getItem('theme') == null ? prefersDarkMode : localStorage.getItem('theme') === 'dark');
 	}, [prefersDarkMode]);
 
 	useLayoutEffect(() => {
@@ -56,7 +55,10 @@ export const ThemeContextProvider = ({ children }) => {
 	
 	const handlers = {
 		toggleDark: () => {
-			setDark((dark) => !dark);
+			setDark((dark) => {
+				localStorage.setItem('theme', !dark ? 'dark' : 'light');
+				return !dark;
+			});
 		},
 	};
 	
