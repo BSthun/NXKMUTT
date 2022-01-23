@@ -13,6 +13,7 @@ import {
 } from 'react';
 import Markdown from '../../components/markdown/Markdown';
 import { strapiAxios } from '../../utils/axios';
+import Reference from './Reference';
 
 const ContentBody = ({ post }) => {
 	const theme = useTheme();
@@ -20,6 +21,8 @@ const ContentBody = ({ post }) => {
 	
 	const thumbnail = post?.attributes?.banner?.data?.attributes?.formats?.thumbnail?.url;
 	const realThumbnail = post?.attributes?.banner?.data?.attributes?.url;
+	const files = post?.attributes?.files;
+	const links = post?.attributes?.links;
 	
 	const readingTime = useMemo(() => {
 		const words = post?.attributes?.content.split(' ').length;
@@ -94,6 +97,7 @@ const ContentBody = ({ post }) => {
 					/>
 				</Box>
 				<Markdown className="markdown">{post?.attributes?.content}</Markdown>
+				<Reference files={files} links={links}/>
 			</Box>
 		</Box>
 	);

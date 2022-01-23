@@ -14,7 +14,6 @@ import { FloatingContext } from '../contexts/FloatingContext';
 import { strapiAxios } from '../utils/axios';
 import ContentBody from './components/ContentBody';
 import ContentSidebar from './components/ContentSidebar';
-
 const Post = () => {
 	const [t] = useTranslation('content');
 	const [post, setPost] = useState(null);
@@ -23,13 +22,15 @@ const Post = () => {
 	
 	useLayoutEffect(() => {
 		strapiAxios
-			.get(`/api/publications/?populate=banner,tags,authors.photo&filters[slug][$eq]=${slug}`)
-			.then(({ data }) => {
+			.get(`/api/publications/?populate=banner,links,files.file,tags,authors.photo&filters[slug][$eq]=${slug}&_limit=-1`)
+			.then(({data}) => {
+				console.log(data)
 				setPost(data.data[0]);
 			})
 			.catch((error) => {
 				openSnackBar(error.toString());
 			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [slug]);
 	
 	return (

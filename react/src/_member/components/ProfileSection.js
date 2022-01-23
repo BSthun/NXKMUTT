@@ -45,8 +45,8 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 			{title}
 		</Typography>;
 	
-	const AttributeItem = ({ name, value }) =>
-		<Typography variant="p" component="div" color="textPrimary">
+	const AttributeItem = ({ name, value }, index) =>
+		<Typography variant="p" component="div" color="textPrimary" key={name}>
 			<Box>
 				<Typography variant="b" component="b">{name}</Typography>
 				<Typography variant="body2"
@@ -57,7 +57,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 		</Typography>;
 	
 	const EmailItem = ({ email, title }, index) =>
-		<Typography variant="p" component="div" color="textPrimary">
+		<Typography variant="p" component="div" color="textPrimary" key={index}>
 			<FontAwesomeIcon icon={faEnvelope} style={{ minWidth: '2rem', opacity: index > 0 ? 0 : 1 }} />
 			{email}
 			{
@@ -72,7 +72,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 		</Typography>;
 	
 	const PhoneItem = ({ phone, title }, index) =>
-		<Typography variant="p" component="div" color="textPrimary">
+		<Typography variant="p" component="div" color="textPrimary" key={index}>
 			<FontAwesomeIcon icon={faPhone} style={{ minWidth: '2rem', opacity: index > 0 ? 0 : 1 }} />
 			{phone}
 			{
@@ -86,7 +86,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 		</Typography>;
 	
 	const SocialItem = ({ type, value, link, title }, index) =>
-		<Typography variant="p" component="div" color="textPrimary">
+		<Typography variant="p" component="div" color="textPrimary" key={link}>
 			<FontAwesomeIcon icon={socialIcons[type] || socialIcons.web} style={{ minWidth: '2rem' }} />
 			{
 				title ?
