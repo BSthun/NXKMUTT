@@ -18,6 +18,7 @@ import SectionTitle from '../../components/layout/SectionTitle';
 import { FloatingContext } from '../../contexts/FloatingContext';
 import { strapiAxios } from '../../utils/axios';
 import { useQuery } from '../../utils/hooks';
+import { scroll } from '../../utils/scroll';
 import BlogItem from '../components/BlogItem';
 
 const Feed = () => {
@@ -61,6 +62,7 @@ const Feed = () => {
 	}, [page, result]);
 	
 	const setPage = (e, page) => {
+		scroll();
 		history.replace(`/content/?result=${result}&page=${page}`);
 	};
 	

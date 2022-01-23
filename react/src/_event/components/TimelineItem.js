@@ -108,7 +108,7 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 								component="span"
 								mr={2}
 							>
-								<FontAwesomeIcon icon={faCalendar} />&nbsp; {startDate.trim() === endDate.trim() ? startDate : `${startDate} - ${endDate}`}
+								<FontAwesomeIcon icon={faCalendar} /> {startDate.trim() === endDate.trim() ? startDate : `${startDate} - ${endDate}`}
 							</Typography>
 							<Chip size="small"
 							      sx={{ padding: '.5rem', color: 'white' }}
@@ -133,15 +133,19 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 								</Box>
 							</Grid>
 							<Grid item xs={12} md={4}>
-								<Box sx={{ height: '100%' }}>
-									<Button size="large"
-									        sx={{
-										        width: '100%',
-										        opacity: show ? 1 : 0,
-										        transition: 'opacity .25s ease-in-out',
-									        }}
-									        variant="outlined"
-									>Learn more</Button>
+								<Box sx={{ height: '100%', display: 'flex', alignItems: 'flex-end' }}>
+									<Button
+										size="large"
+										sx={{
+											width: '100%',
+											opacity: show ? 1 : 0,
+											transition: 'opacity .25s ease-in-out',
+										}}
+										variant="outlined"
+										color="snow"
+									>
+										Learn more
+									</Button>
 								</Box>
 							</Grid>
 						</Grid>

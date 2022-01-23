@@ -22,6 +22,7 @@ import { useHistory } from 'react-router-dom';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { FloatingContext } from '../../contexts/FloatingContext';
 import { strapiAxios } from '../../utils/axios';
+import { scroll } from '../../utils/scroll';
 import FilterBox from '../components/FilterBox';
 import TagChip from '../components/TagChip';
 
@@ -70,6 +71,7 @@ const FilterBar = () => {
 	}, []);
 	
 	const search = () => {
+		scroll();
 		strapiAxios
 			.post(
 				'/content/search',

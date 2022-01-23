@@ -83,7 +83,6 @@ const Reference = ({ files = [], links = [] }) => {
 						</Typography>
 					</Box>)
 			}
-		
 		</Stack>;
 	
 	const LinkReferences = () => <Card variant="outlined" sx={{ height: '100%' }}>

@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { strapiAxios } from '../../utils/axios';
+import { useScroll } from '../../utils/scroll';
 import BlogItem from '../components/BlogItem';
 
 const ContentFeed = () => {

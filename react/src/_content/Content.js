@@ -6,11 +6,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageBanner from '../components/layout/PageBanner';
 import { useQuery } from '../utils/hooks';
+import { useScroll } from '../utils/scroll';
 import ContentFeed from './sections/ContentFeed';
 import ContentList from './sections/ContentList';
 import FilterBar from './sections/FilterBar';
 
 const Content = () => {
+	useScroll();
 	const query = useQuery();
 	const [t] = useTranslation('content');
 	const [search, setSearch] = useState(null);

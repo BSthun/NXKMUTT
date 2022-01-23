@@ -29,6 +29,11 @@ export const ThemeContextProvider = ({ children }) => {
 	const theme = useMemo(() => createTheme({
 		palette: {
 			mode: dark ? 'dark' : 'light',
+			snow: {
+				light: '#FFFAFA',
+				main: '#FFFAFA',
+				dark: '#FFFAFA',
+			},
 		},
 		spacing: 4,
 		typography: {

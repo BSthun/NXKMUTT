@@ -12,9 +12,11 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import PageBanner from '../components/layout/PageBanner';
 import { FloatingContext } from '../contexts/FloatingContext';
 import { strapiAxios } from '../utils/axios';
+import { useScroll } from '../utils/scroll';
 import ContentBody from './components/ContentBody';
 import ContentSidebar from './components/ContentSidebar';
 const Post = () => {
+	useScroll();
 	const [t] = useTranslation('content');
 	const [post, setPost] = useState(null);
 	const { openSnackBar } = useContext(FloatingContext);
