@@ -14,9 +14,11 @@ import PageBanner from '../components/layout/PageBanner';
 import SectionTitle from '../components/layout/SectionTitle';
 import { FloatingContext } from '../contexts/FloatingContext';
 import { strapiAxios } from '../utils/axios';
+import { useScroll } from '../utils/scroll';
 import TimelineItem from './components/TimelineItem';
 
 const Event = () => {
+	useScroll();
 	const [t, i18n] = useTranslation('event');
 	const [events, setEvents] = useState([]);
 	const { openSnackBar } = useContext(FloatingContext);

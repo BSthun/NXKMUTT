@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 export function scroll() {
 	window.scroll(0, 0, {
-		scrollBehavior: 'smooth'
-	})
+		scrollBehavior: 'smooth',
+	});
 }
+
 export function useScroll() {
 	return useEffect(() => {
-		scroll()
-	}, [])
+		scroll();
+	}, []);
 }
