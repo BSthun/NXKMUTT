@@ -1,5 +1,4 @@
 import {
-	Box,
 	Chip,
 	Stack,
 } from '@mui/material';
@@ -14,7 +13,7 @@ const ContentSidebar = ({ post }) => {
 	
 	const authors = post?.attributes?.authors?.data.map((author) => ({
 		id: author.id,
-		name: author.attributes[`prefix_${i18n.language}`] + author.attributes[`name_${i18n.language}`] + ' ' + author.attributes[`surname_${i18n.language}`],
+		name: author.attributes[`prefix_${i18n.language}`] + ' ' + author.attributes[`name_${i18n.language}`] + ' ' + author.attributes[`surname_${i18n.language}`],
 		position: '',//author.attributes.position,
 		url: strapiAxios.baseURL + author.attributes.photo.data.attributes.url,
 		username: author.attributes.username,
@@ -30,7 +29,7 @@ const ContentSidebar = ({ post }) => {
 		<Stack sx={{ padding: '24px 20px' }} width={{ xs: '100%', md: 300 }}>
 			{/* Author */}
 			<SectionTitle title={t('author')} />
-			<Box>
+			<Stack direction="column" gap={2}>
 				{
 					authors.map(
 						item =>
@@ -43,7 +42,7 @@ const ContentSidebar = ({ post }) => {
 							/>,
 					)
 				}
-			</Box>
+			</Stack>
 			
 			{/* Tag */}
 			<SectionTitle title={t('type')} />
