@@ -13,11 +13,14 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import withStyles from '@mui/styles/withStyles';
 import React, {
+	useContext,
 	useEffect,
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import SectionTitle from '../../components/layout/SectionTitle';
+import { FloatingContext } from '../../contexts/FloatingContext';
 import { strapiAxios } from '../../utils/axios';
 import FilterBox from '../components/FilterBox';
 import TagChip from '../components/TagChip';
@@ -38,10 +41,13 @@ const CustomCheckbox = withStyles({
 
 const FilterBar = () => {
 	const classes = useStyles();
+	const history = useHistory();
+	const { openSnackBar } = useContext(FloatingContext);
 	const [t] = useTranslation('content');
 	
 	const [tags, setTags] = useState(null);
 	
+	const [selectedQuery, setSelectedQuery] = useState('');
 	const [selectedYears, setSelectedYears] = useState(rangeYear);
 	const [selectedTypes, setSelectedTypes] = useState([]);
 	const [selectedTechniques, setSelectedTechniques] = useState([]);
@@ -58,14 +64,35 @@ const FilterBar = () => {
 				});
 			})
 			.catch((error) => {
-				// TODO: Use `openSnackBar(error.message);`
-				console.log(error.message);
+				openSnackBar(error.message);
 			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	
 	const search = () => {
-		console.log(selectedYears, selectedTypes, selectedTechniques, selectedThemes);
+		strapiAxios
+			.post(
+				'/content/search',
+				{
+					year_start: selectedYears[0],
+					year_end: selectedYears[1],
+					type_tags: selectedTypes.map((el) => el.id),
+					technique_tags: selectedTechniques.map((el) => el.id),
+					theme_tags: selectedThemes.map((el) => el.id),
+					query: selectedQuery,
+				})
+			.then(({ data }) => {
+				if (data.data.length === 0) {
+					openSnackBar('No search result found');
+					return;
+				}
+				history.push(`/content/?result=${data.data.join(',')}&page=1`);
+			})
+			.catch((error) => {
+				openSnackBar(error.message);
+			});
 	};
+	
 	return (
 		<div className={classes.root}>
 			<SectionTitle title={t('filter')} />
@@ -77,6 +104,7 @@ const FilterBar = () => {
 				InputProps={{
 					endAdornment: <FontAwesomeIcon icon={faSearch} />,
 				}}
+				onChange={(e) => setSelectedQuery(e.target.value)}
 			/>
 			
 			{
@@ -90,18 +118,19 @@ const FilterBar = () => {
 								p={5}
 								mt={5}
 							>
-								<Slider step={1}
-								        value={selectedYears}
-								        min={rangeYear[0]}
-								        max={rangeYear[1]}
-								        size="small"
-								        valueLabelDisplay="on"
-								        onChange={(_, value) => setSelectedYears(value)}
-								        marks={[
-									        { value: rangeYear[0], label: rangeYear[0] },
-									        { value: rangeYear[1], label: rangeYear[1] },
-								        ]}
-								        width="100%"
+								<Slider
+									step={1}
+									value={selectedYears}
+									min={rangeYear[0]}
+									max={rangeYear[1]}
+									size="small"
+									valueLabelDisplay="on"
+									onChange={(_, value) => setSelectedYears(value)}
+									marks={[
+										{ value: rangeYear[0], label: rangeYear[0] },
+										{ value: rangeYear[1], label: rangeYear[1] },
+									]}
+									width="100%"
 								/>
 							</Box>
 						</FilterBox>
@@ -162,9 +191,10 @@ const FilterBar = () => {
 					</Box>
 			}
 			
-			<Button variant="contained"
-			        sx={{ marginTop: 5, borderRadius: '30px' }}
-			        onClick={search}
+			<Button
+				variant="contained"
+				sx={{ marginTop: 5, borderRadius: '30px' }}
+				onClick={search}
 			>
 				{t('search')}
 			</Button>

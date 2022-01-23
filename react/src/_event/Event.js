@@ -4,7 +4,11 @@ import {
 	Container,
 	Grid,
 } from '@mui/material';
-import  { useContext, useEffect, useState } from 'react';
+import {
+	useContext,
+	useEffect,
+	useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import PageBanner from '../components/layout/PageBanner';
 import SectionTitle from '../components/layout/SectionTitle';
@@ -13,21 +17,22 @@ import { strapiAxios } from '../utils/axios';
 import TimelineItem from './components/TimelineItem';
 
 const Event = () => {
-	const [t,i18n] = useTranslation('event');
+	const [t, i18n] = useTranslation('event');
 	const [events, setEvents] = useState([]);
 	const { openSnackBar } = useContext(FloatingContext);
-
+	
 	useEffect(() => {
 		strapiAxios
-		.get(`/api/events?populate=banner`)
-		.then(({data}) => {
-			console.log(data)
-			setEvents(data.data);
-		})
-		.catch((error) => {
-			openSnackBar(error.toString());
-		});
-	},[])
+			.get(`/api/events?populate=banner`)
+			.then(({ data }) => {
+				console.log(data);
+				setEvents(data.data);
+			})
+			.catch((error) => {
+				openSnackBar(error.toString());
+			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	
 	return (
 		<Box display="flex" flexDirection="column" bgcolor="background.default" minHeight="100vh">
@@ -36,7 +41,17 @@ const Event = () => {
 				<Grid container>
 					<Grid item xs={12} md={6}>
 						<SectionTitle title="Upcoming" />
-						{events.length > 0 ? events.map((event, index) => <TimelineItem key={index} position={index == 0 ? 1 : (index == events.length - 1 ? -1 : 0)} name={event.attributes[`name_${i18n.language}`]} date={event.attributes.start} desc={event.attributes[`desc_${i18n.language}`]} event={event}/>) : <CircularProgress/>}
+						{events.length > 0
+							? events.map((event, index) =>
+								<TimelineItem
+									key={index}
+									position={index === 0 ? 1 : (index === events.length - 1 ? -1 : 0)}
+									name={event.attributes[`name_${i18n.language}`]}
+									date={event.attributes.start}
+									desc={event.attributes[`desc_${i18n.language}`]}
+									event={event}
+								/>)
+							: <CircularProgress />}
 					</Grid>
 				</Grid>
 				<SectionTitle title="All events" />

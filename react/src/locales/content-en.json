@@ -17,5 +17,7 @@
 	"author": "Author",
 	"date": "Date",
 	"related": "Related",
-	"latest": "Latest"
+	"latest": "Latest",
+	"search_result": "Search result",
+	"all_posts": "All posts"
 }

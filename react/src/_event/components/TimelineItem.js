@@ -1,12 +1,10 @@
-import { faSpeakerDeck } from '@fortawesome/free-brands-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { faBox, faHashtag, faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
+import { faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	Box,
 	Button,
 	Card,
-	CardActions,
 	CardContent,
 	CardMedia,
 	Chip,
@@ -14,7 +12,11 @@ import {
 	Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, {
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react';
 import { strapiAxios } from '../../utils/axios';
 
 /*
@@ -24,7 +26,7 @@ import { strapiAxios } from '../../utils/axios';
   - 3: Last element
  */
 
-  const formatDateDDMMYYYY = (date) => {
+const formatDateDDMMYYYY = (date) => {
 	const d = new Date(date);
 	const month = `${d.getMonth() + 1}`.padStart(2, '0');
 	const day = `${d.getDate()}`.padStart(2, '0');
@@ -39,26 +41,26 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 	const previewImage = useRef(null);
 	const content = useRef(null);
 	const [height, setHeight] = useState(0);
-	const [gheight,setGHeight] = useState(0);
+	const [, setGHeight] = useState(0);
 	const [show, setShow] = useState(false);
-
+	
 	useLayoutEffect(() => {
-		if(previewImage.current) {
+		if (previewImage.current) {
 			setHeight(previewImage.current.clientHeight);
 		}
-
-		if(content.content){
+		
+		if (content.content) {
 			setGHeight(content.current.clientHeight);
 		}
-
+		
 		const handleResize = () => {
 			setHeight(previewImage.current.clientHeight);
 			setGHeight(content.current.clientHeight);
 		};
-
+		
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
-
+	
 	return (
 		<div className={classes.root}>
 			<div className={classes.dot} />
@@ -71,9 +73,24 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 				<div className={classes.lineLower} />
 			}
 			<Box marginLeft={12} marginY={2} width="100%">
-				<Card sx={{ width: '100%',height: `${height}px`, overflow: 'hidden', position: 'relative'}} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+				<Card sx={{ width: '100%', height: `${height}px`, overflow: 'hidden', position: 'relative' }}
+				      onMouseEnter={() => setShow(true)}
+				      onMouseLeave={() => setShow(false)}
+				>
 					
-					<CardMedia ref={previewImage} height="300px" component="img" sx={{width: '100%', top: 0,transform: show ? `scale(1.2)` : `scale(1)`, position: 'absolute', transition: 'transform .3s ease-in-out'}} image={strapiAxios.baseURL + event?.attributes?.banner?.data?.attributes?.url} alt={event?.attributes?.banner?.data?.attributes?.url} />
+					<CardMedia ref={previewImage}
+					           height="300px"
+					           component="img"
+					           sx={{
+						           width: '100%',
+						           top: 0,
+						           transform: show ? `scale(1.2)` : `scale(1)`,
+						           position: 'absolute',
+						           transition: 'transform .3s ease-in-out',
+					           }}
+					           image={strapiAxios.baseURL + event?.attributes?.banner?.data?.attributes?.url}
+					           alt={event?.attributes?.banner?.data?.attributes?.url}
+					/>
 					<Box sx={{
 						position: 'absolute',
 						transition: 'all 0.3s ease-in-out',
@@ -81,14 +98,32 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 						background: `linear-gradient(0deg, rgba(8, 8, 8, .8) 0%, rgba(16, 16, 16, 0.1) 70%)`,
 					}}
 					/>
-					<CardContent ref={content}  sx={{width: '100%', bottom: 0, position: 'absolute', boxSizing: 'border-box'}}>
+					<CardContent
+						ref={content}
+						sx={{ width: '100%', bottom: 0, position: 'absolute', boxSizing: 'border-box' }}
+					>
 						<Typography sx={{ fontSize: 14 }} color="white" gutterBottom>
-							<Typography variant="span" component="span" mr={2}><FontAwesomeIcon icon={faCalendar} />() &nbsp; {startDate.trim() === endDate.trim() ? startDate : `${startDate} - ${endDate}`}</Typography>
-							<Chip size="small"sx={{padding: '.5rem', color: 'white'}} icon={<FontAwesomeIcon style={{color: 'white',fontSize: '12px'}} icon={faLaptopMedical}/>}  label={event.attributes.category}></Chip>
+							<Typography
+								variant="span"
+								component="span"
+								mr={2}
+							>
+								<FontAwesomeIcon icon={faCalendar} />&nbsp; {startDate.trim() === endDate.trim() ? startDate : `${startDate} - ${endDate}`}
+							</Typography>
+							<Chip size="small"
+							      sx={{ padding: '.5rem', color: 'white' }}
+							      icon={
+								      <FontAwesomeIcon
+									      style={{ color: 'white', fontSize: '12px' }}
+									      icon={faLaptopMedical}
+								      />
+							      }
+							      label={event.attributes.category}
+							/>
 						</Typography>
-						<Grid container sx={{width: '100%'}}>
-							<Grid item xs={12} md={8} sx={{height: '100%'}}>
-								<Box sx={{height: '100%'}}>
+						<Grid container sx={{ width: '100%' }}>
+							<Grid item xs={12} md={8} sx={{ height: '100%' }}>
+								<Box sx={{ height: '100%' }}>
 									<Typography variant="h5" component="div" color="white">
 										{name}
 									</Typography>
@@ -98,13 +133,20 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 								</Box>
 							</Grid>
 							<Grid item xs={12} md={4}>
-								<Box sx={{height: '100%'}}>
-									<Button size="large" sx={{width: "100%", opacity: show ? 1 : 0, transition: 'opacity .25s ease-in-out'}} variant="outlined">Learn more</Button>
+								<Box sx={{ height: '100%' }}>
+									<Button size="large"
+									        sx={{
+										        width: '100%',
+										        opacity: show ? 1 : 0,
+										        transition: 'opacity .25s ease-in-out',
+									        }}
+									        variant="outlined"
+									>Learn more</Button>
 								</Box>
 							</Grid>
 						</Grid>
 					</CardContent>
-
+				
 				</Card>
 			</Box>
 		</div>

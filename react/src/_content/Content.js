@@ -5,10 +5,13 @@ import {
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageBanner from '../components/layout/PageBanner';
-import Feed from './sections/Feed';
+import { useQuery } from '../utils/hooks';
+import ContentFeed from './sections/ContentFeed';
+import ContentList from './sections/ContentList';
 import FilterBar from './sections/FilterBar';
 
 const Content = () => {
+	const query = useQuery();
 	const [t] = useTranslation('content');
 	const [search, setSearch] = useState(null);
 	
@@ -24,7 +27,11 @@ const Content = () => {
 			<Container maxWidth="lg">
 				<Box display="flex" flexDirection={{ xs: 'column-reverse', md: 'row' }}>
 					<FilterBar setSearch={setSearch} />
-					<Feed />
+					{
+						query.get('page') ?
+							<ContentList /> :
+							<ContentFeed />
+					}
 				</Box>
 			</Container>
 		</Box>
