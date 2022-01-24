@@ -2,7 +2,6 @@ import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
-	alpha,
 	Box,
 	Container,
 	Typography,
@@ -11,7 +10,6 @@ import { useTheme } from '@mui/styles';
 import {
     useContext,
     useEffect,
-    useLayoutEffect,
 	useMemo,
 	useState,
 } from 'react';
@@ -40,13 +38,14 @@ const EventDetail = () => {
 
     useEffect(() => {
         strapiAxios
-            .get(`/api/events?populate=banner,organizers.photo&filters[slug][$eq]=${slug}`)
-            .then(({data}) => {
-                setEvent(data.data[0]);
-            })
-            .catch(err => {
-                openSnackBar(err.toString());
-            });
+        .get(`/api/events?populate=banner,organizers.photo&filters[slug][$eq]=${slug}`)
+        .then(({data}) => {
+            setEvent(data.data[0]);
+        })
+        .catch(err => {
+            openSnackBar(err.toString());
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 	const markdownStyle = {
@@ -68,7 +67,7 @@ const EventDetail = () => {
 	};
 	
 	return (
-		<Container color="textPrimary"
+		<Container color={theme.palette.text.primary}
 		     sx={{
 			     padding: '40px 20px',
 		     }}
