@@ -1,6 +1,4 @@
 import {
-	Box,
-	CircularProgress,
 	Container,
 	Grid,
 } from '@mui/material';
@@ -23,7 +21,7 @@ const MemberSection = () => {
 	
 	useEffect(() => {
 		strapiAxios
-			.get('/api/members?populate=photo&_limit=-1')
+			.get('/api/members?populate=photo&pagination[limit]=-1')
 			.then((response) => {
 				const data = response.data.data;
 				setMembers(data.sort((el1, el2) => (el1.attributes.order - el2.attributes.order)));
