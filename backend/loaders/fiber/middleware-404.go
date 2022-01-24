@@ -1,8 +1,9 @@
 package fiber
 
 import (
-	"Project/types"
 	"github.com/gofiber/fiber/v2"
+
+	"nxkmutt-backend/types"
 )
 
 var notFoundMiddleware = func() fiber.Handler {

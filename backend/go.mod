@@ -1,4 +1,4 @@
-module Project
+module nxkmutt-backend
 
 go 1.17
 

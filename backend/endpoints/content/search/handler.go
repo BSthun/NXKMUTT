@@ -1,10 +1,12 @@
 package search
 
 import (
-	"Project/loaders/database"
-	"github.com/gofiber/fiber/v2"
 	"strconv"
 	"strings"
+
+	"github.com/gofiber/fiber/v2"
+
+	"nxkmutt-backend/loaders/database"
 )
 
 func Handler(c *fiber.Ctx) error {
@@ -15,6 +17,7 @@ func Handler(c *fiber.Ctx) error {
 
 	var queryPublicationId = `SELECT publications.id as id FROM publications INNER JOIN tags_publications_links ON publications.id = tags_publications_links.publication_id `
 
+	// Tags
 	if len(req.TypeTag) != 0 || len(req.TechniqueTags) != 0 || len(req.ThemeTags) != 0 {
 		queryPublicationId += "AND (tags_publications_links.tag_id IN ("
 		if len(req.TypeTag) != 0 {
@@ -67,7 +70,7 @@ func Handler(c *fiber.Ctx) error {
 		queryPublicationId += ") "
 	}
 
-	//query
+	// Search
 	if req.Query != "" {
 		queryPublicationId += `AND (`
 		words := strings.Split(req.Query, " ")
@@ -82,14 +85,16 @@ func Handler(c *fiber.Ctx) error {
 		queryPublicationId += ` OR publications.slug LIKE '%` + req.Query + `%' OR publications.title LIKE '%` + req.Query + `%' OR publications.desc LIKE '%` + req.Query + `%') `
 	}
 
-	//year
-	queryPublicationId += `WHERE publications.published BETWEEN '01-01-` + strconv.Itoa(int(req.YearStart)) + `' AND '12-31-` + strconv.Itoa(int(req.YearEnd)) + `'` + ` GROUP BY publications.id`
+	// Year
+	queryPublicationId += `WHERE publications.published BETWEEN '01-01-` + strconv.Itoa(req.YearStart) + `' AND '12-31-` + strconv.Itoa(req.YearEnd) + `'` + ` GROUP BY publications.id`
+
+	// Database query
 	publicationsIdResult, err := database.PG.Query(queryPublicationId)
 	if err != nil {
 		println(err.Error())
 	}
 
-	//Store publications_id into array
+	// Store publications_id into array
 	var publicationsId []int
 	for publicationsIdResult.Next() {
 		var id int

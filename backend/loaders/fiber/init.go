@@ -1,9 +1,11 @@
 package fiber
 
 import (
-	"Project/endpoints"
-	"github.com/gofiber/fiber/v2"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
+
+	"nxkmutt-backend/endpoints"
 )
 
 var App *fiber.App
@@ -20,7 +22,7 @@ func Init() {
 	})
 	// Import middlewares
 	App.Use(corsMiddleware)
-	//App.Use(recoverMiddleware)
+	App.Use(recoverMiddleware)
 
 	endpoints.Init(App)
 

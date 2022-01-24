@@ -1,8 +1,9 @@
 package endpoints
 
 import (
-	"Project/endpoints/content/search"
 	"github.com/gofiber/fiber/v2"
+
+	"nxkmutt-backend/endpoints/content/search"
 )
 
 func Init(app *fiber.App) {
