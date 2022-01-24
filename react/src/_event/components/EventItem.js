@@ -8,7 +8,7 @@ import {
 	CardContent,
 	CardMedia,
 	Chip,
-	Grid,
+	Stack,
 	Typography,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
@@ -35,7 +35,7 @@ const formatDateDDMMYYYY = (date) => {
 	return `${day}/${month}/${year}`;
 };
 
-const TimelineItem = ({ position, name, date, desc, event }) => {
+const EventItem = ({ position, name, date, desc, event }) => {
 	const classes = useStyles();
 	const startDate = formatDateDDMMYYYY(event.attributes.start);
 	const endDate = formatDateDDMMYYYY(event.attributes.end);
@@ -64,21 +64,12 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 	
 	return (
 		<div className={classes.root}>
-			<div className={classes.dot} />
-			{
-				position <= 0 &&
-				<div className={classes.lineUpper} />
-			}
-			{
-				position >= 0 &&
-				<div className={classes.lineLower} />
-			}
-			<Box marginLeft={12} marginY={2} width="100%">
-				<Card sx={{ width: '100%', height: `${height}px`, overflow: 'hidden', position: 'relative' }}
-				      onMouseEnter={() => setShow(true)}
-				      onMouseLeave={() => setShow(false)}
+			<Box marginY={1} width="100%">
+				<Card
+					sx={{ width: '100%', height: `${height}px`, overflow: 'hidden', position: 'relative' }}
+					onMouseEnter={() => setShow(true)}
+					onMouseLeave={() => setShow(false)}
 				>
-					
 					<CardMedia ref={previewImage}
 					           height="300px"
 					           component="img"
@@ -122,38 +113,32 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 							      label={event.attributes.category}
 							/>
 						</Typography>
-						<Grid container sx={{ width: '100%' }}>
-							<Grid item xs={12} md={8} sx={{ height: '100%' }}>
-								<Box sx={{ height: '100%' }}>
-									<Typography variant="h5" component="div" color="white">
-										{name}
-									</Typography>
-									<Typography variant="body2" component="div" color="white">
-										{desc}
-									</Typography>
-								</Box>
-							</Grid>
-							<Grid item xs={12} md={4}>
-								<Box sx={{ height: '100%', display: 'flex', alignItems: 'flex-end' }}>
-									<Button
-										LinkComponent={Link}
-										to={`/event/${event?.attributes?.slug}`}
-										size="large"
-										sx={{
-											width: '100%',
-											opacity: show ? 1 : 0,
-											transition: 'opacity .25s ease-in-out',
-										}}
-										variant="outlined"
-										color="snow"
-									>
-										Learn more
-									</Button>
-								</Box>
-							</Grid>
-						</Grid>
+						<Stack direction="row">
+							<Box flex={1} sx={{ height: '100%' }}>
+								<Typography variant="h5" component="div" color="white">
+									{name}
+								</Typography>
+								<Typography variant="body2" component="div" color="white">
+									{desc}
+								</Typography>
+							</Box>
+							<Stack marginLeft={8} justifyContent="flex-end">
+								<Button
+									LinkComponent={Link}
+									to={`/event/${event?.attributes?.slug}`}
+									size="large"
+									sx={{
+										opacity: show ? 1 : 0,
+										transition: 'opacity .25s ease-in-out',
+									}}
+									variant="outlined"
+									color="snow"
+								>
+									Learn more
+								</Button>
+							</Stack>
+						</Stack>
 					</CardContent>
-				
 				</Card>
 			</Box>
 		</div>
@@ -192,6 +177,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-TimelineItem.propTypes = {};
+EventItem.propTypes = {};
 
-export default TimelineItem;
+export default EventItem;

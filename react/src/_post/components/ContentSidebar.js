@@ -41,7 +41,7 @@ const ContentSidebar = ({ post }) => {
 	}, [post]);
 	
 	return (
-		<Stack sx={{ padding: '24px 20px' }} width={{ xs: '100%', md: 300 }}>
+		<Stack sx={{ padding: '24px 20px' }} width={{ xs: 'calc(100% - 40px)', md: 300 }}>
 			{/* Author */}
 			<SectionTitle title={t('author')} />
 			<Stack direction="column" gap={2}>

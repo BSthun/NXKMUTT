@@ -1,6 +1,5 @@
 import {
 	Box,
-	CircularProgress,
 	Container,
 	Grid,
 } from '@mui/material';
@@ -10,12 +9,13 @@ import {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import CenteredCircularProgress from '../components/fork/CenteredCircularProgress';
 import PageBanner from '../components/layout/PageBanner';
 import SectionTitle from '../components/layout/SectionTitle';
 import { FloatingContext } from '../contexts/FloatingContext';
 import { strapiAxios } from '../utils/axios';
 import { useScroll } from '../utils/scroll';
-import TimelineItem from './components/TimelineItem';
+import EventItem from './components/EventItem';
 
 const Event = () => {
 	useScroll();
@@ -40,30 +40,28 @@ const Event = () => {
 		<Box display="flex" flexDirection="column" bgcolor="background.default" minHeight="100vh">
 			<PageBanner title={t('event')} breadcrumbs={[{ href: '/', text: 'Home' }]} />
 			<Container maxWidth="lg" sx={{ paddingTop: 4 }}>
-				<Grid container>
-					<Grid item xs={12} md={6}>
-						<SectionTitle title="Upcoming" />
+				<Grid container mb={8}>
+					<SectionTitle title="All events" />
+					<Grid container spacing={6}>
 						{events.length > 0
 							? events.map((event, index) =>
-								<TimelineItem
-									key={index}
-									position={index === 0 ? 1 : (index === events.length - 1 ? -1 : 0)}
-									name={event.attributes[`name_${i18n.language}`]}
-									date={event.attributes.start}
-									desc={event.attributes[`desc_${i18n.language}`]}
-									event={event}
-								/>)
-							: <CircularProgress />}
-					</Grid>
-				</Grid>
-				<SectionTitle title="All events" />
-				<Grid container>
-					<Grid item xs={4} md={12}>
+								<Grid item xs={12} md={6}>
+									<EventItem
+										key={index}
+										name={event.attributes[`name_${i18n.language}`]}
+										date={event.attributes.start}
+										desc={event.attributes[`desc_${i18n.language}`]}
+										event={event}
+									/>
+								</Grid>,
+							)
+							: <CenteredCircularProgress />}
 					</Grid>
 				</Grid>
 			</Container>
 		</Box>
 	);
+	
 };
 
 export default Event;

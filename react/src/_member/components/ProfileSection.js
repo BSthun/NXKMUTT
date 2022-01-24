@@ -92,10 +92,10 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 	const PhoneItem = ({ phone, title }, index) =>
 		<Stack direction="row" key={index} mt={1}>
 			<Box minWidth={24} alignSelf="center">
-			{
-				index ===0 &&
+				{
+					index === 0 &&
 					<FontAwesomeIcon icon={faPhone} />
-			}
+				}
 			</Box>
 			<Typography
 				variant="body1"
