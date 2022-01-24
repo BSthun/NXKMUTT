@@ -17,6 +17,7 @@ import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
+import EventDetail from './_event/EventDetail';
 
 const App = () => {
 	return (
@@ -34,6 +35,9 @@ const App = () => {
 							</Route>
 							<Route exact path="/event">
 								<Event />
+							</Route>
+							<Route exact path="/event/:slug">
+								<EventDetail />
 							</Route>
 							<Route exact path="/content">
 								<Content />

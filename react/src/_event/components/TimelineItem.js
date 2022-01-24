@@ -17,6 +17,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
+import { Link } from 'react-router-dom';
 import { strapiAxios } from '../../utils/axios';
 
 /*
@@ -135,6 +136,8 @@ const TimelineItem = ({ position, name, date, desc, event }) => {
 							<Grid item xs={12} md={4}>
 								<Box sx={{ height: '100%', display: 'flex', alignItems: 'flex-end' }}>
 									<Button
+										LinkComponent={Link}
+										to={`/event/${event?.attributes?.slug}`}
 										size="large"
 										sx={{
 											width: '100%',
