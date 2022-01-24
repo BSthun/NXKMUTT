@@ -10,6 +10,7 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import CenteredCircularProgress from '../../components/fork/CenteredCircularProgress';
 import { strapiAxios } from '../../utils/axios';
 import MemberItem from '../components/MemberItem';
 import Title from '../components/Title';
@@ -54,9 +55,7 @@ const MemberSection = () => {
 								)
 							}
 						</Grid> :
-						<Box display="flex" justifyContent="center" paddingTop="20px">
-							<CircularProgress />
-						</Box>
+						<CenteredCircularProgress />
 				}
 			</Container>
 		</div>

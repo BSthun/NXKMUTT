@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 const AuthorAvatar = ({ name, subject, src, member }) => {
 	const theme = useTheme();
-	console.log(theme);
 	
 	return (
 		<Link to={`/member/${member}`}>

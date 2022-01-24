@@ -1,12 +1,19 @@
 import {
 	Chip,
 	Stack,
+	Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { strapiAxios } from '../../utils/axios';
 import AuthorAvatar from './AuthorAvatar';
+
+const NoInfo = () => {
+	return (
+		<Typography variant="small1" color="text.secondary">No information</Typography>
+	);
+};
 
 const ContentSidebar = ({ post }) => {
 	const [t, i18n] = useTranslation('content');
@@ -19,11 +26,19 @@ const ContentSidebar = ({ post }) => {
 		username: author.attributes.username,
 	})) || [];
 	
-	const tags = post?.attributes?.tags?.data.map(tag => ({
-		id: tag.id,
-		name: tag.attributes.name,
-		category: tag.attributes.category,
-	})) || [];
+	const [typeTag, techniqueTag, themeTag] = useMemo(() => {
+		const tags = post.attributes?.tags.data?.map(tag => ({
+			id: tag.id,
+			name: tag.attributes.name,
+			category: tag.attributes.category,
+		})) || [];
+		
+		return [
+			tags.filter((item) => item.category === 'type'),
+			tags.filter((item) => item.category === 'technique'),
+			tags.filter((item) => item.category === 'theme'),
+		];
+	}, [post]);
 	
 	return (
 		<Stack sx={{ padding: '24px 20px' }} width={{ xs: '100%', md: 300 }}>
@@ -31,16 +46,18 @@ const ContentSidebar = ({ post }) => {
 			<SectionTitle title={t('author')} />
 			<Stack direction="column" gap={2}>
 				{
-					authors.map(
-						item =>
-							<AuthorAvatar
-								name={item.name}
-								subject={item.position}
-								key={item.id}
-								src={item.url}
-								member={item.username}
-							/>,
-					)
+					authors.length > 0 ?
+						authors.map(
+							item =>
+								<AuthorAvatar
+									name={item.name}
+									subject={item.position}
+									key={item.id}
+									src={item.url}
+									member={item.username}
+								/>,
+						)
+						: <NoInfo />
 				}
 			</Stack>
 			
@@ -48,33 +65,33 @@ const ContentSidebar = ({ post }) => {
 			<SectionTitle title={t('type')} />
 			<Stack direction="row" gap={1} flexWrap="wrap">
 				{
-					tags
-						.filter((item) => item.category === 'type')
-						.map(
+					typeTag.length > 0 ?
+						typeTag.map(
 							(item, id) => <Chip label={item.name} key={id} variant="outlined" />,
 						)
+						: <NoInfo />
 				}
 			</Stack>
 			
 			<SectionTitle title={t('technique')} />
 			<Stack direction="row" gap={1} flexWrap="wrap">
 				{
-					tags
-						.filter((item) => item.category === 'technique')
-						.map(
+					techniqueTag.length > 0 ?
+						techniqueTag.map(
 							(item, id) => <Chip label={item.name} key={id} variant="outlined" />,
 						)
+						: <NoInfo />
 				}
 			</Stack>
 			
 			<SectionTitle title={t('theme')} />
 			<Stack direction="row" gap={1} flexWrap="wrap">
 				{
-					tags
-						.filter((item) => item.category === 'theme')
-						.map(
+					themeTag.length > 0 ?
+						themeTag.map(
 							(item, id) => <Chip label={item.name} key={id} variant="outlined" />,
 						)
+						: <NoInfo />
 				}
 			</Stack>
 		</Stack>

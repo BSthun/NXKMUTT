@@ -1,6 +1,4 @@
 import {
-	Box,
-	CircularProgress,
 	Container,
 	Stack,
 } from '@mui/material';
@@ -10,17 +8,19 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import CenteredCircularProgress from '../components/fork/CenteredCircularProgress';
 import PageBanner from '../components/layout/PageBanner';
 import { strapiAxios } from '../utils/axios';
+import { useScroll } from '../utils/scroll';
 import ProfileBody from './components/ProfileBody';
 
 const Member = () => {
+	useScroll();
 	const { username } = useParams();
 	const [, i18n] = useTranslation('home');
 	const [member, setMember] = useState(null);
 	
 	useEffect(() => {
-		// TODO: https://nxkmutt-strapi.bsthun.com/api/members/7?populate=emails,phones,socials,attrs,publications.banner
 		strapiAxios
 			.get(`/api/members?populate=photo,emails,phones,socials,attrs,publications.banner&filters[username][$eq]=${username}`)
 			.then((response) => {
@@ -40,19 +40,12 @@ const Member = () => {
 			            ]}
 			/>
 			
-			<Container maxWidth="lg">
-				<Box display="flex"
-				     width="100%"
-				     flexDirection={{ xs: 'column-reverse', md: 'row' }}
-				>
-					{
-						member ? <ProfileBody member={member} /> :
-							<Box display="flex" justifyContent="center" paddingTop="20px">
-								<CircularProgress />
-							</Box>
-						
-					}
-				</Box>
+			<Container maxWidth="lg" style={{ minHeight: 'calc(100vh - 308px)' }}>
+				{
+					member ?
+						<ProfileBody member={member} />
+						: <CenteredCircularProgress />
+				}
 			</Container>
 		</Stack>
 	);

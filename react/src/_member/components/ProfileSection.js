@@ -86,7 +86,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 		</Typography>;
 	
 	const SocialItem = ({ type, value, link, title }, index) =>
-		<Typography variant="p" component="div" color="textPrimary" key={link}>
+		<Typography variant="p" component="div" color="textPrimary" key={index}>
 			<FontAwesomeIcon icon={socialIcons[type] || socialIcons.web} style={{ minWidth: '2rem' }} />
 			{
 				title ?

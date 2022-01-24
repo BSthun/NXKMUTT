@@ -60,8 +60,9 @@ const ContentBody = ({ post }) => {
 		>
 			<Typography variant="h4">{post?.attributes.title}</Typography>
 			<Typography variant="body1" mt={2} color="textSecondary" fontWeight={600}>
-				<FontAwesomeIcon icon={faCalendarAlt}
-				                 style={{ marginRight: '.5rem' }}
+				<FontAwesomeIcon
+					icon={faCalendarAlt}
+					style={{ marginRight: '.5rem' }}
 				/> {post?.attributes.published} · {readingTime} mins read
 			</Typography>
 			
@@ -97,7 +98,7 @@ const ContentBody = ({ post }) => {
 					/>
 				</Box>
 				<Markdown className="markdown">{post?.attributes?.content}</Markdown>
-				<Reference files={files} links={links}/>
+				<Reference files={files} links={links} />
 			</Box>
 		</Box>
 	);
