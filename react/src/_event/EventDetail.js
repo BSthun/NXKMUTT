@@ -1,12 +1,10 @@
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import {
 	Box,
 	Container,
 	Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/styles';
 import {
 	useContext,
 	useEffect,
@@ -24,7 +22,6 @@ import Reference from './components/Reference';
 const EventDetail = () => {
 	const [t, i18n] = useTranslation('content');
 	const { slug } = useParams();
-	const theme = useTheme();
 	const [loaded, setLoaded] = useState(false);
 	const [event, setEvent] = useState(null);
 	const { openSnackBar } = useContext(FloatingContext);

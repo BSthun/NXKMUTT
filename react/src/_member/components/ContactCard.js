@@ -21,13 +21,12 @@ import {
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/styles';
+import { useTranslation } from 'react-i18next';
 
-const ProfileSection = ({ title = '{{section_title}}', member, attributes = false }) => {
-	//#region MEMBER DATA
+const ContactCard = ({ member }) => {
 	const theme = useTheme();
 	const emails = member.attributes.emails;
 	const phones = member.attributes.phones;
-	const attrs = member.attributes.attrs;
 	const socials = member.attributes.socials;
 	const socialIcons = {
 		facebook: faFacebook,
@@ -38,34 +37,13 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 		linkedin: faLinkedin,
 		web: faGlobe,
 	};
-	//#endregion
-	//#region COMPONENTS
-	const CardTitle =
-		<Typography
-			variant="h5"
-			color="textPrimary"
-			fontWeight="600"
-			mb={3}
-		>
-			{title}
-		</Typography>;
-	
-	const AttributeItem = ({ name, value }, index) =>
-		<Box key={index}>
-			<Typography variant="h6" fontWeight={600} lineHeight={2}>{name}</Typography>
-			<Typography
-				variant="body1"
-				component="div"
-				dangerouslySetInnerHTML={{ __html: value.split('\n').join('<br>') }}
-			/>
-		</Box>;
 	
 	const EmailItem = ({ email, title }, index) =>
-		<Stack direction="row" key={index} mt={1}>
-			<Box minWidth={24} alignSelf="center">
+		<Stack direction="row" alignItems="center" key={index} mt={1}>
+			<Box minWidth={28} alignSelf="center">
 				{
 					index === 0 &&
-					<FontAwesomeIcon icon={faEnvelope} />
+					<FontAwesomeIcon icon={faEnvelope} style={{ fontSize: 20, marginTop: 6 }} />
 				}
 			</Box>
 			<Typography
@@ -121,7 +99,7 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 	const SocialItem = ({ type, value, link, title }, index) =>
 		<Stack direction="row" key={index} mt={1}>
 			<Box minWidth={24} alignSelf="center">
-				<FontAwesomeIcon icon={socialIcons[type] || socialIcons.web} />
+				<FontAwesomeIcon icon={socialIcons[type] || socialIcons.web} style={{ fontSize: 32 }} />
 			</Box>
 			<Typography
 				variant="body1"
@@ -136,26 +114,20 @@ const ProfileSection = ({ title = '{{section_title}}', member, attributes = fals
 			</Typography>
 		</Stack>;
 	
-	const AttributeArea =
-		<Stack direction={'column'} gap={2}>
-			{attrs.map(AttributeItem)}
-		</Stack>;
-	
-	const ContactArea = <Stack direction={'column'} gap={2}>
-		<Box>{emails.map(EmailItem)}</Box>
-		<Box>{phones.map(PhoneItem)}</Box>
-		<Box>{socials.map(SocialItem)}</Box>
-	</Stack>;
-	//#endregion
-	
 	return (
 		<Card variant="outlined" sx={{ height: '100%' }}>
 			<CardContent>
-				{CardTitle}
-				{attributes ? AttributeArea : ContactArea}
+				<Typography variant="h5" color="primary" fontWeight="600" mb={3}>
+					Contact Information
+				</Typography>
+				<Stack direction={'column'} gap={2}>
+					<Box>{emails.map(EmailItem)}</Box>
+					<Box>{phones.map(PhoneItem)}</Box>
+					<Box>{socials.map(SocialItem)}</Box>
+				</Stack>
 			</CardContent>
 		</Card>
 	);
 };
 
-export default ProfileSection;
+export default ContactCard;

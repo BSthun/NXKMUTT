@@ -1,4 +1,5 @@
 import {
+	Box,
 	Container,
 	Grid,
 } from '@mui/material';
@@ -13,6 +14,44 @@ import { strapiAxios } from '../../utils/axios';
 import MemberItem from '../components/MemberItem';
 import Title from '../components/Title';
 
+const sections = [
+	{
+		title: 'Faculty Member',
+		type: 'faculty_member',
+	},
+	{
+		title: 'Research Assistant',
+		type: 'research_assistant',
+	},
+	{
+		title: 'Graduate Student',
+		type: 'graduate_student',
+	},
+	{
+		title: 'Postgraduate Student',
+		type: 'postgraduate_student',
+	},
+	{
+		title: 'KMUTT Collaborator',
+		type: 'kmutt_collaborator',
+	},
+	{
+		title: 'External Collaborator',
+		type: 'external_collaborator',
+	},
+	{
+		title: 'International Collaborator',
+		type: 'international_collaborator',
+	},
+	{
+		title: 'Administrator',
+		type: 'administrator',
+	},
+	{
+		title: 'Other',
+		type: 'other',
+	},
+];
 const MemberSection = () => {
 	const classes = useStyles();
 	const [, i18n] = useTranslation('home');
@@ -34,26 +73,31 @@ const MemberSection = () => {
 	return (
 		<div className={classes.root}>
 			<Container maxWidth="lg">
-				<Title color="#89c934">NX MEMBERS</Title>
 				{
 					members ?
-						<Grid container spacing={4}>
-							{
-								members.map(
-									(el) => (
-										<Grid item xs={12} md={4} lg={3} key={el.attributes.username}>
-											<MemberItem
-												name={`${el.attributes[`prefix_${i18n.language}`] || ''} ${el.attributes[`name_${i18n.language}`]} ${el.attributes[`surname_${i18n.language}`]}`}
-												position={el.attributes.position}
-												photo={el.attributes.photo.data?.attributes.url || '/'}
-												link={`/member/${el.attributes.username}`}
-											/>
-										</Grid>
-									),
-								)
-							}
-						</Grid> :
-						<CenteredCircularProgress />
+						sections.map((section) => members.filter((el) => (el.attributes.type === section.type)).length > 0 && (
+							<Box key={section.type}>
+								<Title color="#89c934">{section.title}</Title>
+								{
+									<Grid container spacing={4}>
+										{
+											members.filter((el) => (el.attributes.type === section.type)).map(
+												(el) => (
+													<Grid item xs={12} md={4} lg={3} key={el.attributes.username}>
+														<MemberItem
+															name={`${el.attributes[`prefix_${i18n.language}`] || ''} ${el.attributes[`name_${i18n.language}`]} ${el.attributes[`surname_${i18n.language}`]}`}
+															position={el.attributes.position}
+															photo={el.attributes.photo.data?.attributes.url || '/'}
+															link={`/member/${el.attributes.username}`}
+														/>
+													</Grid>
+												),
+											)
+										}
+									</Grid>
+								}
+							</Box>
+						)) : <CenteredCircularProgress />
 				}
 			</Container>
 		</div>

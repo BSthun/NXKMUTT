@@ -22,7 +22,7 @@ const Member = () => {
 	
 	useEffect(() => {
 		strapiAxios
-			.get(`/api/members?populate=photo,emails,phones,socials,attrs,publications.banner&filters[username][$eq]=${username}`)
+			.get(`/api/members?populate=photo,emails,phones,socials,affliliations.affiliation,educations,attrs,publications.banner&filters[username][$eq]=${username}`)
 			.then((response) => {
 				setMember(response.data.data[0]);
 			})

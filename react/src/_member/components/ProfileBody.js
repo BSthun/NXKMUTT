@@ -9,16 +9,24 @@ import { useTranslation } from 'react-i18next';
 import BlogItem from '../../_content/components/BlogItem';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { strapiAxios } from '../../utils/axios';
-import ProfileSection from './ProfileSection';
+import AffiliationCard from './AffiliationCard';
+import AttributeCard from './AttributeCard';
+import ContactCard from './ContactCard';
+import EducationCard from './EducationCard';
 
 const ProfileBody = ({ member }) => {
 	const [t, i18n] = useTranslation('content');
 	
 	return (
 		<Box minHeight="80vh" flex={1}>
-			<Stack direction={{ xs: 'column', md: 'row' }} alignItems="center" gap={5} m="36px 12px">
+			<Stack direction={{ xs: 'column', md: 'row' }}
+			       alignItems="center"
+			       justifyContent="center"
+			       gap={8}
+			       m="36px 12px"
+			>
 				<Box sx={{
-					width: 220,
+					width: 240,
 					aspectRatio: '1',
 					overflow: 'hidden',
 					borderRadius: '50%',
@@ -29,29 +37,47 @@ const ProfileBody = ({ member }) => {
 					     alt={member.name}
 					/>
 				</Box>
-				<Box flex={1} textAlign={{ xs: 'center', md: 'unset' }}>
+				<Box flex={1} textAlign={{ xs: 'center', md: 'unset' }} maxWidth={720}>
 					<Typography
 						variant="h3"
 						color="textPrimary"
+						gutterBottom
 					>
 						{member.attributes[`prefix_${i18n.language}`]} {member.attributes[`name_${i18n.language}`]} {member.attributes[`surname_${i18n.language}`]}
 					</Typography>
 					<Typography
 						variant="h6"
 						color="textPrimary"
+						gutterBottom
 					>
 						{member.attributes[`position`]}
+					</Typography>
+					<Typography
+						variant="caption"
+						color="textPrimary"
+					>
+						{member.attributes[`bio`]}
 					</Typography>
 				</Box>
 			</Stack>
 			
 			<Grid container spacing={5}>
 				<Grid item md={6} xs={12}>
-					<ProfileSection title="Contact details" member={member} />
+					<AffiliationCard member={member} />
 				</Grid>
 				<Grid item md={6} xs={12}>
-					<ProfileSection title="Attributes" member={member} attributes />
+					<EducationCard member={member} />
 				</Grid>
+				<Grid item md={6} xs={12}>
+					<ContactCard member={member} />
+				</Grid>
+				{
+					member.attributes.attrs.map((attr, index) => (
+						<Grid item md={6} xs={12}>
+							<AttributeCard attr={{attr}} />
+						</Grid>
+					))
+				}
 			</Grid>
 			
 			<SectionTitle title={t('publications')} />
