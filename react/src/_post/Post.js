@@ -8,7 +8,7 @@ import {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom';
 import CenteredCircularProgress from '../components/fork/CenteredCircularProgress';
 import PageBanner from '../components/layout/PageBanner';
 import { FloatingContext } from '../contexts/FloatingContext';

@@ -1,13 +1,14 @@
 import {
 	BrowserRouter,
-	Redirect,
+	Navigate,
 	Route,
-	Switch,
+	Routes,
 } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import About from './_about/About';
 import Content from './_content/Content';
 import Event from './_event/Event';
+import EventDetail from './_event/EventDetail';
 import Home from './_home/Home';
 import Member from './_member/Member';
 import Post from './_post/Post';
@@ -17,7 +18,6 @@ import { FloatingContextProvider } from './contexts/FloatingContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
 import './locales';
 import './styles';
-import EventDetail from './_event/EventDetail';
 
 const App = () => {
 	return (
@@ -26,9 +26,9 @@ const App = () => {
 				<ParallaxProvider>
 					<BrowserRouter>
 						<Navbar />
-						<Switch>
+						<Routes>
 							<Route exact path="/">
-								<Redirect to={{ pathname: '/home' }} />
+								<Navigate to="/" />
 							</Route>
 							<Route exact path="/home">
 								<Home />
@@ -45,14 +45,13 @@ const App = () => {
 							<Route exact path="/about">
 								<About />
 							</Route>
-							<Redirect exact path='/post' to={{ pathname: '/home' }} />
 							<Route path="/post/:slug">
 								<Post />
 							</Route>
 							<Route path="/member/:username">
 								<Member />
 							</Route>
-						</Switch>
+						</Routes>
 						<Footer />
 					</BrowserRouter>
 				</ParallaxProvider>

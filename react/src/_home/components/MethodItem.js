@@ -4,17 +4,17 @@ import makeStyles from '@mui/styles/makeStyles';
 import { alpha } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Hexagon from '../../images/mask/hexagon.svg';
 
 const MethodItem = ({ image, fa, title, subtitle, styles }) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const classes = useStyles({
 		image,
 	});
 	
 	return (
-		<Box onClick={history.push.bind(this, `/methods/${title.toLowerCase()}`)} className={classes.root} {...styles}>
+		<Box onClick={navigate.bind(this, `/methods/${title.toLowerCase()}`)} className={classes.root} {...styles}>
 			<div className={classes.image} />
 			<Box className={classes.content}>
 				<FontAwesomeIcon icon={fa} size="3x" />

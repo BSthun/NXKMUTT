@@ -13,7 +13,7 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { FloatingContext } from '../../contexts/FloatingContext';
 import { strapiAxios } from '../../utils/axios';
@@ -23,7 +23,7 @@ import BlogItem from '../components/BlogItem';
 
 const Feed = () => {
 	const query = useQuery();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const classes = useStyles();
 	const { openSnackBar } = useContext(FloatingContext);
 	const [t] = useTranslation('content');
@@ -63,7 +63,7 @@ const Feed = () => {
 	
 	const setPage = (e, page) => {
 		scroll();
-		history.replace(`/content/?result=${result}&page=${page}`);
+		navigate.replace(`/content/?result=${result}&page=${page}`);
 	};
 	
 	return (

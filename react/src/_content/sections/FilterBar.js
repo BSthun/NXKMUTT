@@ -18,7 +18,7 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SectionTitle from '../../components/layout/SectionTitle';
 import { FloatingContext } from '../../contexts/FloatingContext';
 import { strapiAxios } from '../../utils/axios';
@@ -42,7 +42,7 @@ const CustomCheckbox = withStyles({
 
 const FilterBar = () => {
 	const classes = useStyles();
-	const history = useHistory();
+	const navigate = useNavigate();
 	const { openSnackBar } = useContext(FloatingContext);
 	const [t] = useTranslation('content');
 	
@@ -88,7 +88,7 @@ const FilterBar = () => {
 					openSnackBar('No search result found');
 					return;
 				}
-				history.push(`/content/?result=${data.data.join(',')}&page=1`);
+				navigate(`/content/?result=${data.data.join(',')}&page=1`);
 			})
 			.catch((error) => {
 				openSnackBar(error.message);

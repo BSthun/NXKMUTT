@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import {
 	Link,
-	useHistory,
 	useLocation,
+	useNavigate,
 } from 'react-router-dom';
 
 // Functional link component which delays page navigation
 export const DelayLink = ({ delay, onDelayStart, onDelayEnd, replace, to, ...rest }) => {
 	let timeout = null;
-	let history = useHistory();
+	let navigate = useNavigate();
 	let location = useLocation();
 	
 	useEffect(() => {
@@ -38,11 +38,9 @@ export const DelayLink = ({ delay, onDelayStart, onDelayEnd, replace, to, ...res
 		e.preventDefault();
 		
 		timeout = setTimeout(() => {
-			if (replace) {
-				history.replace(to);
-			} else {
-				history.push(to);
-			}
+			navigate(to, {
+				replace: replace,
+			});
 			onDelayEnd(e, to);
 		}, delay);
 	};
