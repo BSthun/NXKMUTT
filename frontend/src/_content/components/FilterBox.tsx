@@ -1,30 +1,26 @@
-import {
-	faMinus,
-	faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Box,
-	Button,
-	Stack,
-	Typography,
-} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React, {
-	useRef,
-	useState,
-} from 'react';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Button, Stack, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import React, { useRef, useState } from 'react'
 
 const FilterBox = ({ children, text }) => {
-	const classes = useStyles();
-	
-	const [opened, setOpened] = useState(false);
-	const contentRef = useRef();
-	
+	const classes = useStyles()
+
+	const [opened, setOpened] = useState(false)
+	const contentRef = useRef()
+
 	return (
 		<Box className={classes.filterBox}>
-			<Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ marginY: 2 }}>
-				<Typography variant="p" color="textPrimary">{text}</Typography>
+			<Stack
+				direction="row"
+				justifyContent="space-between"
+				alignItems="center"
+				sx={{ marginY: 2 }}
+			>
+				<Typography variant="p" color="textPrimary">
+					{text}
+				</Typography>
 				<Button
 					sx={{ minWidth: 0, paddingX: 2, paddingY: 1.5 }}
 					variant="outlined"
@@ -33,18 +29,19 @@ const FilterBox = ({ children, text }) => {
 					<FontAwesomeIcon icon={opened ? faMinus : faPlus} />
 				</Button>
 			</Stack>
-			<Box height={opened ? contentRef.current?.offsetHeight : 0}
-			     style={{ transition: '0.25s all', marginTop: 10 }}
-			     overflow="hidden"
-			     width="fit-content"
+			<Box
+				height={opened ? contentRef.current?.offsetHeight : 0}
+				style={{ transition: '0.25s all', marginTop: 10 }}
+				overflow="hidden"
+				width="fit-content"
 			>
 				<Box className={classes.subTitle} ref={contentRef}>
 					{children}
 				</Box>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	section: {
@@ -58,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	filterBox: {
-		
 		height: 'auto',
 		width: '100%',
 	},
@@ -90,6 +86,6 @@ const useStyles = makeStyles((theme) => ({
 			width: 150,
 		},
 	},
-}));
+}))
 
-export default FilterBox;
+export default FilterBox

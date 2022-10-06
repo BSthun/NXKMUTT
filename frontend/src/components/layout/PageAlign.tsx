@@ -1,13 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-const PageAlign = props => {
-	return (
-		<div>
-		
-		</div>
-	);
-};
+const PageAlign = (props) => {
+	return <div></div>
+}
 
-PageAlign.propTypes = {};
+PageAlign.propTypes = {}
 
-export default PageAlign;
+export default PageAlign

@@ -1,22 +1,21 @@
 body.theme-light {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 body.theme-dark {
-    background-color: #121212;
+	background-color: #121212;
 }
 
-
-body.theme-light ::selection{
-    background-color: black;
-    color: white;
+body.theme-light ::selection {
+	background-color: black;
+	color: white;
 }
 
-body.theme-dark ::selection{
-    background-color: white;
-    color: black;
+body.theme-dark ::selection {
+	background-color: white;
+	color: black;
 }
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }

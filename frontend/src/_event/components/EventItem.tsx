@@ -1,6 +1,6 @@
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { faLaptopMedical } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	Box,
 	Button,
@@ -10,15 +10,11 @@ import {
 	Chip,
 	Stack,
 	Typography,
-} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React, {
-	useLayoutEffect,
-	useRef,
-	useState,
-} from 'react';
-import { Link } from 'react-router-dom';
-import { strapiAxios } from '../../utils/axios';
+} from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import React, { useLayoutEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { strapiAxios } from '../../utils/axios'
 
 /*
  Position:
@@ -28,97 +24,127 @@ import { strapiAxios } from '../../utils/axios';
  */
 
 const formatDateDDMMYYYY = (date) => {
-	const d = new Date(date);
-	const month = `${d.getMonth() + 1}`.padStart(2, '0');
-	const day = `${d.getDate()}`.padStart(2, '0');
-	const year = d.getFullYear();
-	return `${day}/${month}/${year}`;
-};
+	const d = new Date(date)
+	const month = `${d.getMonth() + 1}`.padStart(2, '0')
+	const day = `${d.getDate()}`.padStart(2, '0')
+	const year = d.getFullYear()
+	return `${day}/${month}/${year}`
+}
 
 const EventItem = ({ position, name, date, desc, event }) => {
-	const classes = useStyles();
-	const startDate = formatDateDDMMYYYY(event.attributes.start);
-	const endDate = formatDateDDMMYYYY(event.attributes.end);
-	const previewImage = useRef(null);
-	const content = useRef(null);
-	const [height, setHeight] = useState(0);
-	const [, setGHeight] = useState(0);
-	const [show, setShow] = useState(false);
-	
+	const classes = useStyles()
+	const startDate = formatDateDDMMYYYY(event.attributes.start)
+	const endDate = formatDateDDMMYYYY(event.attributes.end)
+	const previewImage = useRef(null)
+	const content = useRef(null)
+	const [height, setHeight] = useState(0)
+	const [, setGHeight] = useState(0)
+	const [show, setShow] = useState(false)
+
 	useLayoutEffect(() => {
 		if (previewImage.current) {
-			setHeight(previewImage.current.clientHeight);
+			setHeight(previewImage.current.clientHeight)
 		}
-		
+
 		if (content.content) {
-			setGHeight(content.current.clientHeight);
+			setGHeight(content.current.clientHeight)
 		}
-		
+
 		const handleResize = () => {
-			setHeight(previewImage.current.clientHeight);
-			setGHeight(content.current.clientHeight);
-		};
-		
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
-	
+			setHeight(previewImage.current.clientHeight)
+			setGHeight(content.current.clientHeight)
+		}
+
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
 	return (
 		<div className={classes.root}>
 			<Box marginY={1} width="100%">
 				<Card
-					sx={{ width: '100%', height: `${height}px`, overflow: 'hidden', position: 'relative' }}
+					sx={{
+						width: '100%',
+						height: `${height}px`,
+						overflow: 'hidden',
+						position: 'relative',
+					}}
 					onMouseEnter={() => setShow(true)}
 					onMouseLeave={() => setShow(false)}
 				>
-					<CardMedia ref={previewImage}
-					           height="300px"
-					           component="img"
-					           sx={{
-						           width: '100%',
-						           top: 0,
-						           transform: show ? `scale(1.2)` : `scale(1)`,
-						           position: 'absolute',
-						           transition: 'transform .3s ease-in-out',
-					           }}
-					           image={strapiAxios.baseURL + event?.attributes?.banner?.data?.attributes?.url}
-					           alt={event?.attributes?.banner?.data?.attributes?.url}
+					<CardMedia
+						ref={previewImage}
+						height="300px"
+						component="img"
+						sx={{
+							width: '100%',
+							top: 0,
+							transform: show ? `scale(1.2)` : `scale(1)`,
+							position: 'absolute',
+							transition: 'transform .3s ease-in-out',
+						}}
+						image={
+							strapiAxios.baseURL +
+							event?.attributes?.banner?.data?.attributes?.url
+						}
+						alt={event?.attributes?.banner?.data?.attributes?.url}
 					/>
-					<Box sx={{
-						position: 'absolute',
-						transition: 'all 0.3s ease-in-out',
-						inset: 0,
-						background: `linear-gradient(0deg, rgba(8, 8, 8, .8) 0%, rgba(16, 16, 16, 0.1) 70%)`,
-					}}
+					<Box
+						sx={{
+							position: 'absolute',
+							transition: 'all 0.3s ease-in-out',
+							inset: 0,
+							background: `linear-gradient(0deg, rgba(8, 8, 8, .8) 0%, rgba(16, 16, 16, 0.1) 70%)`,
+						}}
 					/>
 					<CardContent
 						ref={content}
-						sx={{ width: '100%', bottom: 0, position: 'absolute', boxSizing: 'border-box' }}
+						sx={{
+							width: '100%',
+							bottom: 0,
+							position: 'absolute',
+							boxSizing: 'border-box',
+						}}
 					>
-						<Typography sx={{ fontSize: 14 }} color="white" gutterBottom>
-							<Typography
-								variant="span"
-								component="span"
-								mr={2}
-							>
-								<FontAwesomeIcon icon={faCalendar} /> {startDate.trim() === endDate.trim() ? startDate : `${startDate} - ${endDate}`}
+						<Typography
+							sx={{ fontSize: 14 }}
+							color="white"
+							gutterBottom
+						>
+							<Typography variant="span" component="span" mr={2}>
+								<FontAwesomeIcon icon={faCalendar} />{' '}
+								{startDate.trim() === endDate.trim()
+									? startDate
+									: `${startDate} - ${endDate}`}
 							</Typography>
-							<Chip size="small"
-							      sx={{ padding: '.5rem', color: 'white' }}
-							      icon={
-								      <FontAwesomeIcon
-									      style={{ color: 'white', fontSize: '12px' }}
-									      icon={faLaptopMedical}
-								      />
-							      }
-							      label={event.attributes.category}
+							<Chip
+								size="small"
+								sx={{ padding: '.5rem', color: 'white' }}
+								icon={
+									<FontAwesomeIcon
+										style={{
+											color: 'white',
+											fontSize: '12px',
+										}}
+										icon={faLaptopMedical}
+									/>
+								}
+								label={event.attributes.category}
 							/>
 						</Typography>
 						<Stack direction="row">
 							<Box flex={1} sx={{ height: '100%' }}>
-								<Typography variant="h5" component="div" color="white">
+								<Typography
+									variant="h5"
+									component="div"
+									color="white"
+								>
 									{name}
 								</Typography>
-								<Typography variant="body2" component="div" color="white">
+								<Typography
+									variant="body2"
+									component="div"
+									color="white"
+								>
 									{desc}
 								</Typography>
 							</Box>
@@ -142,8 +168,8 @@ const EventItem = ({ position, name, date, desc, event }) => {
 				</Card>
 			</Box>
 		</div>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -175,8 +201,8 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'rgb(122, 122, 122)',
 		borderRadius: 8,
 	},
-}));
+}))
 
-EventItem.propTypes = {};
+EventItem.propTypes = {}
 
-export default EventItem;
+export default EventItem

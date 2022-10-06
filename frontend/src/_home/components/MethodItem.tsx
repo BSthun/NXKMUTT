@@ -1,28 +1,34 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { alpha } from '@mui/material/styles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Hexagon from '../../images/mask/hexagon.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { alpha } from '@mui/material/styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Hexagon from '../../images/mask/hexagon.svg'
 
 const MethodItem = ({ image, fa, title, subtitle, styles }) => {
-	const navigate = useNavigate();
+	const navigate = useNavigate()
 	const classes = useStyles({
 		image,
-	});
-	
+	})
+
 	return (
-		<Box onClick={navigate.bind(this, `/methods/${title.toLowerCase()}`)} className={classes.root} {...styles}>
+		<Box
+			onClick={navigate.bind(this, `/methods/${title.toLowerCase()}`)}
+			className={classes.root}
+			{...styles}
+		>
 			<div className={classes.image} />
 			<Box className={classes.content}>
 				<FontAwesomeIcon icon={fa} size="3x" />
-				<Typography variant="h5" gutterBottom>{title}</Typography>
+				<Typography variant="h5" gutterBottom>
+					{title}
+				</Typography>
 			</Box>
 		</Box>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -63,12 +69,14 @@ const useStyles = makeStyles((theme) => ({
 		maskImage: `url(${Hexagon})`,
 		color: theme.palette.text.secondary,
 		backgroundColor: alpha(theme.palette.background.paper, 0.6),
-		backdropFilter: `blur(6px) brightness(${theme.palette.mode === 'dark' ? '8' : '12'}0%)`,
+		backdropFilter: `blur(6px) brightness(${
+			theme.palette.mode === 'dark' ? '8' : '12'
+		}0%)`,
 		'& :first-child': {
 			marginBottom: 8,
 		},
 	},
-}));
+}))
 
 MethodItem.propTypes = {
 	image: PropTypes.string.isRequired,
@@ -76,6 +84,6 @@ MethodItem.propTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string.isRequired,
 	styles: PropTypes.object.isRequired,
-};
+}
 
-export default MethodItem;
+export default MethodItem

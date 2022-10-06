@@ -1,53 +1,69 @@
-import { faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	Stack,
-	Typography,
-} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React, { useLayoutEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Stack, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import React, { useLayoutEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-const BlogItem = ({ title, description, date, background, to, height = false, index = 0 }) => {
-	const [image, setImage] = useState("");
-	const [loaded, setLoaded] = useState(false);
+const BlogItem = ({
+	title,
+	description,
+	date,
+	background,
+	to,
+	height = false,
+	index = 0,
+}) => {
+	const [image, setImage] = useState('')
+	const [loaded, setLoaded] = useState(false)
 	const classes = useStyles({
 		background: image,
 		height,
-	});
-	
+	})
+
 	useLayoutEffect(() => {
-		if(!title)
-			return;
-		const img = new Image();
-		img.src = background;
+		if (!title) return
+		const img = new Image()
+		img.src = background
 		img.onload = () => {
 			setTimeout(() => {
-				setLoaded(true);
-				setImage(background);
-			}, index * 100);
-		};
-	}, [index, title, background]);
+				setLoaded(true)
+				setImage(background)
+			}, index * 100)
+		}
+	}, [index, title, background])
 
 	return (
-		<Link to={to} className={classes.root} style={{ opacity: loaded ? 1 : 0, transition: 'opacity 1s ease-in-out'}}>
+		<Link
+			to={to}
+			className={classes.root}
+			style={{
+				opacity: loaded ? 1 : 0,
+				transition: 'opacity 1s ease-in-out',
+			}}
+		>
 			<div className={classes.overlay} />
-			<Stack padding={4} justifyContent="flex-end" zIndex={2} >
-				<Typography variant="b" component="b" color="white" mb={2}>{title}</Typography>
-				<Typography variant="body1" color="white" gutterBottom>{description}</Typography>
+			<Stack padding={4} justifyContent="flex-end" zIndex={2}>
+				<Typography variant="b" component="b" color="white" mb={2}>
+					{title}
+				</Typography>
+				<Typography variant="body1" color="white" gutterBottom>
+					{description}
+				</Typography>
 				<Typography variant="body2" color="white">
-					<FontAwesomeIcon icon={faCalendar} />&nbsp; {date}
+					<FontAwesomeIcon icon={faCalendar} />
+					&nbsp; {date}
 				</Typography>
 			</Stack>
 		</Link>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		position: 'relative',
 		width: '100%',
-		height: ({ height }) => height ? '100%' : 250,
+		height: ({ height }) => (height ? '100%' : 250),
 		minHeight: 250,
 		backgroundImage: ({ background }) => `url(${background})`,
 		backgroundPosition: 'center',
@@ -64,10 +80,11 @@ const useStyles = makeStyles((theme) => ({
 		bottom: 0,
 		height: '100%',
 		maxHeight: 256,
-		background: 'linear-gradient(0deg, rgba(5, 5, 5, 1) 0%, rgba(10, 10, 10, 0) 100%)',
+		background:
+			'linear-gradient(0deg, rgba(5, 5, 5, 1) 0%, rgba(10, 10, 10, 0) 100%)',
 	},
-}));
+}))
 
-BlogItem.propTypes = {};
+BlogItem.propTypes = {}
 
-export default BlogItem;
+export default BlogItem

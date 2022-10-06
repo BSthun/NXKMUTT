@@ -1,18 +1,21 @@
-import { ButtonBase } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { alpha } from '@mui/material/styles';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { ButtonBase } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { alpha } from '@mui/material/styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 const CurveButton = ({ children, marginRight, minWidth }) => {
-	const classes = useStyles();
-	
+	const classes = useStyles()
+
 	return (
-		<ButtonBase className={classes.button} style={{ marginRight, minWidth }}>
+		<ButtonBase
+			className={classes.button}
+			style={{ marginRight, minWidth }}
+		>
 			{children}
 		</ButtonBase>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	button: {
@@ -27,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
 			backgroundColor: alpha(theme.palette.text.primary, 0.1),
 		},
 	},
-}));
+}))
 
 CurveButton.propTypes = {
 	children: PropTypes.array.isRequired,
 	marginRight: PropTypes.number,
-};
-export default CurveButton;
+}
+export default CurveButton

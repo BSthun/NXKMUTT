@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ButtonBase } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import DelayLink from '../routing/DelayLink';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ButtonBase } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import DelayLink from '../routing/DelayLink'
 
 const NavbarButton = ({ to, fa, text }) => {
-	const classes = useStyles();
+	const classes = useStyles()
 	return (
 		<DelayLink to={to} className={classes.link}>
 			<ButtonBase className={classes.button}>
 				<FontAwesomeIcon icon={fa} className={classes.fa} /> {text}
 			</ButtonBase>
 		</DelayLink>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	link: {
@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
 	fa: {
 		marginRight: theme.spacing(2),
 	},
-}));
+}))
 
 NavbarButton.propTypes = {
 	to: PropTypes.string.isRequired,
 	fa: PropTypes.object.isRequired,
-};
+}
 
-export default NavbarButton;
+export default NavbarButton

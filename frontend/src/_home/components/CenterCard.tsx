@@ -1,16 +1,16 @@
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Card, CardActions, useTheme } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Button, Card, CardActions, useTheme } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const CenterCard = ({ fa, text, desc }) => {
-	const theme = useTheme();
-	const classes = useStyles();
-	const [t] = useTranslation('home');
-	
+	const theme = useTheme()
+	const classes = useStyles()
+	const [t] = useTranslation('home')
+
 	return (
 		<Card className={classes.card}>
 			<Box display="flex" alignItems="center" margin={theme.spacing(1)}>
@@ -19,16 +19,17 @@ const CenterCard = ({ fa, text, desc }) => {
 				</div>
 				{text}
 			</Box>
-			<Box padding={`0 ${theme.spacing(4)}`}>
-				{desc}
-			</Box>
+			<Box padding={`0 ${theme.spacing(4)}`}>{desc}</Box>
 			<CardActions>
 				<Box marginRight="auto" />
-				<Button>{t('learnmore')} &nbsp; <FontAwesomeIcon icon={faChevronRight} /></Button>
+				<Button>
+					{t('learnmore')} &nbsp;{' '}
+					<FontAwesomeIcon icon={faChevronRight} />
+				</Button>
 			</CardActions>
 		</Card>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	card: {
@@ -48,12 +49,12 @@ const useStyles = makeStyles((theme) => ({
 			margin: `${theme.spacing(3)} auto`,
 		},
 	},
-}));
+}))
 
 CenterCard.propTypes = {
 	fa: PropTypes.object.isRequired,
 	text: PropTypes.string.isRequired,
 	desc: PropTypes.string.isRequired,
-};
+}
 
-export default CenterCard;
+export default CenterCard

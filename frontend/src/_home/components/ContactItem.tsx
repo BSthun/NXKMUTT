@@ -1,21 +1,21 @@
-import { faClipboard } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ButtonBase } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import { alpha } from '@mui/material/styles';
-import React, { useContext } from 'react';
-import { FloatingContext } from '../../contexts/FloatingContext';
+import { faClipboard } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ButtonBase } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { alpha } from '@mui/material/styles'
+import React, { useContext } from 'react'
+import { FloatingContext } from '../../contexts/FloatingContext'
 
 const ContactItem = ({ anchor, text, fa }) => {
-	const { openSnackBar } = useContext(FloatingContext);
-	const classes = useStyles();
-	
+	const { openSnackBar } = useContext(FloatingContext)
+	const classes = useStyles()
+
 	const copy = () => {
-		navigator.clipboard?.writeText(text).then(() =>
-			openSnackBar(`"${text}" copied to clipboard`),
-		);
-	};
-	
+		navigator.clipboard
+			?.writeText(text)
+			.then(() => openSnackBar(`"${text}" copied to clipboard`))
+	}
+
 	return (
 		<div className={classes.root}>
 			<a href={anchor}>
@@ -28,8 +28,8 @@ const ContactItem = ({ anchor, text, fa }) => {
 				<FontAwesomeIcon icon={faClipboard} className={classes.fa} />
 			</div>
 		</div>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -60,6 +60,6 @@ const useStyles = makeStyles((theme) => ({
 	fa: {
 		fontSize: 18,
 	},
-}));
+}))
 
-export default ContactItem;
+export default ContactItem

@@ -1,16 +1,18 @@
-import { Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import CenterCard from './CenterCard';
+import { Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import CenterCard from './CenterCard'
 
 const Title = ({ children, color }) => {
-	const classes = useStyles({ color });
-	
+	const classes = useStyles({ color })
+
 	return (
-		<Typography variant="h5" className={classes.title}>{children}</Typography>
-	);
-};
+		<Typography variant="h5" className={classes.title}>
+			{children}
+		</Typography>
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -19,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: 500,
 		color: ({ color }) => color,
 	},
-}));
+}))
 
 CenterCard.propTypes = {
 	children: PropTypes.array,
-};
+}
 
-export default Title;
+export default Title

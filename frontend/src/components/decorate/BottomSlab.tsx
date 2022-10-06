@@ -1,15 +1,19 @@
-import makeStyles from '@mui/styles/makeStyles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import HeaderSlabMask from '../../images/mask/headerslab.svg';
+import makeStyles from '@mui/styles/makeStyles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import HeaderSlabMask from '../../images/mask/headerslab.svg'
 
 const BottomSlab = ({ className }) => {
-	const classes = useStyles();
-	
+	const classes = useStyles()
+
 	return (
-		<div className={className ? `${className} ${classes.slab}` : classes.slab} />
-	);
-};
+		<div
+			className={
+				className ? `${className} ${classes.slab}` : classes.slab
+			}
+		/>
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	slab: {
@@ -22,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 		maskSize: '100% 100%',
 		backgroundColor: theme.palette.background.default,
 	},
-}));
+}))
 
 BottomSlab.propTypes = {
 	className: PropTypes.string,
-};
+}
 
-export default BottomSlab;
+export default BottomSlab

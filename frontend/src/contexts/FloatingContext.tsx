@@ -1,4 +1,4 @@
-import { createContext, useState, } from 'react'
+import { createContext, useState } from 'react'
 import { Snackbar } from '@mui/material'
 
 export const FloatingContext = createContext({})

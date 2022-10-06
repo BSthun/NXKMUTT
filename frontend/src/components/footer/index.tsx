@@ -1,27 +1,32 @@
-import { Container, darken, lighten, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import React from 'react';
+import { Container, darken, lighten, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import React from 'react'
 
 const Footer = () => {
-	const classes = useStyles();
-	
+	const classes = useStyles()
+
 	return (
 		<div className={classes.outer}>
 			<Container maxWidth="lg" className={classes.container}>
-				<Typography variant="h6" color="textPrimary">NX KMUTT website</Typography>
+				<Typography variant="h6" color="textPrimary">
+					NX KMUTT website
+				</Typography>
 				<Typography variant="body2" color="textSecondary">
-					&copy; 2021 NX Neuroscience Center KMUTT, all rights reserved.
+					&copy; 2021 NX Neuroscience Center KMUTT, all rights
+					reserved.
 				</Typography>
 			</Container>
 		</div>
-	);
-};
+	)
+}
 
 const useStyles = makeStyles((theme) => ({
 	outer: {
 		padding: '32px 0',
-		backgroundColor: theme.palette.mode === 'dark' ? lighten(theme.palette.background.default, 0.05)
-			: darken(theme.palette.background.default, 0.1),
+		backgroundColor:
+			theme.palette.mode === 'dark'
+				? lighten(theme.palette.background.default, 0.05)
+				: darken(theme.palette.background.default, 0.1),
 	},
 	container: {
 		display: 'flex',
@@ -30,6 +35,6 @@ const useStyles = makeStyles((theme) => ({
 			alignItems: 'center',
 		},
 	},
-}));
+}))
 
-export default Footer;
+export default Footer
