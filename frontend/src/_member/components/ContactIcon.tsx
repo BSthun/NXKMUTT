@@ -3,8 +3,15 @@ import { Grid, Stack, Typography } from '@mui/material'
 
 const ContactIcon = ({ icon, children }) => {
 	return (
-		<Grid item xs={4}>
-			<Stack direction="row" gap={5} flex="1">
+		<Grid
+			item
+			xs={4}
+		>
+			<Stack
+				direction="row"
+				gap={5}
+				flex="1"
+			>
 				<Typography color="text.primary">
 					{' '}
 					<FontAwesomeIcon icon={icon} />{' '}

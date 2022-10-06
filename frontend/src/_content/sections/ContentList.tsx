@@ -59,9 +59,17 @@ const Feed = () => {
 				title={result ? t('search_result') : t('all_posts')}
 			/>
 			{posts ? (
-				<Grid container spacing={2}>
+				<Grid
+					container
+					spacing={2}
+				>
 					{posts.map((item, index) => (
-						<Grid key={`post:` + item.id} item md={6} sm={12}>
+						<Grid
+							key={`post:` + item.id}
+							item
+							md={6}
+							sm={12}
+						>
 							<BlogItem
 								title={item?.attributes?.title}
 								description={item?.attributes?.desc}
@@ -83,7 +91,11 @@ const Feed = () => {
 				</Box>
 			)}
 
-			<Box display="flex" justifyContent="center" mt={10}>
+			<Box
+				display="flex"
+				justifyContent="center"
+				mt={10}
+			>
 				<Pagination
 					count={pageCount}
 					page={page}

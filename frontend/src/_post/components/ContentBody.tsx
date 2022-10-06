@@ -1,7 +1,7 @@
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { alpha, Box, Typography } from '@mui/material'
+import { alpha, Box, Theme, Typography } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import { useMemo, useState } from 'react'
 import Markdown from '../../components/markdown/Markdown'
@@ -9,7 +9,7 @@ import { strapiAxios } from '../../utils/axios'
 import Reference from './Reference'
 
 const ContentBody = ({ post }) => {
-	const theme = useTheme()
+	const theme: Theme = useTheme()
 	const [loaded, setLoaded] = useState(false)
 
 	const thumbnail =
@@ -68,7 +68,10 @@ const ContentBody = ({ post }) => {
 				{post?.attributes.published} · {readingTime} mins read
 			</Typography>
 
-			<Box mt={10} sx={markdownStyle}>
+			<Box
+				mt={10}
+				sx={markdownStyle}
+			>
 				<Box
 					sx={{
 						marginBottom: '1.5rem',
@@ -112,7 +115,10 @@ const ContentBody = ({ post }) => {
 				<Markdown className="markdown">
 					{post?.attributes?.content}
 				</Markdown>
-				<Reference files={files} links={links} />
+				<Reference
+					files={files}
+					links={links}
+				/>
 			</Box>
 		</Box>
 	)

@@ -2,6 +2,7 @@ import makeStyles from '@mui/styles/makeStyles'
 import PropTypes from 'prop-types'
 import React from 'react'
 import HeaderSlabMask from '../../images/mask/headerslab.svg'
+import { Theme } from '@mui/material'
 
 const BottomSlab = ({ className }) => {
 	const classes = useStyles()
@@ -15,7 +16,7 @@ const BottomSlab = ({ className }) => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	slab: {
 		position: 'absolute',
 		bottom: -1,

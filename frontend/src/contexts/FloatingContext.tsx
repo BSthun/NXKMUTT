@@ -1,14 +1,20 @@
 import { createContext, useState } from 'react'
 import { Snackbar } from '@mui/material'
 
-export const FloatingContext = createContext({})
+type FloatingContentType = {
+	openSnackBar: Function,
+}
+export const FloatingContext = createContext<FloatingContentType>({
+	openSnackBar: () => {
+	},
+})
 
 export const FloatingContextProvider = ({ children }) => {
 	const [state, setState] = useState({
 		open: false,
 		text: '',
 	})
-
+	
 	const handlers = {
 		openSnackBar: (text) => {
 			setState({
@@ -17,14 +23,14 @@ export const FloatingContextProvider = ({ children }) => {
 			})
 		},
 	}
-
+	
 	const onClose = () => {
 		setState((state) => ({
 			...state,
 			open: false,
 		}))
 	}
-
+	
 	return (
 		<FloatingContext.Provider value={handlers}>
 			<Snackbar
@@ -37,7 +43,6 @@ export const FloatingContextProvider = ({ children }) => {
 				autoHideDuration={6000}
 				message={state.text}
 			/>
-
 			{children}
 		</FloatingContext.Provider>
 	)

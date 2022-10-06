@@ -63,7 +63,10 @@ const ContentFeed = () => {
 				flexDirection={{ xs: 'column', md: 'row' }}
 				minHeight={600}
 			>
-				<Stack spacing={2} flex={1}>
+				<Stack
+					spacing={2}
+					flex={1}
+				>
 					<Box flex={1}>
 						<BlogItem
 							title={featured[0]?.title}
@@ -93,8 +96,14 @@ const ContentFeed = () => {
 						/>
 					</Box>
 				</Stack>
-				<Box width={8} height={8} />
-				<Stack spacing={2} flex={1}>
+				<Box
+					width={8}
+					height={8}
+				/>
+				<Stack
+					spacing={2}
+					flex={1}
+				>
 					<Box flex={1}>
 						<BlogItem
 							title={featured[2]?.title}
@@ -141,9 +150,17 @@ const ContentFeed = () => {
 			</Box>
 			<SectionTitle title={t('latest')} />
 			{posts ? (
-				<Grid container spacing={2}>
+				<Grid
+					container
+					spacing={2}
+				>
 					{posts.map((item, index) => (
-						<Grid key={`post:` + item.id} item md={6} sm={12}>
+						<Grid
+							key={`post:` + item.id}
+							item
+							md={6}
+							sm={12}
+						>
 							<BlogItem
 								title={item?.attributes?.title}
 								description={item?.attributes?.desc}
@@ -168,7 +185,10 @@ const ContentFeed = () => {
 				to="/content?page=1"
 				style={{ width: 256, margin: '24px auto' }}
 			>
-				<Button variant="contained" fullWidth>
+				<Button
+					variant="contained"
+					fullWidth
+				>
 					View more
 				</Button>
 			</Link>

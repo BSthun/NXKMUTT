@@ -6,7 +6,10 @@ const AffiliationCard = ({ member }) => {
 	const [, i18n] = useTranslation('home')
 
 	return (
-		<Card variant="outlined" sx={{ height: '100%' }}>
+		<Card
+			variant="outlined"
+			sx={{ height: '100%' }}
+		>
 			<CardContent>
 				<Typography
 					variant="h5"

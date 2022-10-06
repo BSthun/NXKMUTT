@@ -7,10 +7,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 // Functional link component which delays page navigation
 export const DelayLink = ({
-	delay,
-	onDelayStart,
-	onDelayEnd,
-	replace,
+	delay = null,
+	onDelayStart = null,
+	onDelayEnd = null,
+	replace = false,
 	to,
 	...rest
 }) => {
@@ -48,7 +48,13 @@ export const DelayLink = ({
 		}, delay)
 	}
 
-	return <Link {...rest} to={to} onClick={handleClick} />
+	return (
+		<Link
+			{...rest}
+			to={to}
+			onClick={handleClick}
+		/>
+	)
 }
 
 DelayLink.propTypes = {

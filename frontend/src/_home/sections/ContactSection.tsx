@@ -5,6 +5,7 @@ import {
 	darken,
 	lighten,
 	Paper,
+	Theme,
 	Typography,
 } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
@@ -35,13 +36,22 @@ const ContactSection = () => {
 						justifyContent="center"
 						padding={6}
 					>
-						<Typography variant="h5" gutterBottom>
+						<Typography
+							variant="h5"
+							gutterBottom
+						>
 							NX Neuroscience Center
 						</Typography>
-						<Typography variant="body1" gutterBottom>
+						<Typography
+							variant="body1"
+							gutterBottom
+						>
 							King Mongkut’s University of Technology Thonburi
 						</Typography>
-						<Typography variant="body1" gutterBottom>
+						<Typography
+							variant="body1"
+							gutterBottom
+						>
 							126 Phuttha Bucha Rd, Bang Mot, Thung Khru, Bangkok
 							10140, Thailand
 						</Typography>
@@ -62,7 +72,7 @@ const ContactSection = () => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		paddingBottom: 96,
 		backgroundColor:

@@ -5,7 +5,7 @@ import {
 	faWater,
 	faXRay,
 } from '@fortawesome/free-solid-svg-icons'
-import { Box, darken, lighten } from '@mui/material'
+import { Box, darken, lighten, Theme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React from 'react'
 import BottomSlab from '../../components/decorate/BottomSlab'
@@ -77,7 +77,7 @@ const MethodSection = () => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	slab: {
 		backgroundColor:
 			theme.palette.mode === 'dark'

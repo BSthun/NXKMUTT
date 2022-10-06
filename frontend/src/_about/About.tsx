@@ -13,7 +13,10 @@ const About = () => {
 				title={'About'}
 				breadcrumbs={[{ href: '/', text: 'Home' }]}
 			/>
-			<Stack justifyContent="center" bgcolor="background.default">
+			<Stack
+				justifyContent="center"
+				bgcolor="background.default"
+			>
 				<MemberSecion />
 				<ContactSection />
 			</Stack>

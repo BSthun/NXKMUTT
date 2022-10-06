@@ -171,7 +171,10 @@ const FilterBar = () => {
 									<CustomCheckbox
 										checked={selectedTypes.includes(type)}
 									/>
-									<Typography variant="p" color="textPrimary">
+									<Typography
+										variant="p"
+										color="textPrimary"
+									>
 										{type.attributes.name}
 									</Typography>
 								</Box>
@@ -217,7 +220,11 @@ const FilterBar = () => {
 					</FilterBox>
 				</>
 			) : (
-				<Box display="flex" justifyContent="center" paddingTop="20px">
+				<Box
+					display="flex"
+					justifyContent="center"
+					paddingTop="20px"
+				>
 					<CircularProgress />
 				</Box>
 			)}

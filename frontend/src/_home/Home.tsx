@@ -12,7 +12,10 @@ const Home = () => {
 	useScroll()
 
 	return (
-		<Box display="flex" flexDirection="column">
+		<Box
+			display="flex"
+			flexDirection="column"
+		>
 			<BannerSection />
 			{/* <CenterSection /> */}
 			<AboutSection />

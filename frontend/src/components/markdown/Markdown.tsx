@@ -1,11 +1,11 @@
-import { alpha, Typography } from '@mui/material'
+import { alpha, Theme, Typography } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import ReactMarkdown from 'react-markdown'
 import { strapiAxios } from '../../utils/axios'
 import MarkdownImage from './MarkdownImage'
 
 const Markdown = ({ children }, ...props) => {
-	const theme = useTheme()
+	const theme: Theme = useTheme()
 	return (
 		<ReactMarkdown
 			{...props}
@@ -17,7 +17,10 @@ const Markdown = ({ children }, ...props) => {
 				// h5: ({node, ...props}) => <Typography variant='h5' {...props} />,
 				// h6: ({node, ...props}) => <Typography variant='h6' {...props} />,
 				p: ({ node, ...props }) => (
-					<Typography variant="body1" {...props} />
+					<Typography
+						variant="body1"
+						{...props}
+					/>
 				),
 				u: ({ node, ...props }) => (
 					<Typography
@@ -30,7 +33,6 @@ const Markdown = ({ children }, ...props) => {
 				),
 				a: ({ node, ...props }) => (
 					<Typography
-						variant="a"
 						component="a"
 						{...props}
 						sx={{
@@ -53,7 +55,7 @@ const Markdown = ({ children }, ...props) => {
 				),
 				img: ({ node, ...props }) => (
 					<MarkdownImage
-						src={strapiAxios.baseURL + node.src}
+						src={strapiAxios.baseURL + node.properties.src}
 						{...props}
 					/>
 				),

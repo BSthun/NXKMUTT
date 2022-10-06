@@ -30,8 +30,16 @@ const ContactCard = ({ member }) => {
 	}
 
 	const EmailItem = ({ email, title }, index) => (
-		<Stack direction="row" alignItems="center" key={index} mt={1}>
-			<Box minWidth={28} alignSelf="center">
+		<Stack
+			direction="row"
+			alignItems="center"
+			key={index}
+			mt={1}
+		>
+			<Box
+				minWidth={28}
+				alignSelf="center"
+			>
 				{index === 0 && (
 					<FontAwesomeIcon
 						icon={faEnvelope}
@@ -67,8 +75,15 @@ const ContactCard = ({ member }) => {
 	)
 
 	const PhoneItem = ({ phone, title }, index) => (
-		<Stack direction="row" key={index} mt={1}>
-			<Box minWidth={24} alignSelf="center">
+		<Stack
+			direction="row"
+			key={index}
+			mt={1}
+		>
+			<Box
+				minWidth={24}
+				alignSelf="center"
+			>
 				{index === 0 && <FontAwesomeIcon icon={faPhone} />}
 			</Box>
 			<Typography
@@ -99,8 +114,15 @@ const ContactCard = ({ member }) => {
 	)
 
 	const SocialItem = ({ type, value, link, title }, index) => (
-		<Stack direction="row" key={index} mt={1}>
-			<Box minWidth={24} alignSelf="center">
+		<Stack
+			direction="row"
+			key={index}
+			mt={1}
+		>
+			<Box
+				minWidth={24}
+				alignSelf="center"
+			>
 				<FontAwesomeIcon
 					icon={socialIcons[type] || socialIcons.web}
 					style={{ fontSize: 32 }}
@@ -130,7 +152,10 @@ const ContactCard = ({ member }) => {
 	)
 
 	return (
-		<Card variant="outlined" sx={{ height: '100%' }}>
+		<Card
+			variant="outlined"
+			sx={{ height: '100%' }}
+		>
 			<CardContent>
 				<Typography
 					variant="h5"
@@ -140,7 +165,10 @@ const ContactCard = ({ member }) => {
 				>
 					Contact Information
 				</Typography>
-				<Stack direction={'column'} gap={2}>
+				<Stack
+					direction={'column'}
+					gap={2}
+				>
 					<Box>{emails.map(EmailItem)}</Box>
 					<Box>{phones.map(PhoneItem)}</Box>
 					<Box>{socials.map(SocialItem)}</Box>

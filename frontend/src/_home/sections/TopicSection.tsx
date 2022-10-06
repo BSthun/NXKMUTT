@@ -4,6 +4,9 @@ import makeStyles from '@mui/styles/makeStyles'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import React, { useEffect, useRef, useState } from 'react'
 import BottomSlab from '../../components/decorate/BottomSlab'
+import { Theme } from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const MAX_PAGE = 4
 const TIMEOUT_SECOND = 10
@@ -107,6 +110,8 @@ const TopicSection = () => {
 					onClick={() => userBeginInteract(0)}
 				/>
 			</Parallax>
+			<FontAwesomeIcon icon={faChevronRight} className={classes.rightArrow} />
+			<FontAwesomeIcon icon={faChevronLeft} className={classes.leftArrow} />
 			<BottomSlab className={classes.slab} />
 			<BottomSlab />
 		</div>
@@ -114,16 +119,22 @@ const TopicSection = () => {
 }
 
 const Page = ({ text, offset, gradient, onClick }) => {
-	const isMobile = useMobile()
-
 	return (
 		<>
-			<ParallaxLayer offset={offset} speed={0.2} onClick={onClick}>
-				<div className={`slopeBegin ${isMobile && 'mobile'}`} />
+			<ParallaxLayer
+				offset={offset}
+				speed={0.2}
+				onClick={onClick}
+			>
+				<div className="slopeBegin" />
 			</ParallaxLayer>
-			<ParallaxLayer offset={offset} speed={0.5} onClick={onClick}>
+			<ParallaxLayer
+				offset={offset}
+				speed={0.5}
+				onClick={onClick}
+			>
 				<div
-					className={`slopeEnd ${gradient} ${isMobile && 'mobile'}`}
+					className={`slopeEnd ${gradient}`}
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
@@ -141,7 +152,7 @@ const Page = ({ text, offset, gradient, onClick }) => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		position: 'relative',
 		display: 'flex',
@@ -149,6 +160,7 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: 800,
 	},
 	selector: {},
+	
 	parallax: {
 		scrollbarWidth: 'none',
 
@@ -166,16 +178,15 @@ const useStyles = makeStyles((theme) => ({
 		'& .slopeBegin': {
 			backgroundColor: '#20232f',
 			clipPath: 'polygon(20% 0, 70% 0, 50% 100%, 0% 100%)',
+			[theme.breakpoints.down('md')]: {
+				clipPath: 'polygon(20% 0, 100% 0, 100% 60%, 20% 100%)',
+			},
 		},
 		'& .slopeEnd': {
 			clipPath: 'polygon(70% 0, 100% 0, 80% 100%, 50% 100%)',
-		},
-		'& .slopeBegin.mobile': {
-			backgroundColor: '#20232f',
-			clipPath: 'polygon(20% 0, 100% 0,0% 110%, 0% 100%)',
-		},
-		'& .slopeEnd.mobile': {
-			clipPath: 'polygon(100% 0, 100% 0, 80% 100%, 0% 100%)',
+			[theme.breakpoints.down('md')]: {
+				clipPath: 'polygon(100% 60%, 20% 100%, 100% 100%)',
+			},
 		},
 		'& .pink': {
 			background: 'linear-gradient(to right, deeppink 0%, coral 100%)',
@@ -201,10 +212,17 @@ const useStyles = makeStyles((theme) => ({
 				zIndex: -1,
 				fontSize: 300,
 				color: '#545864',
+				[theme.breakpoints.down('md')]: {
+					top: -80,
+					fontSize: 72,
+				},
 			},
 			'& span:last-child': {
 				fontSize: 36,
 				color: '#d5d7dc',
+				[theme.breakpoints.down('md')]: {
+					fontSize: 18,
+				},
 			},
 		},
 	},

@@ -17,12 +17,18 @@ const PageBanner = ({ title, breadcrumbs }) => {
 					flexDirection="column"
 					marginLeft={{ xs: 10, md: 0 }}
 				>
-					<Typography color="text.primary" variant="h4">
+					<Typography
+						color="text.primary"
+						variant="h4"
+					>
 						{title}
 					</Typography>
 					<Breadcrumbs>
 						{breadcrumbs.map((el) => (
-							<Link key={el.href} to={el.href}>
+							<Link
+								key={el.href}
+								to={el.href}
+							>
 								{el.text}
 							</Link>
 						))}

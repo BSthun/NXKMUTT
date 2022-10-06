@@ -20,12 +20,21 @@ const ContactItem = ({ anchor, text, fa }) => {
 		<div className={classes.root}>
 			<a href={anchor}>
 				<ButtonBase className={classes.separator}>
-					<FontAwesomeIcon icon={fa} className={classes.fa} />
+					<FontAwesomeIcon
+						icon={fa}
+						className={classes.fa}
+					/>
 				</ButtonBase>
 			</a>
 			<p>{text}</p>
-			<div className={classes.copier} onClick={copy}>
-				<FontAwesomeIcon icon={faClipboard} className={classes.fa} />
+			<div
+				className={classes.copier}
+				onClick={copy}
+			>
+				<FontAwesomeIcon
+					icon={faClipboard}
+					className={classes.fa}
+				/>
 			</div>
 		</div>
 	)

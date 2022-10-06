@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material'
+import { Box, Container, Grid, Theme, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +6,12 @@ import CenteredCircularProgress from '../../components/fork/CenteredCircularProg
 import { strapiAxios } from '../../utils/axios'
 import MemberItem from '../components/MemberItem'
 import Title from '../components/Title'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+	faChevronLeft,
+	faChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const sections = [
 	{
@@ -23,14 +29,6 @@ const sections = [
 	{
 		title: 'Postgraduate Student',
 		type: 'postgraduate_student',
-	},
-	{
-		title: 'KMUTT Collaborator',
-		type: 'kmutt_collaborator',
-	},
-	{
-		title: 'External Collaborator',
-		type: 'external_collaborator',
 	},
 	{
 		title: 'International Collaborator',
@@ -82,7 +80,10 @@ const MemberSection = () => {
 										{section.title}
 									</Title>
 									{
-										<Grid container spacing={4}>
+										<Grid
+											container
+											spacing={4}
+										>
 											{members
 												.filter(
 													(el) =>
@@ -136,12 +137,34 @@ const MemberSection = () => {
 				) : (
 					<CenteredCircularProgress />
 				)}
+				<Link to="/about/collaborator">
+					<Box
+						margin="24px 0"
+						padding="18px 36px"
+						display="flex"
+						justifyContent="space-between"
+						alignItems="center"
+						borderRadius={1}
+						sx={{ backgroundColor: '#ffefc2' }}
+					>
+						<Typography
+							color="#b08100"
+							variant="h5"
+						>
+							Collaborator
+						</Typography>
+						<FontAwesomeIcon
+							icon={faChevronRight}
+							color="#b08100"
+						/>
+					</Box>
+				</Link>
 			</Container>
 		</div>
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		padding: '48px 0',
 		backgroundColor:

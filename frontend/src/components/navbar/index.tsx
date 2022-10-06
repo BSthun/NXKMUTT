@@ -8,7 +8,7 @@ import {
 	faPenAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Backdrop, Box, Typography } from '@mui/material'
+import { Backdrop, Box, Theme, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -60,22 +60,38 @@ const Navbar = () => {
 	return (
 		<div className={classes.outer}>
 			<div className={classes.inner}>
-				<div onClick={toggleDrawer} className={classes.hamburger}>
+				<div
+					onClick={toggleDrawer}
+					className={classes.hamburger}
+				>
 					<FontAwesomeIcon icon={faBars} />
 				</div>
-				<Backdrop open={options.drawer} onClick={toggleDrawer} />
-				<Box display="flex" alignItems="center">
+				<Backdrop
+					open={options.drawer}
+					onClick={toggleDrawer}
+				/>
+				<Box
+					display="flex"
+					alignItems="center"
+				>
 					<img
 						className={classes.logo}
 						alt="NX KMUTT Logo"
 						src={logoOrig}
 					/>
-					<Typography color="textPrimary" variant="h5">
+					<Typography
+						color="textPrimary"
+						variant="h5"
+					>
 						NX @ KMUTT
 					</Typography>
 				</Box>
 				<div className={classes.drawer}>
-					<NavbarButton to="/home" fa={faHome} text={t('home')} />
+					<NavbarButton
+						to="/home"
+						fa={faHome}
+						text={t('home')}
+					/>
 					<NavbarButton
 						to="/event"
 						fa={faCalendarAlt}
@@ -113,14 +129,14 @@ const Navbar = () => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	outer: {
 		height: theme.spacing(16),
 		width: '100%',
 		position: 'fixed',
 		top: 0,
 		zIndex: 900,
-		backgroundColor: ({ scrolled }) =>
+		backgroundColor: ({ scrolled }: any) =>
 			scrolled ? theme.palette.background.paper : 'transparent',
 		boxShadow: ({ scrolled }) =>
 			scrolled ? '0px 3px 5px 0px rgba(0, 0, 0, 0.24)' : 'none',

@@ -7,7 +7,10 @@ import AuthorAvatar from './AuthorAvatar'
 
 const NoInfo = () => {
 	return (
-		<Typography variant="small1" color="text.secondary">
+		<Typography
+			variant="small1"
+			color="text.secondary"
+		>
 			No information
 		</Typography>
 	)
@@ -54,7 +57,10 @@ const ContentSidebar = ({ post }) => {
 		>
 			{/* Author */}
 			<SectionTitle title={t('author')} />
-			<Stack direction="column" gap={2}>
+			<Stack
+				direction="column"
+				gap={2}
+			>
 				{authors.length > 0 ? (
 					authors.map((item) => (
 						<AuthorAvatar
@@ -72,10 +78,18 @@ const ContentSidebar = ({ post }) => {
 
 			{/* Tag */}
 			<SectionTitle title={t('type')} />
-			<Stack direction="row" gap={1} flexWrap="wrap">
+			<Stack
+				direction="row"
+				gap={1}
+				flexWrap="wrap"
+			>
 				{typeTag.length > 0 ? (
 					typeTag.map((item, id) => (
-						<Chip label={item.name} key={id} variant="outlined" />
+						<Chip
+							label={item.name}
+							key={id}
+							variant="outlined"
+						/>
 					))
 				) : (
 					<NoInfo />
@@ -83,10 +97,18 @@ const ContentSidebar = ({ post }) => {
 			</Stack>
 
 			<SectionTitle title={t('technique')} />
-			<Stack direction="row" gap={1} flexWrap="wrap">
+			<Stack
+				direction="row"
+				gap={1}
+				flexWrap="wrap"
+			>
 				{techniqueTag.length > 0 ? (
 					techniqueTag.map((item, id) => (
-						<Chip label={item.name} key={id} variant="outlined" />
+						<Chip
+							label={item.name}
+							key={id}
+							variant="outlined"
+						/>
 					))
 				) : (
 					<NoInfo />
@@ -94,10 +116,18 @@ const ContentSidebar = ({ post }) => {
 			</Stack>
 
 			<SectionTitle title={t('theme')} />
-			<Stack direction="row" gap={1} flexWrap="wrap">
+			<Stack
+				direction="row"
+				gap={1}
+				flexWrap="wrap"
+			>
 				{themeTag.length > 0 ? (
 					themeTag.map((item, id) => (
-						<Chip label={item.name} key={id} variant="outlined" />
+						<Chip
+							label={item.name}
+							key={id}
+							variant="outlined"
+						/>
 					))
 				) : (
 					<NoInfo />

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ButtonBase } from '@mui/material'
+import { ButtonBase, Theme } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -8,15 +8,22 @@ import DelayLink from '../routing/DelayLink'
 const NavbarButton = ({ to, fa, text }) => {
 	const classes = useStyles()
 	return (
-		<DelayLink to={to} className={classes.link}>
+		<DelayLink
+			to={to}
+			className={classes.link}
+		>
 			<ButtonBase className={classes.button}>
-				<FontAwesomeIcon icon={fa} className={classes.fa} /> {text}
+				<FontAwesomeIcon
+					icon={fa}
+					className={classes.fa}
+				/>{' '}
+				{text}
 			</ButtonBase>
 		</DelayLink>
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	link: {
 		textDecoration: 'none',
 		marginLeft: theme.spacing(2),

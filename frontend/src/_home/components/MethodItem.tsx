@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Typography } from '@mui/material'
+import { Box, Theme, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import { alpha } from '@mui/material/styles'
 import PropTypes from 'prop-types'
@@ -21,8 +21,14 @@ const MethodItem = ({ image, fa, title, subtitle, styles }) => {
 		>
 			<div className={classes.image} />
 			<Box className={classes.content}>
-				<FontAwesomeIcon icon={fa} size="3x" />
-				<Typography variant="h5" gutterBottom>
+				<FontAwesomeIcon
+					icon={fa}
+					size="3x"
+				/>
+				<Typography
+					variant="h5"
+					gutterBottom
+				>
 					{title}
 				</Typography>
 			</Box>
@@ -30,7 +36,7 @@ const MethodItem = ({ image, fa, title, subtitle, styles }) => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		position: 'absolute',
 		height: theme.spacing(100),
@@ -54,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'absolute',
 		width: '100%',
 		height: '100%',
-		backgroundImage: ({ image }) => `url(${image})`,
+		backgroundImage: ({ image }: any) => `url(${image})`,
 		backgroundSize: 'cover',
 		filter: `brightness(${theme.palette.mode === 'dark' ? '8' : '12'}0%)`,
 		transition: 'transform 1s ease-in-out',

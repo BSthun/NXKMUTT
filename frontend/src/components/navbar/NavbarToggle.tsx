@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ButtonBase, Tooltip } from '@mui/material'
+import { ButtonBase, Theme, Tooltip } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -7,15 +7,21 @@ import React from 'react'
 const NavbarToggle = ({ fa, tooltip, onClick }) => {
 	const classes = useStyles()
 	return (
-		<Tooltip title={tooltip} style={{ flex: 1 }}>
-			<ButtonBase className={classes.button} onClick={onClick}>
+		<Tooltip
+			title={tooltip}
+			style={{ flex: 1 }}
+		>
+			<ButtonBase
+				className={classes.button}
+				onClick={onClick}
+			>
 				<FontAwesomeIcon icon={fa} />
 			</ButtonBase>
 		</Tooltip>
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	button: {
 		margin: '8px 0 8px 8px',
 		padding: theme.spacing(2),

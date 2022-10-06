@@ -76,7 +76,11 @@ const EventDetail = () => {
 				<Typography variant="h2">
 					{event?.attributes[`name_${i18n.language}`]}
 				</Typography>
-				<Typography variant="body1" mt={2} fontWeight={600}>
+				<Typography
+					variant="body1"
+					mt={2}
+					fontWeight={600}
+				>
 					<FontAwesomeIcon
 						icon={faCalendarAlt}
 						style={{ marginRight: '.5rem' }}
@@ -84,7 +88,10 @@ const EventDetail = () => {
 					{event?.attributes?.published} · {readingTime} mins read
 				</Typography>
 
-				<Box mt={10} sx={markdownStyle}>
+				<Box
+					mt={10}
+					sx={markdownStyle}
+				>
 					<Box
 						sx={{
 							marginBottom: '1.5rem',
@@ -128,7 +135,10 @@ const EventDetail = () => {
 					<Markdown className="markdown">
 						{event?.attributes?.content}
 					</Markdown>
-					<Reference files={files} links={links} />
+					<Reference
+						files={files}
+						links={links}
+					/>
 				</Box>
 			</Container>
 		</Box>

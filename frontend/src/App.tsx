@@ -13,6 +13,7 @@ import { FloatingContextProvider } from './contexts/FloatingContext'
 import { ThemeContextProvider } from './contexts/ThemeContext'
 import './locales'
 import './styles'
+import Collaborator from '@/_about/Collaborator'
 
 const App = () => {
 	return (
@@ -24,17 +25,41 @@ const App = () => {
 						<Routes>
 							<Route
 								path="/"
-								element={<Navigate to="/home" replace />}
+								element={
+									<Navigate
+										to="/home"
+										replace
+									/>
+								}
 							/>
-							<Route path="/home" element={<Home />} />
-							<Route path="/event" element={<Event />} />
+							<Route
+								path="/home"
+								element={<Home />}
+							/>
+							<Route
+								path="/event"
+								element={<Event />}
+							/>
 							<Route
 								path="/event/:slug"
 								element={<EventDetail />}
 							/>
-							<Route path="/content" element={<Content />} />
-							<Route path="/about" element={<About />} />
-							<Route path="/post/:slug" element={<Post />} />
+							<Route
+								path="/content"
+								element={<Content />}
+							/>
+							<Route
+								path="/about"
+								element={<About />}
+							/>
+							<Route
+								path="/about/collaborator"
+								element={<Collaborator />}
+							/>
+							<Route
+								path="/post/:slug"
+								element={<Post />}
+							/>
 							<Route
 								path="/member/:username"
 								element={<Member />}

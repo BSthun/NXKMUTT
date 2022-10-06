@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
 
 export function scroll() {
-	window.scroll(0, 0, {
-		scrollBehavior: 'smooth',
+	window.scroll({
+		top: 0,
+		left: 0,
+		behavior: 'smooth',
 	})
 }
 

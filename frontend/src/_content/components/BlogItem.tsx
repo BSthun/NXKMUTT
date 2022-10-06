@@ -1,6 +1,6 @@
 import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Stack, Typography } from '@mui/material'
+import { Stack, Theme, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React, { useLayoutEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -43,14 +43,30 @@ const BlogItem = ({
 			}}
 		>
 			<div className={classes.overlay} />
-			<Stack padding={4} justifyContent="flex-end" zIndex={2}>
-				<Typography variant="b" component="b" color="white" mb={2}>
+			<Stack
+				padding={4}
+				justifyContent="flex-end"
+				zIndex={2}
+			>
+				<Typography
+					variant="h6"
+					component="b"
+					color="white"
+					mb={2}
+				>
 					{title}
 				</Typography>
-				<Typography variant="body1" color="white" gutterBottom>
+				<Typography
+					variant="body1"
+					color="white"
+					gutterBottom
+				>
 					{description}
 				</Typography>
-				<Typography variant="body2" color="white">
+				<Typography
+					variant="body2"
+					color="white"
+				>
 					<FontAwesomeIcon icon={faCalendar} />
 					&nbsp; {date}
 				</Typography>
@@ -59,11 +75,11 @@ const BlogItem = ({
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		position: 'relative',
 		width: '100%',
-		height: ({ height }) => (height ? '100%' : 250),
+		height: ({ height }: any) => (height ? '100%' : 250),
 		minHeight: 250,
 		backgroundImage: ({ background }) => `url(${background})`,
 		backgroundPosition: 'center',

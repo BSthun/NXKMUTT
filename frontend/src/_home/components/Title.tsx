@@ -8,7 +8,10 @@ const Title = ({ children, color }) => {
 	const classes = useStyles({ color })
 
 	return (
-		<Typography variant="h5" className={classes.title}>
+		<Typography
+			variant="h5"
+			className={classes.title}
+		>
 			{children}
 		</Typography>
 	)

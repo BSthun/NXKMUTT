@@ -50,6 +50,7 @@ export const ThemeContextProvider = ({ children }) => {
 				shape: {
 					borderRadius: 10,
 				},
+				// @ts-ignore
 				selectedColor: {
 					selected: '#FFB740',
 					tag: {

@@ -16,12 +16,26 @@ const BannerSection = () => {
 			display="flex"
 			overflow="hidden"
 		>
-			<Parallax className={classes.parallax} y={[-60, 40]} />
-			<Container maxWidth="lg" className={classes.container}>
-				<Typography variant="h3" align="right" color="textPrimary">
+			<Parallax
+				className={classes.parallax}
+				y={[-60, 40]}
+			/>
+			<Container
+				maxWidth="lg"
+				className={classes.container}
+			>
+				<Typography
+					variant="h3"
+					align="right"
+					color="textPrimary"
+				>
 					Neuroscience Center
 				</Typography>
-				<Typography variant="h4" align="right" color="textPrimary">
+				<Typography
+					variant="h4"
+					align="right"
+					color="textPrimary"
+				>
 					for Research and Innovation (NX),
 					<br /> Learning Institute, KMUTT
 				</Typography>

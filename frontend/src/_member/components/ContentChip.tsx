@@ -21,7 +21,10 @@ const ContentChip = ({ children, header }) => {
 					{t(header)}{' '}
 				</Typography>
 			</Box>
-			<Box paddingX={5} boxSizing="border-box">
+			<Box
+				paddingX={5}
+				boxSizing="border-box"
+			>
 				{children}
 			</Box>
 		</Stack>

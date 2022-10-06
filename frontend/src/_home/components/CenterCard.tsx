@@ -13,7 +13,11 @@ const CenterCard = ({ fa, text, desc }) => {
 
 	return (
 		<Card className={classes.card}>
-			<Box display="flex" alignItems="center" margin={theme.spacing(1)}>
+			<Box
+				display="flex"
+				alignItems="center"
+				margin={theme.spacing(1)}
+			>
 				<div className={classes.fa}>
 					<FontAwesomeIcon icon={fa} />
 				</div>

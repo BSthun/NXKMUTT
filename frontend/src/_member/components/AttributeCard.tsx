@@ -6,7 +6,10 @@ const AttributeCard = ({ attr }) => {
 	const [, i18n] = useTranslation('home')
 
 	return (
-		<Card variant="outlined" sx={{ height: '100%' }}>
+		<Card
+			variant="outlined"
+			sx={{ height: '100%' }}
+		>
 			<CardContent>
 				<Box>
 					<Typography
@@ -24,13 +27,19 @@ const AttributeCard = ({ attr }) => {
 								<ListItemText
 									sx={{ display: 'list-item', marginLeft: 8 }}
 								>
-									<Typography variant="body1" key={el}>
+									<Typography
+										variant="body1"
+										key={el}
+									>
 										{el}
 									</Typography>
 								</ListItemText>
 							))
 					) : (
-						<Typography variant="body1" component="div">
+						<Typography
+							variant="body1"
+							component="div"
+						>
 							{attr.attr['value_' + i18n.language]}
 						</Typography>
 					)}

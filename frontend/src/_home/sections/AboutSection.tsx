@@ -13,19 +13,25 @@ import Title from '../components/Title'
 const AboutSection = () => {
 	const classes = useStyles()
 	const [t] = useTranslation('home')
-
+	
 	return (
-		<Box bgcolor="background.default" className={classes.root}>
+		<Box
+			bgcolor='background.default'
+			className={classes.root}
+		>
 			<Controller>
 				<Box
-					position="absolute"
+					position='absolute'
 					top={-96}
 					left={-256}
 					width={512}
 					zIndex={2}
 				>
-					<div id="home-mission-deco1" />
-					<Scene duration={600} triggerElement="#home-mission-deco1">
+					<div id='home-mission-deco1' />
+					<Scene
+						duration={600}
+						triggerElement='#home-mission-deco1'
+					>
 						{(progress) => (
 							<Tween
 								to={{
@@ -35,7 +41,7 @@ const AboutSection = () => {
 								paused
 							>
 								<img
-									alt="Decoration element"
+									alt='Decoration element'
 									src={DecoSpotWave}
 								/>
 							</Tween>
@@ -64,19 +70,18 @@ const AboutSection = () => {
 					</Box>
 				</Box>*/}
 			</Controller>
-			<Container maxWidth="lg" className={classes.container}>
+			<Container
+				maxWidth='lg'
+				className={classes.container}
+			>
 				<div>
-					<Title color="#448aff" /* blue A200 */>ABOUT US</Title>
+					<Title color='#448aff' /* blue A200 */>ABOUT US</Title>
 					<div className={classes.body}>
-						<div>
 							<Typography
-								variant="h5"
-								color="textPrimary"
-								gutterBottom
+								variant='body1'
+								color='textSecondary'
+								maxWidth="420px"
 							>
-								Our mission
-							</Typography>
-							<Typography variant="body1" color="textSecondary">
 								Our team investigates neural and computational
 								mechanism that support human perception and
 								cognitive functions, and study how they develop
@@ -85,14 +90,17 @@ const AboutSection = () => {
 								decline in aging society.
 							</Typography>
 							<Box
-								display="flex"
+								display='flex'
 								justifyContent={{
 									xs: 'flex-start',
 									md: 'center',
 								}}
 								marginTop={6}
 							>
-								<CurveButton minWidth={142} marginRight={16}>
+								<CurveButton
+									minWidth={142}
+									marginRight={16}
+								>
 									<FontAwesomeIcon icon={faEllipsisV} />{' '}
 									&nbsp; {t('moredetail')}
 								</CurveButton>
@@ -101,31 +109,33 @@ const AboutSection = () => {
 									{t('contact')}
 								</CurveButton>
 							</Box>
-						</div>
-						<div className={classes.list}>
-							<h6>
-								Frontier research lab in neuroscience,
-								neurotechnology, and learning innovation.
-							</h6>
-							<h6>
-								Pioneering the field of neuroscience using an
-								integrative framework.
-							</h6>
-							<h6>
-								Inventing new ways to tackle neurological and
-								mental disorders and promote cognitive health
-								across lifespan.
-							</h6>
-							<h6>
-								Translating results from empirical experiments
-								into useful industrial applications.
-							</h6>
-							<h6>
-								Aiming to become a world-class excellence
-								center.
-							</h6>
-							<h6>Making the impossible possible 💫</h6>
-						</div>
+					</div>
+				</div>
+				<div style={{marginTop: 36}}>
+					<Title color='#448aff' /* blue A200 */>ABOUT US</Title>
+					<div className={classes.list}>
+						<h6>
+							Frontier research lab in neuroscience,
+							neurotechnology, and learning innovation.
+						</h6>
+						<h6>
+							Pioneering the field of neuroscience using an
+							integrative framework.
+						</h6>
+						<h6>
+							Inventing new ways to tackle neurological and
+							mental disorders and promote cognitive health
+							across lifespan.
+						</h6>
+						<h6>
+							Translating results from empirical experiments
+							into useful industrial applications.
+						</h6>
+						<h6>
+							Aiming to become a world-class excellence
+							center.
+						</h6>
+						<h6>Making the impossible possible 💫</h6>
 					</div>
 				</div>
 			</Container>
@@ -142,7 +152,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	container: {
 		padding: 16,
 		zIndex: 3,
-		'& > div': {
+		'& > div:first-child': {
 			padding: 16,
 			borderRadius: theme.shape.borderRadius,
 			background:
@@ -157,7 +167,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	body: {
 		display: 'flex',
 		alignItems: 'center',
-		flexDirection: 'row',
+		flexDirection: 'column',
 		'& > div': {
 			padding: '0 32px 32px 32px',
 			'&:first-child': {
@@ -173,21 +183,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	list: {
-		flex: 7,
-		maxWidth: 600,
 		'& > h6': {
-			padding: '12px 6px',
+			textAlign: 'center',
+			padding: '12px 12px',
+			margin: "18px 0",
 			fontSize: '1em',
+			borderRadius: '8px',
+			background:
+				theme.palette.mode === 'dark'
+					? 'linear-gradient(135deg, #140b02, hsla(0,0%,100%,0) 80%)'
+					: 'linear-gradient(135deg, #ca92f7, #ca92f722 80%)',
 			color: theme.palette.text.secondary,
 			fontWeight: 400,
-			borderBottom: `1px solid ${theme.palette.text.disabled}`,
-			'&:first-child': {
-				paddingTop: 0,
-			},
-			'&:last-child': {
-				paddingBottom: 0,
-				borderBottom: 'none',
-			},
 		},
 	},
 }))

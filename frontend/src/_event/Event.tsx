@@ -39,13 +39,26 @@ const Event = () => {
 				title={t('event')}
 				breadcrumbs={[{ href: '/', text: 'Home' }]}
 			/>
-			<Container maxWidth="lg" sx={{ paddingTop: 4 }}>
-				<Grid container mb={8}>
+			<Container
+				maxWidth="lg"
+				sx={{ paddingTop: 4 }}
+			>
+				<Grid
+					container
+					mb={8}
+				>
 					<SectionTitle title="All events" />
-					<Grid container spacing={6}>
+					<Grid
+						container
+						spacing={6}
+					>
 						{events.length > 0 ? (
 							events.map((event, index) => (
-								<Grid item xs={12} md={6}>
+								<Grid
+									item
+									xs={12}
+									md={6}
+								>
 									<EventItem
 										key={index}
 										name={

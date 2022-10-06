@@ -7,17 +7,21 @@ import {
 	Card,
 	CardContent,
 	Grid,
-	Stack,
+	Stack, Theme,
 	Typography,
 } from '@mui/material'
 import { Box } from '@mui/system'
 import { strapiAxios } from '../../utils/axios'
 
 const Reference = ({ files = [], links = [] }) => {
-	const theme = useTheme()
+	const theme = useTheme() as Theme
 
 	const FileLists = () => (
-		<Stack direction="column" gap={2} mt={2}>
+		<Stack
+			direction="column"
+			gap={2}
+			mt={2}
+		>
 			{files.map((file, idx) => (
 				<Box key={file.id}>
 					•
@@ -57,7 +61,10 @@ const Reference = ({ files = [], links = [] }) => {
 	)
 
 	const FileReferences = () => (
-		<Card variant="outlined" sx={{ height: '100%' }}>
+		<Card
+			variant="outlined"
+			sx={{ height: '100%' }}
+		>
 			<CardContent>
 				<Typography
 					variant="h6"
@@ -77,7 +84,11 @@ const Reference = ({ files = [], links = [] }) => {
 	)
 
 	const LinkLists = () => (
-		<Stack direction="column" gap={2} mt={2}>
+		<Stack
+			direction="column"
+			gap={2}
+			mt={2}
+		>
 			{links.map((link, idx) => (
 				<Box key={link.id}>
 					•
@@ -113,7 +124,10 @@ const Reference = ({ files = [], links = [] }) => {
 	)
 
 	const LinkReferences = () => (
-		<Card variant="outlined" sx={{ height: '100%' }}>
+		<Card
+			variant="outlined"
+			sx={{ height: '100%' }}
+		>
 			<CardContent>
 				<Typography
 					variant="h6"
@@ -133,12 +147,26 @@ const Reference = ({ files = [], links = [] }) => {
 	)
 
 	return (
-		<Grid container spacing={5} mt={1}>
+		<Grid
+			container
+			spacing={5}
+			mt={1}
+		>
 			{files.length > 0 && (
-				<Grid item md={6} xs={12} children={<FileReferences />} />
+				<Grid
+					item
+					md={6}
+					xs={12}
+					children={<FileReferences />}
+				/>
 			)}
 			{links.length > 0 && (
-				<Grid item md={6} xs={12} children={<LinkReferences />} />
+				<Grid
+					item
+					md={6}
+					xs={12}
+					children={<LinkReferences />}
+				/>
 			)}
 		</Grid>
 	)

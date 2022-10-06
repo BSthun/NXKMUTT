@@ -1,6 +1,6 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack, Theme, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React, { useRef, useState } from 'react'
 
@@ -8,7 +8,7 @@ const FilterBox = ({ children, text }) => {
 	const classes = useStyles()
 
 	const [opened, setOpened] = useState(false)
-	const contentRef = useRef()
+	const contentRef = useRef<HTMLElement>()
 
 	return (
 		<Box className={classes.filterBox}>
@@ -18,7 +18,10 @@ const FilterBox = ({ children, text }) => {
 				alignItems="center"
 				sx={{ marginY: 2 }}
 			>
-				<Typography variant="p" color="textPrimary">
+				<Typography
+					variant="p"
+					color="textPrimary"
+				>
 					{text}
 				</Typography>
 				<Button
@@ -35,7 +38,10 @@ const FilterBox = ({ children, text }) => {
 				overflow="hidden"
 				width="fit-content"
 			>
-				<Box className={classes.subTitle} ref={contentRef}>
+				<Box
+					className={classes.subTitle}
+					ref={contentRef}
+				>
 					{children}
 				</Box>
 			</Box>
@@ -43,7 +49,7 @@ const FilterBox = ({ children, text }) => {
 	)
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	section: {
 		display: 'flex',
 		flexDirection: 'column',

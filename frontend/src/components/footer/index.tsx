@@ -7,11 +7,20 @@ const Footer = () => {
 
 	return (
 		<div className={classes.outer}>
-			<Container maxWidth="lg" className={classes.container}>
-				<Typography variant="h6" color="textPrimary">
+			<Container
+				maxWidth="lg"
+				className={classes.container}
+			>
+				<Typography
+					variant="h6"
+					color="textPrimary"
+				>
 					NX KMUTT website
 				</Typography>
-				<Typography variant="body2" color="textSecondary">
+				<Typography
+					variant="body2"
+					color="textSecondary"
+				>
 					&copy; 2021 NX Neuroscience Center KMUTT, all rights
 					reserved.
 				</Typography>

@@ -1,16 +1,7 @@
 import { faCalendar } from '@fortawesome/free-regular-svg-icons'
 import { faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	CardMedia,
-	Chip,
-	Stack,
-	Typography,
-} from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Chip, Stack, Typography } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -31,36 +22,39 @@ const formatDateDDMMYYYY = (date) => {
 	return `${day}/${month}/${year}`
 }
 
-const EventItem = ({ position, name, date, desc, event }) => {
+const EventItem = ({ name, date, desc, event }) => {
 	const classes = useStyles()
 	const startDate = formatDateDDMMYYYY(event.attributes.start)
 	const endDate = formatDateDDMMYYYY(event.attributes.end)
 	const previewImage = useRef(null)
-	const content = useRef(null)
+	const content = useRef<HTMLElement>(null)
 	const [height, setHeight] = useState(0)
 	const [, setGHeight] = useState(0)
 	const [show, setShow] = useState(false)
-
+	
 	useLayoutEffect(() => {
 		if (previewImage.current) {
 			setHeight(previewImage.current.clientHeight)
 		}
-
-		if (content.content) {
+		
+		if (content.current) {
 			setGHeight(content.current.clientHeight)
 		}
-
+		
 		const handleResize = () => {
 			setHeight(previewImage.current.clientHeight)
 			setGHeight(content.current.clientHeight)
 		}
-
+		
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
-
+	
 	return (
 		<div className={classes.root}>
-			<Box marginY={1} width="100%">
+			<Box
+				marginY={1}
+				width='100%'
+			>
 				<Card
 					sx={{
 						width: '100%',
@@ -73,8 +67,8 @@ const EventItem = ({ position, name, date, desc, event }) => {
 				>
 					<CardMedia
 						ref={previewImage}
-						height="300px"
-						component="img"
+						height='300px'
+						component='img'
 						sx={{
 							width: '100%',
 							top: 0,
@@ -107,17 +101,21 @@ const EventItem = ({ position, name, date, desc, event }) => {
 					>
 						<Typography
 							sx={{ fontSize: 14 }}
-							color="white"
+							color='white'
 							gutterBottom
 						>
-							<Typography variant="span" component="span" mr={2}>
+							<Typography
+								variant='span'
+								component='span'
+								mr={2}
+							>
 								<FontAwesomeIcon icon={faCalendar} />{' '}
 								{startDate.trim() === endDate.trim()
 									? startDate
 									: `${startDate} - ${endDate}`}
 							</Typography>
 							<Chip
-								size="small"
+								size='small'
 								sx={{ padding: '.5rem', color: 'white' }}
 								icon={
 									<FontAwesomeIcon
@@ -131,34 +129,40 @@ const EventItem = ({ position, name, date, desc, event }) => {
 								label={event.attributes.category}
 							/>
 						</Typography>
-						<Stack direction="row">
-							<Box flex={1} sx={{ height: '100%' }}>
+						<Stack direction='row'>
+							<Box
+								flex={1}
+								sx={{ height: '100%' }}
+							>
 								<Typography
-									variant="h5"
-									component="div"
-									color="white"
+									variant='h5'
+									component='div'
+									color='white'
 								>
 									{name}
 								</Typography>
 								<Typography
-									variant="body2"
-									component="div"
-									color="white"
+									variant='body2'
+									component='div'
+									color='white'
 								>
 									{desc}
 								</Typography>
 							</Box>
-							<Stack marginLeft={8} justifyContent="flex-end">
+							<Stack
+								marginLeft={8}
+								justifyContent='flex-end'
+							>
 								<Button
 									LinkComponent={Link}
 									to={`/event/${event?.attributes?.slug}`}
-									size="large"
+									size='large'
 									sx={{
 										opacity: show ? 1 : 0,
 										transition: 'opacity .25s ease-in-out',
 									}}
-									variant="outlined"
-									color="snow"
+									variant='outlined'
+									color='snow'
 								>
 									Learn more
 								</Button>

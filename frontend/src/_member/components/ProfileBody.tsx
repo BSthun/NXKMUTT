@@ -13,7 +13,10 @@ const ProfileBody = ({ member }) => {
 	const [t, i18n] = useTranslation('content')
 
 	return (
-		<Box minHeight="80vh" flex={1}>
+		<Box
+			minHeight="80vh"
+			flex={1}
+		>
 			<Stack
 				direction={{ xs: 'column', md: 'row' }}
 				alignItems="center"
@@ -43,42 +46,81 @@ const ProfileBody = ({ member }) => {
 					textAlign={{ xs: 'center', md: 'unset' }}
 					maxWidth={720}
 				>
-					<Typography variant="h3" color="textPrimary" gutterBottom>
+					<Typography
+						variant="h3"
+						color="textPrimary"
+						gutterBottom
+					>
 						{member.attributes[`prefix_${i18n.language}`]}{' '}
 						{member.attributes[`name_${i18n.language}`]}{' '}
 						{member.attributes[`surname_${i18n.language}`]}
 					</Typography>
-					<Typography variant="h6" color="textPrimary" gutterBottom>
+					<Typography
+						variant="h6"
+						color="textPrimary"
+						gutterBottom
+					>
 						{member.attributes[`position`]}
 					</Typography>
-					<Typography variant="caption" color="textPrimary">
+					<Typography
+						variant="caption"
+						color="textPrimary"
+					>
 						{member.attributes[`bio`]}
 					</Typography>
 				</Box>
 			</Stack>
 
-			<Grid container spacing={5}>
-				<Grid item md={6} xs={12}>
+			<Grid
+				container
+				spacing={5}
+			>
+				<Grid
+					item
+					md={6}
+					xs={12}
+				>
 					<AffiliationCard member={member} />
 				</Grid>
-				<Grid item md={6} xs={12}>
+				<Grid
+					item
+					md={6}
+					xs={12}
+				>
 					<EducationCard member={member} />
 				</Grid>
-				<Grid item md={6} xs={12}>
+				<Grid
+					item
+					md={6}
+					xs={12}
+				>
 					<ContactCard member={member} />
 				</Grid>
 				{member.attributes.attrs.map((attr, index) => (
-					<Grid item md={6} xs={12}>
+					<Grid
+						item
+						md={6}
+						xs={12}
+					>
 						<AttributeCard attr={{ attr }} />
 					</Grid>
 				))}
 			</Grid>
 
 			<SectionTitle title={t('publications')} />
-			<Grid spacing={5} container mb={8}>
+			<Grid
+				spacing={5}
+				container
+				mb={8}
+			>
 				{member?.attributes.publications?.data.map(
 					({ id, attributes }) => (
-						<Grid key={id} item md={4} xs={12}>
+						<Grid
+							key={id}
+							item
+							md={4}
+							xs={12}
+						>
 							<BlogItem
 								title={attributes.title}
 								description={attributes.desc}
